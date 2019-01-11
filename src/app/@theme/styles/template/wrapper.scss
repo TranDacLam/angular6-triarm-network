@@ -1,0 +1,38 @@
+@import './../my-variables';
+html,
+body { //body.panel-ui
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+  #container {
+    min-height: 100%;
+    position: relative;
+
+    .custom-footer {
+        position: inherit;
+    }
+    @mixin cus-body($footerHeight, $navbarHeight) {
+      min-height: calc(100% - #{$footerHeight} - #{$navbarHeight});
+    }
+    .custom-body {
+        @include cus-body($footer_height, $navbar_height);
+    }
+  }
+  #header {
+
+  }
+
+  #body {
+    padding: 10px;
+    padding-bottom: $footer_height; /* Height of the footer */
+  }
+  #footer {
+    // z-index: -1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $footer_height; /* Height of the footer */
+  }
+
+}

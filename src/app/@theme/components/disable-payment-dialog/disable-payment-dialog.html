@@ -1,0 +1,29 @@
+<div id="disablePaymentDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'limit_issuing_title' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <div class="header uppercase">{{'warning_header' | t}}</div>
+                    <div class="warning-message-content text-align">
+                        <div>{{'limit_issuing_warning_1' | t}}</div>
+                        <div>{{'limit_issuing_warning_2' | t}}</div>
+                        <div>{{'limit_issuing_warning_3' | t}}</div>
+                    </div>
+                </div>
+                <div class="margin-bottom-15px text-center">
+                    <div>{{'you_will_disable_payment_this_wallet' | t}}</div>
+                    <h5>{{options?.asset.walletID.name}} - {{options?.asset.walletID.address}}</h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default action margin-right-15px" type="button" data-dismiss="modal">{{'cancel_' | t}}</button>
+                <button class="btn btn-primary action" type="button" (click)="OK()">{{'confirm_' | t}}</button>
+            </div>
+        </div>
+    </div>
+</div>

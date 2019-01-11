@@ -1,0 +1,183 @@
+<div class="row flexbox">
+    <div class="col-xs-12 col-sm-8 valign-center">
+        <div style="font-size: 20px; font-weight: bold;">
+        	{{'new_issuer_approve' | t}}
+    	</div>
+    </div>
+    <div class="col-xs-12 col-sm-4 valign-center">
+    	<angular2-multiselect [data]="status_selected" 
+            [(ngModel)]="issuer_selected" 
+            [settings]="select_settings"
+            (onSelect)="onSelectFilterStatus($event)"
+            (onDeSelect)="onDeSelectFilterStatus($event)"
+            (onSelectAll)="onSelectAllFilterStatus()"
+            (onDeSelectAll)="onDeSelectAllFilterStatus()"
+           > 
+        </angular2-multiselect>
+    </div>
+</div>
+<div class="margin-top-15px">
+    <table class="table table-bordered">
+        <thead>
+            <th>{{'no_' | t}}</th>
+            <th>{{'detail_' | t}}</th>
+            <th class="text-center">{{'control_' | t}}</th>
+        </thead>
+        <tbody *ngIf="waitTableData">
+        	<tr>
+                <td class="text-center" colspan="4"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="!waitTableData">
+            <ng-container *ngFor="let issuer of currentItems; let i = index">
+              <tr *ngIf="issuer.latestRequest && showingFilter.indexOf(issuer.latestRequest.status) >= 0">
+                  <td style="width: 3%;">
+                      <div class="text-center">{{(currentPage -1) * limit + (i + 1) }}</div>
+                  </td>
+                  <td style="width: 65%;">
+                      <div class="row">
+                          <div class="col-xs-6">
+                              <div><label>{{'applicant_' | t}}</label></div>
+                              <div class="ellipsis"><span>{{issuer.userID.email}}</span></div>
+                          </div>
+                          <div class="col-xs-6">
+                              <div class="text-right">
+                                <span class="label label-success" *ngIf="issuer.latestRequest && issuer.lastReques && issuer.latestRequest.status === 3 && issuer.latestRequest._id === issuer.lastRequest._id">
+                                  <i class="fa fa-check"></i>&nbsp; {{'accepted_' | t}}
+                                </span>
+                                <span class="label label-danger" *ngIf="issuer.latestRequest  && issuer.lastReques && issuer.latestRequest.status === 2 && issuer.latestRequest._id === issuer.lastRequest._id">
+                                  <i class="fa fa-times"></i>&nbsp; {{'rejected_' | t}}
+                                </span>
+                                <span class="label label-warning" *ngIf="issuer.latestRequest  && issuer.lastReques && issuer.latestRequest.status === 1 && issuer.latestRequest._id === issuer.lastRequest._id">
+                                  <i class="fa fa-clock-o"></i>&nbsp; {{'pending_' | t}}
+                                </span>
+                                  <span class="label label-warning" *ngIf="issuer.latestRequest  && issuer.lastReques && issuer.latestRequest._id !== issuer.lastRequest._id && issuer.latestRequest.status === 1">
+                                    <i class="fa fa-clock-o"></i>&nbsp; {{'edit_info' | t}}
+                                  </span>
+                                  <span class="label label-danger" *ngIf="issuer.latestRequest  && issuer.lastReques && issuer.latestRequest._id !== issuer.lastRequest._id && issuer.latestRequest.status === 2">
+                                    <i class="fa fa-clock-o"></i>&nbsp; {{'edit_info' | t}}
+                                  </span>
+                              </div>
+                              <div class="text-right text-right font-italic font-shadow" style="font-size: 12px; margin-top: 5px;">
+                                <span>{{helper.formatTime(issuer.latestRequest.createdOn, '', 'LLL')}}</span>
+                              </div>
+                        </div>
+            </div>
+            <div class="margin-top-15px">
+              <label>{{'info_' | t}}</label>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 35%;">
+                              <span>{{'properties' | t}}</span>
+                            </th>
+                            <th>
+                              <span>{{'content_' | t}}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>{{'name_' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.name}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'address_' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.address}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'organization_' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.organization}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'telephone_' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.telNumber}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'token_will_issue_no_explain' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.tokens}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'number_of_token_will_issue' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.totalOfTokens}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'purpose_issue_token_no_explain' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.purposeIssue}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'token_pr_solution' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.prSolution}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'participant_feature_no_explain' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.participantFeature}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'number_of_user_estimate' | t}}</span></td>
+                            <td><span class="font-italic">{{issuer.latestRequest.numberUserEstimate}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>{{'identity_card' | t}}</span></td>
+                            <td>
+                              <img class="issuer-upload-images" src="{{issuer.latestRequest.issuerImage[0]}}" style="max-width: 150px;" />
+                              <img class="issuer-upload-images" src="{{issuer.latestRequest.issuerImage[1]}}" style="max-width: 150px;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </td>
+          <td class="text-center">
+              <div class="margin-bottom-15px">
+                <button class="max-width btn btn-default" (click)="showRequestHistory(issuer._id)"><i class="fa fa-clock-o"></i>&nbsp; {{'history_' | t}}</button>
+              </div>
+              <fieldset [disabled]="issuer.isBeingVerified || issuer.isBeingRejected">
+                  <div class="row" *ngIf="issuer.latestRequest.status === 1">
+                      <div class="col-xs-12 margin-bottom-15px col-md-6">
+                        <button class="btn btn-danger max-width" (click)="denyIssuer(issuer)">
+                          <i class="fa fa-times" *ngIf="!issuer.isBeingRejected"></i>
+                          <i class="fa fa-spinner fa-spin" *ngIf="issuer.isBeingRejected"></i>
+                          <span class="ellipsis">&nbsp; {{'deny_' | t}}</span>
+                        </button>
+                      </div>
+                      <div class="margin-bottom-15px col-xs-12 col-md-6">
+                          <button class="btn btn-primary max-width" (click)="approveIssuer(issuer)">
+                            <i class="fa fa-check" *ngIf="!issuer.isBeingVerified"></i>
+                            <i class="fa fa-spinner fa-spin" *ngIf="issuer.isBeingVerified"></i>
+                            <span class="ellipsis">&nbsp; {{'accept_' | t}}</span>
+                          </button>
+                      </div>
+                  </div>
+              </fieldset>
+              <div class="row" *ngIf="issuer.latestRequest.status === 3 || ( issuer.latestRequest.status === 2 && issuer.lastRequest.status === 3)">
+                <div class="text-center can-toggle demo-rebrand-1" style="margin-top: 10px;">
+                              <input id="issuer-enable-toggle-{{issuer._id}}" type="checkbox" [checked]="issuer.active" (change)="makeIssuerActiveToggle(issuer)">
+                              <label for="issuer-enable-toggle-{{issuer._id}}">
+                                  <div class="can-toggle__switch" [attr.data-checked]="'active_' | t" [attr.data-unchecked]="'inactive_' | t"></div>
+                              </label>
+                          </div>
+              </div>
+          </td>
+			  </tr>
+        </ng-container>
+		</tbody>
+	</table>
+	<div class="text-right">
+        <pagination *ngIf="issuers && issuers.length > 0" 
+            [totalItems]="issuers.length" [itemsPerPage]="limit" (pageChanged)="pageChanged($event)" [maxSize]="5"
+        ></pagination>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-issuer-request-history-dialog [issuer_id]="issuer_detail_id"
+></app-issuer-request-history-dialog>
+
+<app-input-dialog
+	[title]="'reject_issuer_request' | t" 
+    [message]="'reason_extra_information' | t"
+    type="text"
+    (changeSubmit)="inputDialog($event)"
+>
+</app-input-dialog>

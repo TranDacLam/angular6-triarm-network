@@ -1,0 +1,44 @@
+<div class="nav-side-menu" *ngIf="userService.current_user">
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul class="menu-content collapse out" id="menu-content">
+            <li id="profile">
+                <img src="{{userService.current_user.avatar}}" /><br/>
+                <p>{{userService.current_user.email}}</p>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" data-toggle="collapse" data-target="#wallet">
+                <a><i class="fa fa-leaf fa-2x"></i>
+                    <span>{{'my_wallets' | t}}</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu collapse" [routerLinkActive]="['in']" [routerLinkActiveOptions]="{exact:true}" id="wallet">
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/wallet/my-wallets']">{{'my_wallets' | t}}</a></li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/wallet/advance-wallet']">{{'advance_wallet' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/wallet/multisign-wallet']">{{'multisign_wallet' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/wallet/contacts']">{{'my_contacts' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/wallet/history']">{{'wallet_history' | t}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" data-toggle="collapse" data-target="#settings" id="setting-item">
+                <a [routerLink]="['/wallet/settings']"><i class="fa fa-cog fa-2x"></i>
+                    <span>{{'settings_' | t}}</span>
+                </a>
+            </li>
+            <li class="collapsed">
+                <a (click)="logout()">
+                    <i class="fa fa-sign-out fa-2x"></i>
+                    <span class="logout">{{'log_out' | t}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

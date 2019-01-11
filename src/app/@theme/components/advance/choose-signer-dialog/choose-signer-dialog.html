@@ -1,0 +1,30 @@
+<div id="chooseSignerDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">&times;</button>
+			    <h3 class="modal-title bold-text" *ngIf="!isConfirmMode">{{'select_signer_wallet' | t}}</h3>
+			    <h3 class="modal-title bold-text" *ngIf="isConfirmMode">{{'select_signer_wallet' | t}}</h3>
+			</div>
+			<div class="modal-body" style="width: auto;">
+			    <div class="margin-bottom-15px" *ngIf="!isConfirmMode">
+			    	<select class="form-control margin-bottom-15px" [(ngModel)]="selectedSigner">
+			    		<option [value]="null">{{'select_wallet' | t}}</option>
+			    		<ng-container *ngFor="let signer of mySigners">
+				    		<option [value]="signer.public_key" *ngIf="signer.isOwned || signer.weight > 0" >{{signer.name}}</option>
+				    	</ng-container>
+			    	</select>
+			    </div>
+			    <div class="margin-bottom-15px text-center" *ngIf="isConfirmMode">
+			        <div> {{'you_will_sign_this_transaction_by' | t}}
+			            <h5>{{mySigners[0].name}} - {{mySigners[0].public_key}}</h5>
+			        </div>
+				</div>
+				<div class="margin-bottom-15px text-center">
+					<button class="btn btn-primary action" type="button" (click)="OK()" [disabled]="!selectedSigner" *ngIf="!isConfirmMode">{{'ok_' | t}}</button>
+					<button class="btn btn-primary action" type="button" (click)="OK()" [disabled]="!selectedSigner" *ngIf="isConfirmMode">{{'confirm_' | t}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

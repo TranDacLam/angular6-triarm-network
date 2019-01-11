@@ -1,0 +1,151 @@
+
+.mailbox a{
+  padding:10px;
+  background-color: whitesmoke;
+  width:100%;
+  display: block;
+}
+
+.mailbox a{
+  background: white;
+  text-decoration: none;
+}
+
+.mailbox a.active{
+  background-color: green;
+  color: white;
+}
+
+.mailbox a.active:hover {
+  background-color: green;
+}
+
+.mailbox a:hover{
+  background-color: lightgrey;
+}
+
+tr.thread-row {
+  cursor: pointer;
+  td {
+  background: white;
+  border-bottom: 1px solid lightgrey;
+  font-size:12px;
+  padding: 6px;
+  //margin-bottom: 15px;
+  //box-shadow: 3px 4px 5px 0px rgba(207,207,207,1);
+  }
+}
+
+tr.thread-row.remove{
+  td{
+    background: grey;
+  }
+}
+
+.span-button{
+  font-size:20px;
+}
+
+.email-subject{
+  //font-size: 16px;
+}
+
+.email-subject.unread{
+  font-weight:bold;
+  color: white !important;
+}
+
+.admin-email{
+  user-select: none;
+}
+
+.no-email{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 10px 40px;
+  opacity:1;
+  background: whitesmoke;
+}
+
+.email-filter{
+  color: white;
+  background: lightslategray;
+  padding: 10px;
+}
+
+.mail-frame{
+  background: whitesmoke;
+  //height: calc(100% - 80px);
+
+  .mail-panel-header{
+    background: darkslategray;
+    padding:15px;
+  }
+
+  .mail-panel-body{
+    padding:15px;
+
+    .mail-content-wrapper{
+      //height: calc(100% - 160px);
+      overflow: auto;
+      background: white;
+
+      .thread-header{
+        padding: 6px;
+        background: lightslategray;
+        color: white;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        .thread-header-title{
+          font-weight:bold;
+          font-size:16px;
+        }
+      }
+
+      table tr.tr-separator td{
+        background: whitesmoke;
+        padding:10px;
+        font-weight:bold;
+        div{
+          padding:5px;
+          border-bottom: 1px solid lightgrey;
+        }
+      }
+    }
+  }
+
+}
+
+.email-thread-box{
+  height: calc(100% - 80px);
+  overflow: auto;
+}
+
+.email-box{
+  //width: calc(100% - 10px);
+  border: 1px solid lightgrey;
+  margin-bottom: 1px;
+
+  .email-header{
+    background: whitesmoke;
+    padding:15px;
+    //color: white;
+    cursor: pointer;
+
+  }
+
+  .email-content{
+    padding:10px;
+    font-size: 14px;
+  }
+
+  .email-html-content{
+    border: 1px solid lightgrey;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: whitesmoke;
+  }
+}
+
+
+

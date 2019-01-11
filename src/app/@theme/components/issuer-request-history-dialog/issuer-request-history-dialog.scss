@@ -1,0 +1,17 @@
+.pager{
+	.previous{
+		float: left;
+	}
+	.next{
+		float: right;
+	}
+	a{
+		cursor: pointer;
+	}
+	a.disabled {
+		box-shadow: none;
+	   	cursor: not-allowed;
+	   	opacity: .65;
+	   	pointer-events: none;
+	}
+}

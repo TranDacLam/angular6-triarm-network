@@ -1,0 +1,74 @@
+<div ng-controller="AdminIndexController" ng-cloak="ng-cloak" ng-init="init(undefined)">
+    <h2>Admin Dashboard</h2>
+    <h3>{{'arm_reserve' | t}}</h3>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 admin-reserve-wrapper">
+            <div class="admin-reserve-content">
+                <div class="admin-reserve-title"><span>Total</span></div>
+                <div class="admin-reserve-number">{{ total | currency : '': '' : '4.4-4' }} RIA</div>
+                <div class="admin-reserve-percent"><span>100 %</span></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 admin-reserve-wrapper">
+            <div class="admin-reserve-content">
+                <div class="admin-reserve-title"><span>Available</span></div>
+                <div class="admin-reserve-number">{{ available | currency : '': '' : '4.4-4' }} RIA</div>
+                <div class="admin-reserve-percent"><span>{{ percentage.available }} %</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" [ngStyle]="{'width.%': percentage.sold}">{{ percentage.sold }}%</div>
+                <div class="progress-bar progress-bar-warning" role="progressbar" [ngStyle]="{'width.%': percentage.pending}">{{ percentage.pending }}%</div>
+                <div class="progress-bar progress-bar-disabled" role="progressbar" [ngStyle]="{'width.%': percentage.other}">{{ percentage.other }}%</div>
+                <div class="progress-bar progress-bar-success" role="progressbar" [ngStyle]="{'width.%': percentage.available}">{{ percentage.available }}%</div>
+            </div>
+        </div>
+    </div>
+    <h3>{{'gbt_reserve' | t}}</h3>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 admin-reserve-wrapper">
+            <div class="admin-reserve-content">
+                <div class="admin-reserve-title"><span>Total</span></div>
+                <div class="admin-reserve-number">{{ GBTtotal | currency : '': '' : '4.4-4' }} GBT</div>
+                <div class="admin-reserve-percent"><span>100 %</span></div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 admin-reserve-wrapper">
+            <div class="admin-reserve-content">
+                <div class="admin-reserve-title"><span>Available</span></div>
+                <div class="admin-reserve-number">{{ GBTavailable | currency : '': '' : '4.4-4' }} GBT</div>
+                <div class="admin-reserve-percent"><span>{{ GBTpercentage.available }} %</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="progress">
+                <div class="progress-bar progress-bar-disabled" role="progressbar" [ngStyle]="{'width.%': GBTpercentage.other}"></div>
+                <div class="progress-bar progress-bar-success" role="progressbar" [ngStyle]="{'width.%': GBTpercentage.available}">{{ GBTpercentage.available }}%</div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="text-center margin-top-15px">
+            	<span class="margin-right-15px label label-danger">{{'ico_sold' | t}}</span>
+            	<span class="margin-right-15px label label-warning">{{'ico_pending' | t}}</span>
+            	<span class="margin-right-15px label label-disabled">{{'others_' | t}}</span>
+            	<span class="margin-right-15px label label-success">{{'available_' | t}}</span>
+            </div>
+        </div>
+    </div>
+    <h3>{{'maintenance_mode' | t}}</h3>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-left can-toggle demo-rebrand-1" style="margin-top: 10px;">
+	            <input id="maintenance-mode-enable-toggle" type="checkbox" [checked]="isMaintenance" (change)="makeToggle()">
+	            <label for="maintenance-mode-enable-toggle">
+	                <div class="can-toggle__switch" [attr.data-checked]="'active_' | t" [attr.data-unchecked]="'inactive_' | t"></div>
+	            </label>
+	        </div>
+        </div>
+    </div>
+</div>

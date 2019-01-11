@@ -1,0 +1,11 @@
+<div class="form-group has-feedback" [formGroup]="form">
+	<label class="pull-left">{{title}}</label>
+
+	<input 
+		class="form-control" type="{{type}}" [formControlName]="form_control_name"
+	/>
+
+	<span class="form-control-feedback glyphicon glyphicon-remove color-danger" *ngIf="form.get(form_control_name).invalid && !isValid"></span>
+
+    <span class="form-control-feedback glyphicon glyphicon-ok font-success" *ngIf="!form.get(form_control_name).invalid && (form.get(form_control_name).dirty || form.get(form_control_name).touched) && !isValid"></span>
+</div>

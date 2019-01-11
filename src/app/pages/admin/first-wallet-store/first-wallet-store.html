@@ -1,0 +1,51 @@
+<div class="backup-db">
+    <div>
+        <h3 class="pull-left mt0">{{'first_wallet_store' | t}}</h3>
+        <div class="pull-right">
+            <button class="btn btn-primary" (click)="createMultiFirstWallet()" [disabled]="isCreatingWallet">
+                <i class="fa fa-plus"></i>&nbsp; {{'_50_first_wallet_created' | t}}
+                <i class="fa fa-spinner fa-spin" *ngIf="isCreatingWallet"></i>
+            </button>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <hr/>
+    <div>
+        <div>
+            <h4 class="pull-left mt0">{{'all_first_wallet' | t}}</h4>
+            <div class="pull-right">
+                <h5 *ngIf="!!allFirstWallet">Total: {{allFirstWallet.length}} wallets</h5>
+            </div>
+            <div class="clearfix"></div>
+            <hr/>
+            <table class="table table-condensed table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>{{'no_dot' | t}}</th>
+                        <th>{{'wallet_name' | t}}</th>
+                        <th>{{'wallet_address' | t}}</th>
+                        <th>{{'created_at' | t}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="waitTableData">
+                        <td class="text-center" colspan="4"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>
+                    </tr>
+                    <tr class="backup-file" *ngFor="let wallet of currentItems; let i = index">
+                        <td>{{ (currentPage -1) * limit + (i + 1) }}</td>
+                        <td><a>{{ wallet.name }}</a></td>
+                        <td>{{ wallet.address }}</td>
+                        <td>{{ wallet.createdAt| date : "dd/MM/yyyy HH:mm:ss Z" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination *ngIf="allFirstWallet && allFirstWallet.length > 0"
+                    [totalItems]="allFirstWallet.length" [itemsPerPage]="limit" (pageChanged)="pageChanged($event)" [maxSize]="5" [boundaryLinks]="true" [rotate]="true"
+                ></pagination>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-tfa-confirm [option_extra]="option_extra" (on_confirm)="onConfirmTfa($event)"></app-tfa-confirm>

@@ -1,0 +1,13 @@
+.tab-pane.active {
+    animation: opac 1.5s
+}
+
+@keyframes opac {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}

@@ -1,0 +1,153 @@
+<div>
+    <div class="text-center alert alert-success" *ngIf="isSuccess">
+    	<strong>{{'success_' | t}}!&nbsp;
+    		<span>{{'success_alert' | t}} {{timer}}</span>
+    	</strong>
+    </div>
+    <h2 *ngIf="mode">
+	    {{mode=='receive' ? ("receive_money" | t) : ("send_money" | t)}}
+	</h2>
+
+	<app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+	
+    <div class="btn-group margin-bottom-15px" role="group" aria-label="..." *ngIf="!mode">
+    	<button class="action btn btn-{{mode == 'receive' ? 'primary' : 'default'}}" type="button" (click)="changeMode('receive')">{{'request_payment' | t}}</button>
+    	<button class="action btn btn-{{mode == 'send' ? 'primary' : 'default'}}" type="button" (click)="changeMode('send')">{{'send_money' | t}}</button>
+        <div class="text-center" *ngIf="wallets.length==0">{{'no_have_wallet' | t}}</div>
+    </div>
+    <ng-container *ngIf="!waitData">
+	    <div *ngIf="wallets.length">
+	        <div class="panel panel-default" *ngIf="mode == 'receive'">
+	            <div class="panel-body">
+	                <fieldset [disabled]="waitResponse">
+	                	<label>{{'wallet_' | t}}</label>
+	                    <div class="margin-bottom-15px">
+	                        <div *ngIf="selectedWallet">
+	                            <div>
+	                            	<span>{{selectedWallet.name}} &nbsp;</span>
+	                            	<a type="button" (click)="selectWallet()">{{'change_' | t}}</a>
+	                            </div>
+	                            <div class="ellipsis">{{selectedWallet.address}}</div>
+	                        </div>
+	                        <div *ngIf="!selectedWallet">
+	                        	<button class="btn btn-default" (click)="selectWallet()">{{'select_a_wallet' | t}}</button>
+	                        </div>
+	                    </div>
+	                    <label>{{'requested_asset' | t}}</label>
+	                    <div class="margin-bottom-15px">
+	                    	{{selectedAsset.asset_type == "native" ? ("native_" | t) : (selectedAsset.name ? selectedAsset.name : selectedAsset.asset_code)}} &nbsp;
+	                        <div *ngIf="selectedAsset">
+	                        	<a *ngIf="!waitResponse" type="button" (click)="selectAsset()">{{'change_' | t}}</a>
+	                        </div>
+	                        <div *ngIf="!selectedAsset">
+	                        	<button class="btn btn-default" (click)="selectAsset()">{{'select_an_asset' | t}}</button>
+	                        </div>
+	                    </div>
+	                    <label>{{'amount_' | t}}</label>
+	                    <div class="input-group">
+	                    	<span class="input-group-addon"><i class="fa fa-money"></i></span>
+	                    	<input class="form-control text-right currency-font amount-mode" [disabled]="!selectedAsset" (input)="checkAmount($event.target.value)" type="text" [(ngModel)]="amount" />
+	                    </div>
+	                    <div
+	                        class="text-center">
+	                        <button class="btn btn-primary action" type="button" (click)="generateQrCode()" [disabled]="!(selectedWallet && selectedAsset && amount)">{{'generate_' | t}}</button>
+	                    </div>
+		            </fieldset>
+		        </div>
+		    </div>
+		    <div class="panel panel-default" *ngIf="mode == 'send'">
+			    <div class="panel-body">
+			        <fieldset [disabled]="waitResponse">
+			        	<label>{{'wallet_' | t}}</label>
+			            <div class="margin-bottom-15px">
+			                <div *ngIf="selectedWallet">
+			                    <div><span>{{selectedWallet.name || ''}} &nbsp;</span></div>
+			                    <div class="ellipsis">
+			                    	{{selectedWallet.address}}
+			                    </div>
+			                </div>
+			                <div *ngIf="!selectedWallet">
+			                	<button class="btn btn-default" (click)="selectWallet()">{{'select_a_wallet' | t}}</button>
+			                </div>
+			            </div>
+			            <label>{{'asset_' | t}}</label>
+			            <div class="margin-bottom-15px">
+			                <div *ngIf="selectedAsset">
+			                	{{selectedAsset.asset_type == "native"? ("native_" | t) : (selectedAsset.name ? selectedAsset.name : selectedAsset.asset_code)}}&nbsp;
+			                	<a *ngIf="!waitResponse" type="button" (click)="selectAsset()">{{'change_' | t}}</a>
+			                </div>
+			                <div *ngIf="!selectedAsset">
+			                	<button class="btn btn-default" (click)="selectAsset()">{{'select_an_asset' | t}}</button>
+			                </div>
+			            </div>
+                  <label>{{'max_balance' | t}}</label>
+                  <div class="margin-bottom-15px">
+                    <div *ngIf="selectedAsset">
+                      {{selectedAsset.balance}}
+                      {{selectedAsset.asset_type=="native"? ('native_' | t) : selectedAsset.name ? selectedAsset.name : selectedAsset.asset_code}}
+                    </div>
+                  </div>
+			            <label>{{'receiving_address' | t}}</label>
+			            <div class="input-group">
+			                <div class="input-group-btn">
+			                	<button class="btn btn-default" data-toggle="modal" data-target="#contactSelectDialog">&nbsp;<i class="fa fa-user"></i>&nbsp; ... &nbsp;</button>
+			                </div>
+			                <input class="form-control text-right currency-font" type="text" [(ngModel)]="receivingAddress" required="required" minlength="56" maxlength="56" name="receiving_address" #receiving_address="ngModel" style="padding-right:22px;"/>
+		                </div>
+		                <label>{{'amount_' | t}}</label>
+			            <div class="input-group">
+			            	<span class="input-group-addon">
+			            		<i class="fa fa-money"></i>
+			            	</span>
+			            	<input class="form-control text-right currency-font amount-mode" [disabled]="!selectedAsset" type="text" style="font-size:25px;" [(ngModel)]="amount" (input)="checkAmount($event.target.value)" required />
+			            </div>
+			            <label>{{'memo_' | t}}</label>
+			            <div class="input-group">
+			            	<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+			            	<input class="form-control text-right currency-font" id="memo" type="text" style="font-size:25px;" maxlength="28" [(ngModel)]="memoText" (input)="checkMemo($event.target.value)"/>
+			            </div>
+			            <div class="margin-bottom-15px" style="color:red;"></div>
+			            <div class="text-center margin-bottom-15px" *ngIf="!waitResponse">
+			            	<button class="btn btn-primary action" type="button" [disabled]="!selectedWallet || !selectedAsset || !receivingAddress || receiving_address.invalid || !amount || !selectedWallet.active || selectedWallet.block" data-toggle="modal" data-target="#privateKeyDialog">{{'send' | t}}</button>
+			            </div>
+			        </fieldset>
+			    </div>
+			</div>
+		</div>
+	</ng-container>
+	<div class="text-center" *ngIf="waitData"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+</div>
+
+<!-- MODAL -->
+<app-asset-dialog 
+	[options]="options_asset" 
+	(on_asset_dialog)="onAssetDialog($event)" >
+</app-asset-dialog>
+
+<app-wallet-dialog
+	[options]="options_wallet"
+	(on_wallet_dialog)="onWalletDialog($event)"
+>
+</app-wallet-dialog>
+
+<app-contact-select-dialog 
+	(on_contact_select_dialog)="onContactSelectDialog($event)"
+>
+</app-contact-select-dialog>
+
+<app-private-key-dialog 
+	[wallet]="selectedWallet" type="payment"
+	(on_private_key_dialog)="onPrivateKeyDialog($event)"
+>
+</app-private-key-dialog>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
+
+<app-summary-dialog 
+	[data]="data_summary_dialog"
+>
+</app-summary-dialog>

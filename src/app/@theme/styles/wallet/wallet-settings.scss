@@ -1,0 +1,14 @@
+@import './../my-variables';
+.nav-tabs > li{
+	//width: 33%;
+	text-align: center;
+
+	> a{
+		font-weight: bold;
+	}
+}
+
+.nav-tabs>li.active>a{
+	background-color: $accent_color !important;
+    color: white !important;
+}

@@ -1,0 +1,24 @@
+<div id="container" *ngIf="userService.current_user">
+    <div id="header">
+    	<app-header></app-header>
+	</div>
+	
+	<div id="body">
+		<app-menu-admin></app-menu-admin>
+	    <div class="main-content">
+	    	<div class="alert alert-danger" *ngIf="userService.current_user && (!userService.current_user.verifyEmail || !userService.current_user.verifySMS)">
+		        <strong>{{'verification_missing_note' | t}} &nbsp;</strong>
+		        <a [routerLink]="['/wallet/settings']">{{'go_to_settings' | t}}</a>
+		    </div>
+		    <div class="alert alert-danger" *ngIf="userService.current_user && !userService.current_user.verifyGA">
+		        <strong>{{'tfa_disable_note' | t}} &nbsp;</strong>
+		        <a [routerLink]="['/wallet/settings']">{{'go_to_settings' | t}}</a>
+		    </div>
+	        <router-outlet></router-outlet>
+	    </div>
+	</div>
+
+    <div id="footer">
+    	<app-footer></app-footer>
+    </div>
+</div>

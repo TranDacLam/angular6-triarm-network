@@ -1,0 +1,177 @@
+<div>
+    <div *ngIf="issuer && issuer.lastRequest && issuer.lastRequest.status === 3 && issuer.active">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="panel-header-title">{{'new_issuing' | t}}</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <fieldset [disabled]="processing">
+                            <div>
+                            	<label>{{'issuing_asset' | t}} &nbsp;</label>
+                            	<a *ngIf="issuingAsset && issuingAsset._id && !processing" (click)="selectIssuingAsset()">{{'change_' | t}}</a>
+                            </div>
+                            <div class="margin-bottom-15px"
+                                *ngIf="!issuingAsset?._id">
+                                <button class="btn btn-default" (click)="selectIssuingAsset()">{{'select_an_asset' | t}}</button>
+                            </div>
+                            <div class="margin-bottom-15px" *ngIf="!!issuingAsset?._id" style="background: whitesmoke; border-radius: 4px; padding: 10px;">
+                                <div class="row flexbox">
+                                    <div class="col-xs-12 col-sm-4 valign-center">
+                                        <div style="padding-left: 25%;">
+                                          <img class="img-dialog" [src]="issuingAsset.logo ? issuingAsset.logo : './../../../../assets/images/asset_icons/RIA.png'" onError="this.src='./../../../../assets/images/asset_icons/default.png'" />
+                                          <span *ngIf="issuingAsset.isErrorImage" style="padding-left: 25%; position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 14px; text-shadow: 0 0 4px #EBEBFE;">{{ issuingAsset.name?.substr(0,3) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8 valign-center">
+                                        <div>
+                                        	<label>{{'name_' | t}} &nbsp;</label>
+                                        	<span>{{issuingAsset.name}}</span>
+                                        	<span>
+                                        		<span>&nbsp;</span>
+                                        		<i class="fa fa-eye" *ngIf="helper.bitwiseAnd(issuingAsset.walletID.property, '0x02')"></i>
+                                        	</span>
+                                        </div>
+                                        <div>
+                                        	<label>{{'decimal_place' | t}} &nbsp;</label>
+                                        	<span>{{issuingAsset.decimalPlace}}</span>
+                                        </div>
+                                        <div>
+                                        	<label>{{'ratio_' | t}} &nbsp;</label>
+                                        	<span>{{issuingAsset.ratio == 0 ? ('no_ratio' | t) : ('1/' + 1/issuingAsset.ratio)}}</span>
+                                        </div>
+                                        <div>
+                                        	<label>{{'capital_' | t}} &nbsp;</label>
+                                        	<span>{{issuingAsset.capital | currency : '' : '' : currencyDigitsInfo(issuingAsset.decimalPlace)}}</span>
+                                        </div>
+                                        <div>
+                                        	<label>{{'issuing_wallet' | t}} &nbsp;</label>
+                                        	<a target="_blank" href="/wallet/my-wallets;walletId={{issuingAsset.walletID._id}}">
+                                        		<span>{{issuingAsset.walletID.name}} &nbsp;</span>
+                                        		<i class="fa fa-external-link"></i>
+                                        	</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="!!helper.bitwiseAnd(issuingAsset?.walletID.extraFlags, '0x01')">
+                                <div class="text-danger">
+                                	<i class="fa fa-exclamation-circle">&nbsp;</i>
+                                	<span>{{'this_asset_is_limit_issuing' | t}}</span>
+                                </div>
+                            </div>
+                            <div *ngIf="!helper.bitwiseAnd(issuingAsset?.walletID.extraFlags, '0x01')">
+                                <div>
+                                	<label>{{'holding_wallet' | t}} &nbsp;</label>
+                                	<a *ngIf="holdingWallet && !processing" (click)="selectHoldingWallet()">({{'change_' | t}})</a>
+                                </div>
+                                <div class="margin-bottom-15px" *ngIf="!holdingWallet">
+                                	<button class="btn btn-default" (click)="selectHoldingWallet()" [disabled]="!issuingAsset || !issuingAsset._id">{{'select_a_wallet' | t}}</button>
+                                </div>
+                                <div class="ellipsis margin-bottom-15px" *ngIf="holdingWallet">
+                                	{{holdingWallet.name + ' - ' + holdingWallet.address}} &nbsp;
+                                </div>
+                                <label>{{'amount' | t}}</label>
+                                <div class="input-group margin-bottom-15px">
+                                	<span class="input-group-addon">
+                                		<i class="fa fa-money"></i>
+                                	</span>
+                                	<input class="form-control" [disabled]="!issuingAsset || !issuingAsset._id || !holdingWallet" [(ngModel)]="issuingAmount" (input)="checkIssuingAmount($event.target.value)" id="issuing-amount"
+                                    />
+                                </div>
+                                <label>{{'native_min' | t}}</label>
+                                <div class="input-group margin-bottom-15px">
+                                	<span class="input-group-addon">
+                                		<i class="fa fa-balance-scale"></i>
+                                	</span>
+                                	<input class="form-control" [disabled]="true" [value]="(issuingAsset && issuingAsset._id ? getARMRequired() : '0') | currency : '' : '' : '1.7'"
+                                    />
+                                </div>
+                                <div class="text-center margin-top-15px margin-bottom-15px">
+                                	<button class="action btn btn-primary" (click)="issue()" [disabled]="processing || !issuingAsset || !holdingWallet">
+                                		<span *ngIf="processing"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                                		<span>{{'issue' | t}}</span>
+                                	</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6" *ngIf="issuingAsset">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="panel-header-title">{{'issuing_history' | t}}</div>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                    	<button class="btn btn-default" (click)="reloadIssuingHistory()" [disabled]="processing || !issuingAsset || !issuingAsset._id || loadingIssuingHistory">
+                    		<i class="fa fa-refresh {{loadingIssuingHistory? 'fa-spi' : ''}}"></i>
+                    	</button>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div *ngIf="!issuingAsset || !issuingAsset._id">
+                            <div class="text-center font-shadow text-italic">{{'select_an_asset_to_show_history' | t}}</div>
+                        </div>
+                        <div *ngIf="issuingAsset.history && !issuingAsset.history.length">
+                            <div class="text-center font-shadow text-italic">{{'no_issuing' | t}}</div>
+                        </div>
+                        <div *ngIf="issuingAsset.history && issuingAsset.history.length">
+                            <div class="table-responsive">
+                                <table class="max-width table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>{{'issuing_date' | t}}</th>
+                                            <th class="text-right">{{'issuing_amount' | t}}</th>
+                                            <th class="text-right">{{'receiving_wallet' | t}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let history of issuingAsset.history">
+                                            <td>{{helper.formatTime(history.createdOn, '', 'YYYY-MM-DD')}}</td>
+                                            <td class="text-right">{{history.issuingAmount | currency : '' : '' : currencyDigitsInfo(issuingAsset.decimalPlace)}}</td>
+                                            <td class="text-right">
+                                                <div *ngIf="history.holdingWalletID"><a target="_blank" href="{{history.holdingWalletURL}}"><span>{{history.holdingWalletID.name}} &nbsp;</span><i class="fa fa-external-link"></i></a></div>
+                                                <div *ngIf="!history.holdingWalletID">{{'token_converter' | t}}</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-asset-dialog-multi-sign-user
+    [options]="options_asset" 
+    (on_asset_dialog)="onAssetDialog($event)" >
+</app-asset-dialog-multi-sign-user>
+
+<app-wallet-dialog-multi-sign-user
+    [options]="options_wallet"
+    (on_wallet_dialog)="onWalletDialog($event)"
+>
+</app-wallet-dialog-multi-sign-user>
+
+<app-tfa-confirm
+    [option_extra]="{}"
+    (on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
+
+<!-- <app-choose-signer-dialog
+    [options]="options_choose_signer"
+    (on_choose_signer_dialog)="onChooseSignerDialog($event)"
+>
+</app-choose-signer-dialog> -->
+
+<app-private-key-dialog 
+    [wallet]="null" [type]="null"
+    (on_private_key_dialog)="onPrivateKeyDialog($event)"
+>
+</app-private-key-dialog>

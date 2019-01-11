@@ -1,0 +1,132 @@
+<div *ngIf="wallet" class="wallet-wrapper setting-advance-wallet" style="position:relative;">
+    <p style="position: absolute;right: 5px;top: 0;">
+    	<b>{{'status_' | t}}: &nbsp;</b>
+    	<small class="text-danger" *ngIf="wallet.multisignType===1">{{'hot_wallet' | t}}</small>
+    	<small class="text-primary" *ngIf="wallet.multisignType===2">{{'cold_wallet' | t}}</small>
+    </p>
+    <div class="text-center alert alert-success" *ngIf="isSuccess">
+    	<strong>{{'success_' | t}}!&nbsp;
+    		<span>{{'success_alert' | t}} {{timer}}</span>
+    	</strong>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div style="margin-top: 10px;">
+                <!-- Nav tabs-->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active" role="presentation">
+                    	<a href="#info" aria-controls="home" role="tab" data-toggle="tab">
+                    		<i class="fa fa-info-circle">&nbsp; {{'general_' | t}}</i>
+                    	</a>
+                    </li>
+                </ul>
+                <!-- Tab panes-->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="info" role="tabpanel" style="margin-top: 10px;">
+                        <fieldset [disabled]="waitResponse">
+                            <table class="table table-permission">
+                                <tbody>
+                                    <tr>
+                                        <td><i class="fa fa-user-circle"></i></td>
+                                        <td>
+                                        	<label>{{'admin_permission' | t}}</label>
+                                        	<span>{{'admin_role' | t}}</span>
+                                        </td>
+                                        <td>
+                                        	<input class="form-control" type="number" [(ngModel)]="thresholds.high_threshold" [placeholder]="'permission_percent' | t" disabled="disabled" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-paypal"></i></td>
+                                        <td>
+                                        	<label>{{'paymenter' | t}}</label>
+                                        	<span>{{'paymenter_role' | t}}</span>
+                                        </td>
+                                        <td>
+                                        	<input class="form-control" type="number" [(ngModel)]="thresholds.med_threshold" disabled="disabled" [placeholder]="'permission_percent' | t"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-check-circle-o"></i></td>
+                                        <td>
+                                        	<label>{{'allower' | t}}</label>
+                                        	<span>{{'allower_role' | t}}</span>
+                                        </td>
+                                        <td>
+                                        	<input class="form-control" type="number" [(ngModel)]="thresholds.low_threshold" disabled="disabled" [placeholder]="'permission_percent' | t"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="container-fluid singer">
+                            	<label>{{'signer' | t}}</label>
+							    <table class="table table-signer">
+							        <tbody>
+							            <tr *ngIf="masterKey.weight > 0">
+							                <td>
+							                    <div>{{masterKey.address}}</div>
+							                    <div class="text-muted">{{'master_key' | t}}</div>
+							                </td>
+							                <td>
+							                	<input class="form-control" type="number" [(ngModel)]="masterKey.weight" [placeholder]="'permission_percent' | t" disabled="disabled" style="width:60px;" />
+							                </td>
+							                <td *ngIf="wallet.multisignType != 2">
+							                	<a class="btn btn-danger icon" (click)="removeSigner(masterKey)"><i class="fa fa-trash"></i></a>
+							                </td>
+							                <td *ngIf="wallet.multisignType != 2">
+							                	<a class="btn btn-primary icon" (click)="editSigner(masterKey)"><i class="fa fa-pencil"></i></a>
+							                </td>
+							            </tr>
+							            <tr *ngFor="let signer of signers; let i = index">
+							                <td>
+							                    <div>{{signer.address}}</div>
+							                    <div class="text-muted">{{'signer' | t}}</div>
+							                </td>
+							                <td><input class="form-control" type="number" [(ngModel)]="signer.weight" [placeholder]="'permission_percent' | t" disabled="disabled" style="width: 60px;" /></td>
+							                <td *ngIf="wallet.multisignType != 2"><a class="btn btn-danger icon"  (click)="removeSigner(signer)"><i class="fa fa-trash"></i></a></td>
+							                <td *ngIf="wallet.multisignType != 2"><a class="btn btn-primary icon"  (click)="editSigner(signer)"><i class="fa fa-pencil"></i></a></td>
+							            </tr>
+							            <tr *ngIf="wallet.multisignType != 2" style="text-align: center;">
+							                <td colspan="3"><a class="btn btn-info icon" (click)="addSigner()"><i class="fa fa-plus"></i></a></td>
+							            </tr>
+							            <tr *ngIf="wallet.multisignType != 2 && isAddOrEdit">
+							                <td colspan="3">
+							                    <table class="table">
+							                        <tbody>
+							                            <tr>
+							                                <td><input class="form-control" type="text" [(ngModel)]="newAddress" required [placeholder]="'signer_address' | t" /></td>
+							                                <td style="width: 75px;"><input class="form-control" type="number" [(ngModel)]="newWeight" [placeholder]="'permission_percent' | t" (change)="handleNewWeightInput($event, newWeight)" /></td>
+							                                <td style="width: 30px;"><a class="btn btn-success icon" (click)="OK({address: newAddress, weight: newWeight})"><i class="fa fa-check"></i></a></td>
+							                                <td style="width: 30px;"><a class="btn btn-default icon" (click)="undo()"><i class="fa fa-times"></i></a></td>
+							                            </tr>
+							                        </tbody>
+							                    </table>
+							                </td>
+							            </tr>
+							        </tbody>
+							    </table>
+							</div>
+							<!-- <div layout="row" layout-sm="column" layout-align="space-around" ng-if="waitResponse">
+							    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+							</div> -->
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-private-key-dialog
+	[wallet]="wallet"
+	[type]="null"
+	(on_private_key_dialog)="onPrivateKeyDialog($event)"
+>
+</app-private-key-dialog>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>

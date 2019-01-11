@@ -1,0 +1,56 @@
+@import './../my-variables';
+.login-ui {
+	.panel.panel-default {
+	}
+
+	.panel-heading {
+		background-color: $accent_color !important;
+	}
+
+	.dialog-header {
+		font-size: 20px;
+		font-weight: bold;
+		padding: 10px 0px;
+	}
+
+	.login-wrapper {
+		margin: 5% auto;
+		max-width: 400px;
+		width: calc(100% - 20px);
+
+		@media screen and (max-width: 767px) {
+			margin: 17% auto;
+		}
+
+		@media screen and (max-width: 480px) {
+			margin: 50px auto;
+		}
+
+		.login-dialog {
+			// background-color: $accent_color;
+			// padding: 30px;
+			// border: 1px solid green;
+			// border-radius: 6px;
+			// margin-bottom: 20px;
+
+			// label, div.text-center{
+			// 	// color: white;
+			// }
+
+			.google-login {
+				margin-top: 10px;
+			}
+		}
+
+		div.g-signin2 > div {
+			width: 100% !important;
+		}
+	}
+
+	.create-wallet {
+		font-size: 16px;
+		@media screen and (max-width: 479px) {
+			font-size: 13px;
+		}
+	}
+}

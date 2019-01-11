@@ -1,0 +1,27 @@
+<div id="assetPropertiesDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'asset_properties' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li class="margin-top-15px">
+                        <span>{{'AUTHORIZATION_REQUIRED' | t}} &nbsp;</span>
+                        <i class="fa fa-eye"></i>
+                    </li>
+                    <span>{{'authorization_required_explain' | t}}</span>
+                    <li class="margin-top-15px">
+                        <span>{{'AUTHORIZATION_NONE' | t}} &nbsp;</span>
+                    </li>
+                    <span>{{'authorization_none_explain' | t}}</span>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary action" type="button" (click)="OK()">{{'ok_' | t}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div id="privateKeyDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'private_key_name' | t}}</h3>
+            </div>
+            <div class="modal-body text-center">
+                <div class="margin-bottom-15px text-center" *ngIf="wallet?.multisignType != 1 || type !== 'payment' || wallet?.signers[wallet?.signers.length - 1].weight == 0">
+                    <div></div>
+                    <div class="private-key">
+                        <span class="radio">
+                            <input type="radio" name="private" value="1" checked="checked" id="privateRadio" (click)="showHidden()"/>
+                            <label for="privateRadio">{{'private_key' | t}}</label>
+                        </span>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default">&nbsp;
+                                    <i class="fa fa-key"></i>
+                                </button>
+                            </div>
+                            <input class="form-control text-right currency-font" type="text" [(ngModel)]="key1" maxlength="56" minlength="56" [placeholder]="'private_key' | t" name="ref_key1" #ref_key1="ngModel"/>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default">&nbsp;
+                                    <i class="fa fa-key"></i>
+                                </button>
+                            </div>
+                            <input class="form-control text-right currency-font" type="text" [(ngModel)]="key2" maxlength="56" minlength="56" [placeholder]="'private_key' | t"/>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default">&nbsp;
+                                    <i class="fa fa-key"></i>
+                                </button>
+                            </div>
+                            <input class="form-control text-right currency-font" type="text" [(ngModel)]="key3" maxlength="56" minlength="56" [placeholder]="'private_key' | t"/>
+                        </div>
+                        <button class="btn btn-primary margin-top-15px action"
+                            type="button" (click)="OK()" *ngIf="!processing" [disabled]="!key1 || ref_key1.invalid">
+                            <span>{{'confirm_' | t}}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="margin-bottom-15px text-center" *ngIf="wallet?.multisignType == 1 && type && wallet?.signers[wallet?.signers.length - 1].weight > 0">
+                    <div>{{'private_enough_weight_text' | t}}</div>
+                    <button class="btn btn-primary margin-top-15px action" type="button" (click)="OK()" *ngIf="!processing">
+                        <span>{{'confirm_' | t}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

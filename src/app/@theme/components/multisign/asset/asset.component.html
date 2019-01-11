@@ -1,0 +1,59 @@
+<div class="list-asset">
+    <div class="asset text-center" type="button" (click)="addTrustLine(selectedWallet)" *ngIf="!(selectedWallet.block || !selectedWallet.active)">
+        <div class="flexbox" style="justify-content: center; padding: 52px; width: 120px; color: gray;"><i class="fa fa-plus valign-center" *ngIf="!selectedWallet.addingTrustLine" style="font-size: 40px;"></i><i class="fa fa-spinner fa-spin valign-center" *ngIf="selectedWallet.addingTrustLine" style="font-size: 40px;"></i></div>
+        <div style="font-size: 8px;">&nbsp;</div>
+    </div>
+    <div class="asset" *ngFor="let balance of selectedWallet.balances">
+        <div class="text-center " type="button" (click)="openModeDialog(selectedWallet, balance)">
+            <div style="margin-bottom: 4px; position: relative;">
+                <img class="img-asset" [src]="balance.logo ? balance.logo : './../../../../../assets/images/asset_icons/RIA3.png'" onError="this.src='./../../../../../assets/images/asset_icons/default.png'" (error)="onError($event, balance)"/>
+                <span class="asset-inside" *ngIf="balance.isErrorImage" style="position: absolute; top: 25px; left: 0px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 15px; text-shadow: 0 0 4px #EBEBFE;">{{balance.asset_code.substr(0,3)}}</span>
+            </div>
+            <table *ngIf="currentSelectAssetID !== balance._id" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="flexbox">
+                                <span class="v-center asset-code" >{{balance.asset_code || ('native_' | t) }}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="amount">{{balance.balance - balance.blockAmount | currency : '' : '' : currencyDigitsInfo(balance.decimalPlace)}}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td *ngIf="balance.blockAmount > 0">
+                            <span class="amount text-danger" style="font-size: 12px;">{{balance.blockAmount | currency : '': '' : currencyDigitsInfo(balance.decimalPlace)}}</span>
+                        </td>
+                        <td *ngIf="balance.blockAmount == 0">
+                            <span class="amount text-danger" style="font-size: 12px;">&nbsp;</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right" *ngIf="assetStatus.STATUS_PENDING === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)">
+                            <i class="fa fa-clock-o text-warning"></i>
+                        </td>
+                        <td class="text-right" *ngIf="assetStatus.STATUS_REJECTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)">
+                            <i class="fa fa-window-close text-danger"></i>
+                        </td>
+                        <td class="text-right" *ngIf="assetStatus.STATUS_ACCEPTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)">
+                            <i class="fa fa-check-square text-success"></i>
+                        </td>
+                        <td class="text-right" *ngIf="0 === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)">
+                            <i class="fa fa-check-square text-success"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="flexbox" *ngIf="currentSelectAssetID === balance._id" style="justify-content: center; padding: 18px; width: 120px; color: gray;">
+                <i class="fa fa-spinner fa-spin valign-center" style="font-size: 40px;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-mode-multisign-dialog [walletModeDialog]="wallet" [currency]="balance_detail">
+</app-mode-multisign-dialog>

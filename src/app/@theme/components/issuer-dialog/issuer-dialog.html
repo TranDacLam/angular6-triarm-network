@@ -1,0 +1,142 @@
+<div id="issuerDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'issuer_information' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <div>{{'become_issuer_note' | t}}</div>
+                <form [formGroup]="formIssuer">
+                    <fieldset>
+                        <label>{{'name_' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i>
+                            </span>
+                            <input class="form-control" type="text" formControlName="name" />
+                        </div>
+
+                        <label>{{'address_' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i>
+                            </span
+                            ><input class="form-control" type="text" formControlName="address" />
+                        </div>
+
+                        <label>{{'organization_' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                            <input class="form-control" type="text" formControlName="organization" />
+                        </div>
+
+                        <label>{{'telephone_number' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i>
+                            </span>
+                            <input class="form-control" type="text" formControlName="telNumber" />
+                        </div>
+
+                        <label>{{'token_will_issue' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-money"></i>
+                            </span>
+                            <input class="form-control" type="text" formControlName="tokens" />
+                        </div>
+
+                        <label>{{'number_of_token_will_issue' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-list-alt"></i></span>
+                            <input class="form-control" type="text" formControlName="totalOfTokens" />
+                        </div>
+
+                        <label>{{'purpose_issue_token' | t}}</label>
+                        <textarea class="form-control margin-bottom-15px" rows="5" formControlName="purposeIssue"></textarea>
+
+                        <label>{{'token_pr_solution' | t}}</label>
+                        <textarea class="form-control margin-bottom-15px" rows="5" formControlName="prSolution"></textarea>
+
+                        <label>{{'participant_feature' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-cogs"></i>
+                            </span>
+                            <input class="form-control" type="text" formControlName="participantFeature" />
+                        </div>
+
+                        <label>{{'number_of_user_estimate' | t}}</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users"></i>
+                            </span>
+                            <input class="form-control" type="number" formControlName="numberUserEstimate" pattern="/^(?:[1-9]\d*|0)$/" />
+                        </div>
+
+                        <div class="input-group">
+                            <label>{{'privacy_issuer_explain' | t}}</label>
+                        </div>
+                        <div class="input-group">
+                            <label>{{'upload_image_issuer_description' | t}}</label>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="width: 100%;">  {{'identity_card' | t}}
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 202px;">
+                                            <div class="issuer-upload-images">
+                                                <label>
+                                                    <i class="glyphicon glyphicon-picture" *ngIf="!formIssuer.get('issuerImage1').value"></i>
+                                                    <input style="display: none;" type="file" name="issuerImage1" pattern="'image/*'" accept="image/*" (change)="onFileChangeIssuerImage($event, 'img1')"/>
+                                                    <img style="height: 100%;" [style.display]="formIssuer.get('issuerImage1').value ? 'block' : 'none'" id="showIssuerImage1"/>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: top; padding-top: 15px;">
+                                            <div class="text-left">
+                                                <div *ngIf="!formIssuer.get('issuerImage1').value">{{'maximum_size_of_logo' | t}}</div>
+                                                <div *ngIf="formIssuer.get('issuerImage1').value">{{helper.formatBytes(formIssuer.get('issuerImage1').value.size)}} {{'size_' | t}}</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </label>
+                            <label style="width: 100%;"> {{'identity_card' | t}}
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td style="width: 202px;">
+                                            <div class="issuer-upload-images">
+                                                <label><i class="glyphicon glyphicon-picture" *ngIf="!formIssuer.get('issuerImage2').value"></i>
+                                                    <input style="display: none;" type="file" name="issuerImage2" pattern="'image/*'" accept="image/*" (change)="onFileChangeIssuerImage($event, 'img2')"/>
+                                                    <img style="height: 100%;" [style.display]="formIssuer.get('issuerImage2').value ? 'block' : 'none'" id="showIssuerImage2"/>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: top; padding-top: 15px;">
+                                            <div class="text-left">
+                                                <div *ngIf="!formIssuer.get('issuerImage2').value">{{'maximum_size_of_logo' | t}}</div>
+                                                <div *ngIf="formIssuer.get('issuerImage2').value">{{helper.formatBytes(formIssuer.get('issuerImage2').value.size)}} {{'size_' | t}}</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [(ngModel)]="agreed" [ngModelOptions]="{standalone: true}"/><span innerHTML="{{'agree_term_and_conditions_PREFIX' | t}} <a href='/terms-and-conditions' target='_blank'>{{'term_and_conditions' | t}}</a> {{'agree_term_and_conditions_SUFFIX' | t}}"></span>
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+                <button class="btn btn-primary action" *ngIf="!processing" type="button" (click)="onSubmit()" [disabled]="(!formIssuer.valid || !agreed)"> {{'ok_' | t}}
+                </button>
+                <div
+                    class="text-center" *ngIf="processing"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

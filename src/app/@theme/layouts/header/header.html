@@ -1,0 +1,116 @@
+<div class="wrapper-header">
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" id="sideMenuToggle">
+                        <i class="icon-menu"></i>
+                    </button>
+                    <a class="navbar-toggle" [routerLink]="['/']">
+                        <i class="fa fa-home" style="font-size: 20pt; margin-top: -3;"></i>
+                    </a>
+                    <div class="navbar-brand">
+                        <a [routerLink]="['/']">{{ 'arm_network' | t}}</a>
+                    </div>
+                    <ul class="lang-mobile">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img class="img_lang language_icon selected" src="./../../../../assets/images/flag_icons/en.svg"/>
+                            </a>
+                            <ul class="dropdown-menu" style="min-width: 0px; width: 89px;">
+                                <li>
+                                    <a ng-click="setLang('en')">
+                                        <img class="language_icon" src="./../../../../assets/images/flag_icons/en.svg"/>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a ng-click="setLang('ja')">
+                                        <img class="language_icon" src="./../../../../assets/images/flag_icons/ja.svg"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="header" [routerLink]="['/']">{{ 'home_' | t}}</a></li>
+                        <li [routerLinkActive]="['active']"><a class="header" [routerLink]="['/wallet']">{{ 'wallet_' | t}}</a></li>
+                        <li *ngIf="userService.current_user && userService.isSuperUser" [routerLinkActive]="['active']">
+                            <a class="header" [routerLink]="['/admin']">{{'admin_' | t}}</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown notifications" *ngIf="pendingTransactionService.notifies">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell">
+                                    <span class="badge badge-notify" *ngIf="pendingTransactionService.notifies.amount > 0">
+                                        {{pendingTransactionService.notifies.amount}}
+                                    </span>
+                                </i>
+                            </a>
+                            <ul class="dropdown-menu navbar-dropdown">
+                                <li class="dropdown-item">
+                                    <div *ngIf="pendingTransactionService.notifies.amount == 0">
+                                        <p style="padding: 10px;margin-bottom: 0px;font-size: 9pt;font-weight: bold;">{{'not_have_pending_transaction' | t}}</p>
+                                    </div>
+                                    <div *ngIf="pendingTransactionService.notifies.amount > 0">
+                                        <p class="pull-left" style="padding: 10px;margin-bottom: 0px;font-size: 9pt;font-weight: bold;">{{'pending_transaction' | t}}: {{pendingTransactionService.notifies.amount}}</p>
+                                        <a [routerLink]="['/wallet/advance-transaction']">
+                                            <span class="badge badge-pill badge-info pull-right">
+                                                {{'view_all' | t}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li class="dropdown-item" *ngFor="let mess of pendingTransactionService.notifies.data; let i = index">
+                                    <a [routerLink]="['../wallet/advance-transaction', mess._id]">
+                                        <i class="fa fa-clock-o" *ngIf="mess.status == 0">&nbsp;</i>
+                                        <i class="fa fa-check" *ngIf="mess.status == 1">&nbsp;</i>
+                                        <i class="fa fa-times" *ngIf="mess.status == 2">&nbsp;</i>
+                                        <span>{{mess.walletID.name}} - {{pendingTransactionService.getTypeTransaction(mess)}} - {{mess.createdAt | date:"yyyy-MM-dd 'at' h:mm a"}}</span>
+                                    </a>
+                                    <div class="dropdown-divider" *ngIf="i != pendingTransactionService.notifies.data.length - 1">
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <img class="img_lang language_icon selected" [src]="language === 'en' ? './../../../../assets/images/flag_icons/en.svg' : './../../../../assets/images/flag_icons/ja.svg'"/>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu"
+                                style="min-width: 0px; width: 89px;">
+                                <li>
+                                    <a (click)="setLang('en')">
+                                        <img class="language_icon" src="./../../../../assets/images/flag_icons/en.svg"/>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a (click)="setLang('ja')">
+                                        <img class="language_icon" src="./../../../../assets/images/flag_icons/ja.svg"/>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" *ngIf="userService.current_user" >
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="email">{{userService.current_user.email}} &nbsp;</span><span class="fa fa-user-circle">&nbsp;</span><span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a (click)="logout()"><span class="logout">{{ 'log_out' | t}}</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

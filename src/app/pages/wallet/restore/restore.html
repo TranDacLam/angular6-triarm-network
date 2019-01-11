@@ -1,0 +1,22 @@
+<h3>{{'restore_a_wallet' | t}}</h3>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-body has-margin-bottom">
+            <form class="restoreForm">
+
+            	<app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+
+            	<label>{{'wallet_name' | t}}</label>
+            	<input class="form-control margin-bottom-15px" type="text" placeholder="({{'optional_' | t}})" [(ngModel)]="name" name="name"/>
+            	<label>{{'wallet_secret_key' | t}}</label>
+            	<input class="form-control margin-bottom-15px" type="text" placeholder="({{'secret_code' | t}})" [(ngModel)]="secretKey" name="secretKey"/>
+                <div class="text-center margin-bottom-15px">
+                	<button class="action btn btn-primary" *ngIf="!waitResponse" (click)="restore()" [disabled]="!secretKey || secretKey.length !== 56">{{'restore_my_wallet' | t}}</button>
+                </div>
+                <div class="text-center ng-hide" *ngIf="waitResponse">
+                	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

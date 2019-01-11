@@ -1,0 +1,98 @@
+<div class="backup-db">
+    <div>
+        <h3 class="pull-left mt0">{{'database_backup' | t}}</h3>
+        <div class="clearfix"></div>
+    </div>
+    <hr/>
+    <div>
+        <div>
+            <!-- Nav tabs-->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active" role="presentation">
+                    <a href="#backup" aria-controls="backup" role="tab" data-toggle="tab">{{'manual_backup' | t}}</a>
+                </li>
+                <li role="presentation">
+                    <a href="#restore" aria-controls="restore" role="tab" data-toggle="tab">{{'restore_database' | t}}</a>
+                </li>
+            </ul>
+            <!-- Tab panes-->
+            <div class="tab-content">
+                <div class="tab-pane" id="restore" role="tabpanel">&nbsp;
+                    <div class="jumbotron restore">
+                        <fieldset [disabled]="restoring">
+                            <div class="form-group">
+                                <label>{{'select_backup_file' | t}}</label>
+                                <select class="form-control" [(ngModel)]="backupFileName">
+                                    <option selected="selected" value="">{{'select_backup_file' | t}}</option>
+                                    <option *ngFor="let backupFile of allBackupFiles" [value]="backupFile.Key">{{ backupFile.Key }}</option>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary btn-lg" [disabled]="!backupFileName" (click)="restoreDatabase()">
+                                    <i class="fa fa-undo" *ngIf="!restoring"></i>
+                                    <i class="fa fa-spinner fa-spin fa-2x fa-fw fz18" *ngIf="restoring"></i>&nbsp; {{'restore_now' | t}}
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="tab-pane active" id="backup" role="tabpanel">&nbsp;
+                    <div class="jumbotron">
+                        <h5 class="mt0"><strong>{{'run_database_backup_now' | t}}</strong></h5>
+                        <div>
+                            <button class="btn btn-lg btn-primary" (click)="backupManually()" [disabled]="backuping">
+                                <i class="fa fa-download" *ngIf="!backuping"></i><i class="fa fa-spinner fa-spin fa-2x fa-fw fz18" *ngIf="backuping"></i>&nbsp; {{'backup_now' | t}}
+                            </button>
+                            <span
+                                class="time">
+                                <span *ngIf="!backuping">{{'current_time' | t}} {{ timeFromNow }}</span>
+                                <span *ngIf="backuping">{{'backing_up' | t}}  {{ backupTime }}</span>
+                            </span>
+                            <div class="mt5">
+                                <i style="color: #777;"></i>{{'next_auto_backup_in' | t}} &nbsp; {{ nextBackupAt.minutes + " m" }} : {{ nextBackupAt.seconds + " s" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h4>{{'all_backups' | t}}</h4>
+            <hr/>
+            <table class="table table-condensed table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>{{'no_dot' | t}}</th>
+                        <th>{{'file_name' | t}}</th>
+                        <th>{{'size_' | t}}</th>
+                        <th class="text-right">{{'action_' | t}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="waitTableData">
+                        <td class="text-center" colspan="4"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>
+                    </tr>
+                    <tr class="backup-file" *ngFor="let backupFile of currentItems; let i = index">
+                        <td>{{ (currentPage -1) * limit + (i + 1) }}</td>
+                        <td><a>{{ backupFile.Key }}</a></td>
+                        <td>{{ fileSizeFormat(backupFile.Size, 2) }}</td>
+                        <td class="text-right">
+                            <button class="btn btn-sm btn-danger" (click)="deleteBackupFile(backupFile.Key)" [disabled]="deleting[backupFile.Key]">
+                                <span *ngIf="!deleting[backupFile.Key]"><i class="fa fa-trash"></i>
+                                    <span class="hidden-xs">&nbsp; {{'delete_' | t}}</span>
+                                </span>
+                                <span *ngIf="deleting[backupFile.Key]"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                                </span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination *ngIf="allBackupFiles && allBackupFiles.length > 0"
+                    [totalItems]="allBackupFiles.length" [itemsPerPage]="limit" (pageChanged)="pageChanged($event)" [maxSize]="5" [boundaryLinks]="true" [rotate]="true"
+                ></pagination>
+            </div>
+        </div>
+    </div>
+</div>

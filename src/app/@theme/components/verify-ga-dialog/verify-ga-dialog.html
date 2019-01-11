@@ -1,0 +1,59 @@
+<div id="verifyGaDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" *ngIf="!tfaVerified">&times;</button>
+                <h3 class="modal-title bold-text">{{'verify_ga' |t }}</h3>
+            </div>
+            <div class="modal-body text-center">
+                <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+                <div *ngIf="showContent">
+                    <div *ngIf="!tfaVerified">
+                        <div class="margin-bottom-15px" innerHTML="{{'ga_explanation_PREFIX' | t}} <a href='https://en.wikipedia.org/wiki/Google_Authenticator' target='_blank'>{{'google_authenticator' | t}}</a> {{'ga_explanation_SUFFIX' | t}}"></div>
+                        <div class="fs-subtitle">{{'scan_this_ga_qr' |t }}</div>
+                        <img class="qrcode" src="{{qrData}}" *ngIf="qrCodeGenerated" />
+                        <div class="text-center fs-subtitle margin-bottom-15px" *ngIf="qrCodeGenerated">{{'input_ga_code' |t }}</div>
+                        <input class="form-control code-verify" type="text" [(ngModel)]="qrCode" ng-show="qrCodeGenerated" />
+                        <button class="btn btn-default action margin-top-15px margin-right-15px" (click)="regenQRCode()" [disabled]="regenProcessing || verifyProcessing">
+                            <span *ngIf="regenProcessing"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                            <span>{{'regenerate_' |t }}</span>
+                        </button>
+                        <button
+                            class="btn btn-primary margin-top-15px action" type="button" (click)="verifyGA()" style="margin-left:3px;" [disabled]="!qrCode || regenProcessing || verifyProcessing">
+                            <span *ngIf="verifyProcessing"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                            <span>{{'verify_GA' |t }}</span>
+                        </button>
+                    </div>
+                    <div *ngIf="tfaVerified">
+                        <div class="margin-bottom-15px backup-warning">
+                            {{'ga_backup_code' |t }}
+                            <div class="backup-code">{{qrGASecret}}</div>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" [value]="backupConfirmed" [(ngModel)]="backupConfirmed"/>&nbsp; {{'backup_confirmed' | t }}
+                            </label>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-default action" (click)="OK()" [disabled]="!backupConfirmed">{{'ok_' | t}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!showContent">
+                    <div class="margin-bottom-15px fs-subtitle" innerHTML="{{'tfa_explanation' | t}} <a href='https://en.wikipedia.org/wiki/Multi-factor_authentication' target='_blank'>{{'learn_more' | t}}</a>"></div>
+                    <div class="fs-subtitle">{{'note_password_tfa' |t }}</div>
+                    <div class="form-group has-feedback">
+                        <input class="form-control" type="password" [(ngModel)]="password" />
+                        <span class="form-control-feedback glyphicon glyphicon-remove color-danger" *ngIf="!password"></span>
+                        <span class="form-control-feedback glyphicon glyphicon-ok font-success" *ngIf="password"></span>
+                    </div>
+                    <button
+                        class="btn btn-primary action" type="button" (click)="regenQRCode()" style="margin-left:3px;" [disabled]="!password || regenProcessing">
+                        <span *ngIf="regenProcessing"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span><span>{{'ok_' |t }}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

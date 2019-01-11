@@ -1,0 +1,93 @@
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <!-- <li class="active" role="presentation" (click)="changeTab(0)">
+        	<a href="#normal" aria-controls="home" role="tab" data-toggle="tab"><i class="icon-wallet">&nbsp;{{'normal_wallet' | t}}</i></a>
+        </li>
+        <li role="presentation" (click)="changeTab(1)">
+        	<a href="#multi" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-snowflake-o"> &nbsp;{{'multisign_wallet' | t}}</i></a>
+        </li>
+        <li role="presentation" (click)="changeTab(2)">
+        	<a href="#shared" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-handshake-o">&nbsp;{{'advance_wallet' | t}}</i></a>
+        </li> -->
+        <li [class.active]="tabId === 'normalTab'" (click)="changeTab(0)">
+        	<a><i class="icon-wallet">&nbsp;{{'normal_wallet' | t}}</i></a>
+        </li>
+        <li [class.active]="tabId === 'multiTab'" (click)="changeTab(1)">
+        	<a><i class="fa fa-snowflake-o"> &nbsp;{{'multisign_wallet' | t}}</i></a>
+        </li>
+        <li [class.active]="tabId === 'sharedTab'" (click)="changeTab(2)">
+        	<a><i class="fa fa-handshake-o">&nbsp;{{'advance_wallet' | t}}</i></a>
+        </li>
+    </ul>
+    <!-- Tab panes-->
+    <div class="tab-content">
+        <div class="tab-pane active" id="normal" role="tabpanel" style="margin-top: 10px;">
+            <app-history-tab 
+            	[wallets]="wallets"
+            	[selectedWallet]="selectedWallet"
+            	[contacts]="contacts"
+            	[sourceWalletLabel]="sourceWalletLabel"
+            	[operationType]="operationType"
+            	[receiveWalletLabel]="receiveWalletLabel"
+            	[currentPage]="currentPage"
+            	[totalPages]="totalPages"
+            	[limit]="limit"
+            	[allTransactions]="allTransactions"
+            	[currentTransactions]="currentTransactions"
+            	[waitTableData]="waitTableData"
+            	[canGetMoreTransaction]="canGetMoreTransaction"
+            	[hasWallet]="hasWallet"
+            	(on_wallet_option_change)="walletOptionChange($event)"
+            	(on_change_to_page)="changeToPage($event)"
+            	(on_next_to_page)="nextToPage($event)"
+            >
+            </app-history-tab>
+        </div>
+<!--         <div class="tab-pane" id="multi" role="tabpanel" style="margin-top: 10px;">
+        	<app-history-normal 
+            	[wallets]="wallets"
+            	[selectedWallet]="selectedWallet"
+            	[contacts]="contacts"
+            	[sourceWalletLabel]="sourceWalletLabel"
+            	[operationType]="operationType"
+            	[receiveWalletLabel]="receiveWalletLabel"
+            	[currentPage]="currentPage"
+            	[totalPages]="totalPages"
+            	[limit]="limit"
+            	[allTransactions]="allTransactions"
+            	[currentTransactions]="currentTransactions"
+            	[waitTableData]="waitTableData"
+            	[canGetMoreTransaction]="canGetMoreTransaction"
+            	[hasWallet]="hasWallet"
+            	tabId="multi1Tab"
+            	(on_wallet_option_change)="walletOptionChange($event)"
+            	(on_change_to_page)="changeToPage($event)"
+            	(on_next_to_page)="nextToPage($event)"
+            >
+            </app-history-normal>
+        </div>
+        <div class="tab-pane" id="shared" role="tabpanel" style="margin-top: 10px;">
+        	<app-history-normal 
+            	[wallets]="wallets"
+            	[selectedWallet]="selectedWallet"
+            	[contacts]="contacts"
+            	[sourceWalletLabel]="sourceWalletLabel"
+            	[operationType]="operationType"
+            	[receiveWalletLabel]="receiveWalletLabel"
+            	[currentPage]="currentPage"
+            	[totalPages]="totalPages"
+            	[limit]="limit"
+            	[allTransactions]="allTransactions"
+            	[currentTransactions]="currentTransactions"
+            	[waitTableData]="waitTableData"
+            	[canGetMoreTransaction]="canGetMoreTransaction"
+            	[hasWallet]="hasWallet"
+            	tabId="sharedTab"
+            	(on_wallet_option_change)="walletOptionChange($event)"
+            	(on_change_to_page)="changeToPage($event)"
+            	(on_next_to_page)="nextToPage($event)"
+            >
+            </app-history-normal>
+        </div> -->
+    </div>
+</div>

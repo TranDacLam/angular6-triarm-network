@@ -1,0 +1,193 @@
+<div class="wallet-wrapper setting-advance-wallet">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <fieldset [disabled]="waitResponse">
+                <table class="table table-permission">
+                    <tbody>
+                        <tr>
+                            <td><i class="fa fa-user-circle"></i></td>
+                            <td>
+                            	<label>{{'admin_permission' | t}}</label>
+                            	<span>{{'admin_role' | t}}</span>
+                            </td>
+                            <td>
+                                <mat-slider
+                                	class="mat-slider-display-thumblabel mat-slider-orange"
+								  	thumbLabel
+								  	(input)="onChangeHighThreshold($event)"
+								  	tickInterval="1"
+								  	step="1"
+								  	min="0"
+								  	max="10"
+								  	value="{{thresholds?.high_threshold}}"
+								  	>
+								</mat-slider>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-paypal"></i></td>
+                            <td>
+                            	<label>{{'paymenter' | t}}</label>
+                            	<span>{{'paymenter_role' | t}}</span>
+                            </td>
+                            <td>
+                                <mat-slider
+                                	class="mat-slider-display-thumblabel mat-slider-orange"
+								  	thumbLabel
+								  	(input)="onChangeMedThreshold($event)"
+								  	tickInterval="1"
+								  	step="1"
+								  	min="0"
+								  	max="10"
+								  	value="{{thresholds?.med_threshold}}"
+								  	>
+								</mat-slider>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-check-circle-o"></i></td>
+                            <td>
+                            	<label>{{'allower' | t}}</label>
+                            	<span>{{'allower_role' | t}}</span>
+                            </td>
+                            <td>
+                                <mat-slider
+                                	class="mat-slider-display-thumblabel mat-slider-orange"
+								  	thumbLabel
+								  	(input)="onChangeLowThreshold($event)"
+								  	tickInterval="1"
+								  	step="1"
+								  	min="0"
+								  	max="10"
+								  	value="{{thresholds?.low_threshold}}"
+								  	>
+								</mat-slider>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-submit" *ngIf="!waitResponse">
+                	<button class="btn btn-primary" (click)="OKThresholds()" *ngIf="!isFirst" style="margin-right:5px;">
+                		<i class="fa fa-edit">&nbsp; {{'update_thresholds' | t}}</i>
+                	</button>
+                	<button class="btn btn-default" (click)="undoThresholds()" *ngIf="!isFirst"><i class="fa fa-undo">&nbsp;{{'_undo' | t}}</i></button>
+                </div>
+
+                <div class="text-center" *ngIf="waitResponse"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+
+				<div class="container-fluid singer">
+				    <label>{{'signer' | t}}</label>
+				    <table class="table table-signer">
+				        <tbody>
+				            <tr *ngIf="masterKey && masterKey.weight > 0">
+				                <td>
+				                    <div>{{masterKey.address}}</div>
+				                    <div class="text-muted">{{'master_key' | t}}</div>
+				                    <!-- <md-slider-container ng-disabled="!isFirst &amp;&amp; !!editingAddress &amp;&amp; editingAddress.address !== masterKey.address">
+				                        <md-slider class="md-active md-primary" flex="flex" md-discrete="md-discrete" ng-model="masterKey.weight" step="1" min="1" max="10" aria-label="low"></md-slider>
+				                    </md-slider-container> -->
+				                    <mat-slider
+	                                	class="mat-slider-green"
+	                                	[class.mat-slider-display-thumblabel]="isFirst || (!isFirst && !editingAddress || (editingAddress?.address === masterKey.address))"
+									  	thumbLabel
+									  	(input)="onChangeMasterKey($event)"
+									  	tickInterval="1"
+									  	step="1"
+									  	min="1"
+									  	max="10"
+									  	disabled="{{!isFirst && !!editingAddress && editingAddress.address !== masterKey.address}}"
+									  	value="{{masterKey.weight}}"
+									  	>
+									</mat-slider>
+				                </td>
+				                <td *ngIf="!isFirst" style="padding-top: 55px;">
+				                	<a class="btn btn-danger icon" (click)="removeMaster(masterKey)"><i class="fa fa-trash"></i></a>
+				                </td>
+				                <td *ngIf="!isFirst && !!editingAddress && (editingAddress.address === masterKey.address)" style="padding-top: 55px;">
+				                	<a class="btn btn-success icon" (click)="updateSigner(masterKey)"><i class="fa fa-check"></i></a>
+				                </td>
+				                <td *ngIf="!isFirst && !!editingAddress && (editingAddress.address === masterKey.address)" style="padding-top: 55px;">
+				                	<a class="btn btn-default icon"  (click)="undoSigner()"><i class="fa fa-undo"></i></a>
+				                </td>
+				            </tr>
+				            <tr *ngFor="let signer of signers; let i = index">
+				                <td>
+				                    <div>{{signer.address}}</div>
+				                    <div class="text-muted">{{'signer' | t}}</div>
+				                    <!-- <md-slider-container ng-disabled="!isFirst &amp;&amp; !!editingAddress &amp;&amp; editingAddress.address !== signer.address">
+				                        <md-slider class="md-active md-primary" flex="flex" md-discrete="md-discrete" ng-model="signer.weight" step="1" min="1" max="10" aria-label="low"></md-slider>
+				                    </md-slider-container> -->
+				                    <mat-slider
+	                                	class="mat-slider-green"
+	                                	[class.mat-slider-display-thumblabel]="isFirst || (!isFirst && !editingAddress || editingAddress?.address === signer.address)"
+									  	thumbLabel
+									  	(input)="onChangeSignerKey($event, signer)"
+									  	tickInterval="1"
+									  	step="1"
+									  	min="1"
+									  	max="10"
+									  	disabled="{{!isFirst && !!editingAddress && (editingAddress.address) !== signer.address}}"
+									  	value="{{signer.weight}}"
+									  	>
+									</mat-slider>
+				                </td>
+				                <td *ngIf="isFirst" style="padding-top: 55px;"></td>
+				                <td *ngIf="isFirst" style="padding-top: 55px;">
+				                	<a class="btn btn-danger icon" (click)="remove(signer.address)"><i class="fa fa-trash"></i></a>
+				                </td>
+				                <td *ngIf="!isFirst" style="padding-top: 55px;">
+				                	<a class="btn btn-danger icon" (click)="removeSigner(signer)"><i class="fa fa-trash"></i></a>
+				                </td>
+				                <td *ngIf="!isFirst && !!editingAddress && (editingAddress.address === signer.address)" style="padding-top: 55px;">
+				                	<a class="btn btn-success icon" (click)="updateSigner(signer)"><i class="fa fa-check"></i></a>
+				                </td>
+				                <td *ngIf="!isFirst && !!editingAddress && (editingAddress.address === signer.address)" style="padding-top: 55px;">
+				                	<a class="btn btn-default icon" (click)="undoSigner()"><i class="fa fa-undo"></i></a>
+				                </td>
+				            </tr>
+				            <tr>
+				                <td colspan="3">
+				                    <table class="table">
+				                        <tbody>
+				                            <tr>
+				                                <td>
+				                                	<input class="form-control" type="text" [(ngModel)]="newSigner.address" required="required" [placeholder]="'signer_address' | t" />
+				                                </td>
+				                                <td style="width: 15%;">
+				                                	<input class="form-control" type="number" (change)="handleNewWeightInput($event)" [(ngModel)]="newSigner.weight" [placeholder]="'permission_percent' | t" />
+				                                </td>
+				                            </tr>
+				                            <tr *ngIf="isFirst">
+				                                <td>&nbsp;</td>
+				                                <td>
+				                                	<a class="btn btn-info icon" (click)="add(newSigner)"><i class="fa fa-plus"></i></a>
+				                                </td>
+				                            </tr>
+				                        </tbody>
+				                    </table>
+				                </td>
+				            </tr>
+				        </tbody>
+				    </table>
+				    <div class="btn-submit" *ngIf="!waitResponse">
+				    	<button class="btn btn-info" (click)="addSigner()" *ngIf="!isFirst"><i class="fa fa-plus">&nbsp; {{'add_signer' | t}}</i></button>
+				    	<button class="btn btn-primary" (click)="OK()" *ngIf="isFirst">{{'submit_setting_advance' | t}}</button>
+				    </div>
+				    <div class="text-center" *ngIf="waitResponse"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+				</div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
+
+<app-choose-signer-dialog
+	[options]="options_choose_signer"
+	(on_choose_signer_dialog)="onChooseSignerDialog($event)"
+>
+</app-choose-signer-dialog>

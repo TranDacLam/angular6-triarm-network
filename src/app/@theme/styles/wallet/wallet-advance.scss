@@ -1,0 +1,279 @@
+$border-color: #2e8b57;
+$icon-red: #d9534f;
+$icon-yellow: #f0ad4e;
+$color-icon: #258A5B;
+
+.list-transaction {
+    margin-top: 20px;
+
+    .detail-transaction {
+        border: 1px solid $border-color;
+        padding: 0;
+
+        .title-transaction {
+            padding: 5px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        .content-transaction {
+            padding: 15px;
+
+            div.item {
+                padding: 5px 0;
+                font-weight: 500;
+            }
+
+            .fa {
+                font-size: 18px;
+                padding-right: 15px;
+                color: #3c763d;
+            }
+
+            .view {
+                text-transform: capitalize;
+                margin-top: 85px;
+            }
+        }
+    }
+}
+
+.infor-transaction {
+    border: 1px solid #bababa;
+    padding: 30px;
+
+    .float-right {
+        float: right;
+    }
+
+    .info-title-transaction {
+
+        div.item {
+            padding: 5px 0;
+            font-weight: 500;
+        }
+
+        .fa {
+            font-size: 18px;
+            padding-right: 15px;
+            color: #3c763d;
+        }
+    }
+
+    .label-percent {
+        span.label {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+    }
+
+    .table-signature {
+        border-bottom: 1px solid #ddd;
+
+        thead {
+            tr {
+                td {
+                    .fa {
+                        font-size: 18px;
+                        padding-right: 20px;
+                        color: #3c763d;
+                    }
+                }
+            }
+        }
+
+        tbody {
+            div.text-muted {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .detail-a {
+        font-family: 'FontAwesome';
+        padding-left: 25px;
+    }
+
+    .detail-a:hover {
+        text-decoration: none;
+    }
+
+    .detail-a:after {
+        content: "\f078";
+        padding-left: 5px;
+        color: #000;
+    }
+
+    .detail-a.collapsed:after {
+        content: "\f054";
+    }
+
+    .detail-advance {
+        border: 1px solid $border-color;
+        margin: 15px;
+
+        .item-trust {
+            border-bottom: 1px solid $border-color;
+
+            .icon-text {
+                margin-top: 1%;
+
+                .icon.red {
+                    color: $icon-red;
+                }
+
+                .text-expand.red {
+                    background-color: $icon-red;
+                }
+
+                .icon.yellow {
+                    color: $icon-yellow;
+                }
+
+                .text-expand.yellow {
+                    background-color: $icon-yellow;
+                }
+
+                .icon {
+                    font-size: 22px;
+                    text-align: center;
+                }
+
+                .text-expand {
+                    color: #fff;
+                    font-weight: 500;
+                    text-align: center;
+                }
+            }
+
+            .item-info {
+                span.address {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: calc(100% - 8px);
+                    word-wrap: break-word;
+                    word-break: break-all;
+                }
+            }
+        }
+
+        .item-trust:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .button-signature {
+        margin: 30px 0 15px 0;
+    }
+}
+
+.info-wrapper {
+    padding: 15px 0;
+}
+
+span.address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 8px);
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.user-advance {
+    overflow-x: auto;
+
+    .panel-body {
+        i.fa {
+            color: $color-icon;
+            font-size: 20px;
+            padding-right: 10px;
+        }
+    }
+
+    .table-signature {
+        border-top: none !important;
+
+        tr {
+            td {
+                .fa {
+                    padding-right: 20px;
+                    color: #3c763d;
+                    font-size: 18px;
+                }
+
+                div.text-muted {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.setting-advance-wallet {
+    .table-permission {
+        margin-bottom: 50px;
+
+        tr {
+            td {
+                border-top: none !important;
+                border-bottom: 1px solid #ddd;
+
+                i.fa {
+                    color: $color-icon;
+                    font-size: 20px;
+                }
+
+                label {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .singer {
+        overflow-x : auto;
+
+        label {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .table-signer {
+            width: 90%;
+            margin-left: 5%;
+
+            tr {
+                td {
+                    .text-muted {
+                        font-size: 12px;
+                    }
+
+                    table.table {
+                        margin-top: 25px;
+                        border-bottom: 1px solid #ddd;
+
+                        tr {
+                            border-right: 1px solid #ddd;
+                            border-left: 1px solid #ddd;
+
+                            td {
+                                a.icon {
+                                    float: right;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .icon {
+                border-radius: 50% 50%;
+                padding: 10px 12px;
+            }
+        }
+    }
+
+    .btn-submit {
+        text-align: center;
+    }
+}

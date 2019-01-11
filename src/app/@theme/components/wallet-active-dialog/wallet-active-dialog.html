@@ -1,0 +1,40 @@
+<div id="ActiveWalletDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'active_wallet' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <h3 class="fs-title text-center margin-bottom-15px" style="margin-top: 0px;">{{'active_wallet_note' | t}}</h3>
+                <div *ngIf="unactiveWallet">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <fieldset [disabled]="waitResponse">
+                                <label>{{'wallet_address' | t}}</label>
+                                <input class="form-control margin-bottom-15px" type="text" readonly value="{{ unactiveWallet.address }}" />
+                                <label>{{'wallet_name' | t}}</label>
+                                <input class="form-control margin-bottom-15px" type="text" readonly value="{{unactiveWallet.name || ''}}" />
+                                <label>&nbsp; {{'user_wallet_fund' | t}}</label>
+                                <select class="form-control margin-bottom-15px" [(ngModel)]="idWalletActive">
+                                    <option value="">{{'select_wallet' | t}}</option>
+                                    <option class="ellipsis" *ngFor="let wallet of walletsToActive" value="{{wallet._id}}" [disabled]="wallet.block || !wallet.active">{{wallet.name}} {{ wallet.active && !wallet.block ? '' : !wallet.active && wallet.block ? ('inactive_and_blocked' | t) : !wallet.active ? ('inactive_' | t) : ('blocked_' | t) }}</option>
+                                </select>
+                                <label>{{'starting_balance' | t}}</label>
+                                <input class="form-control margin-bottom-15px" type="number" [(ngModel)]="startingBalance" />
+                                <label>{{'verification_code' | t}}</label>
+                                <input class="form-control margin-bottom-15px" type="text" [(ngModel)]="verifyGaCode" />
+                                <div class="margin-bottom-15px"
+                                    style="color:red;"></div>
+                                <div class="text-center" *ngIf="!waitResponse">
+                                    <button class="btn btn-primary action" [disabled]="!idWalletActive" (click)="activeWallet()">{{'active_' | t}}</button>
+                                </div>
+                                <div class="text-center margin-top-15px" *ngIf="waitResponse"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

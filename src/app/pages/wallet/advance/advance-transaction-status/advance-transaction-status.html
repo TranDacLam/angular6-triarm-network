@@ -1,0 +1,89 @@
+<div>
+    <div class="row margin-bottom-15px">
+        <div class="col-xs-12">
+        	<select class="form-control" [(ngModel)]="selectedWallet" (change)="walletOptionChange()">
+        		<option value="">{{'all_' | t}}</option>
+        		<option *ngFor="let wallet of wallets" [value]="wallet._id">{{wallet.name}}</option>
+        	</select>
+        </div>
+    </div>
+    <div class="row margin-bottom-15px">
+        <div class="col-xs-12">
+        	
+        	<label class="container-checkbox" *ngFor="let item of items">&nbsp;{{ item.txt }}
+				<input type="checkbox" [checked]="exists(item.val, status)" (change)="toggle(item.val)">
+  				<span class="checkmark"></span>
+			</label>
+        </div>
+    </div>
+    <ng-container *ngIf="!waitResponse">
+	    <div class="row list-transaction" *ngFor="let transaction of currentTransactions">
+	        <div class="col-xs-12 col-md-12 detail-transaction" *ngIf="transaction._id">
+	            <div class="col-xs-12 title-transaction">{{'transaction_' | t}} &nbsp;
+	            	<i class="fa fa-times text-danger" *ngIf="transaction.status===2"></i>
+	            	<i class="fa fa-check text-success" *ngIf="transaction.status===1"></i>
+	            	<i class="fa fa-clock-o text-warning" *ngIf="transaction.status===0"></i>
+	            </div>
+	            <div
+	                class="col-xs-12 content-transaction">
+	                <div class="row">
+	                    <div class="col-xs-10">
+	                        <div class="item">
+	                        	<i class="fa fa-save"></i>
+	                        	<span>{{transaction.name}} ({{transaction.address}})</span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-clock-o"></i>
+	                        	<span>{{transaction.createdOn | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-user-circle"></i>
+	                        	<span>{{transaction.user.name}} ({{transaction.user.address}})</span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-list-alt"></i>
+	                        	<span><b>{{getTypeTransaction(transaction)}}</b></span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-gavel"></i>
+	                        	<span>{{'require_permission' | t}} : {{transaction.weightRequire}}</span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-pencil"></i>
+	                        	<span>{{'total_signed_weight' | t}} : {{transaction.weightSigned}}</span>
+	                        </div>
+	                        <div class="item">
+	                        	<i class="fa fa-edit"></i>
+	                        	<span>{{transaction.signedAmount}} {{'signed_' | t}} / {{transaction.totalSigners}} {{'signature' | t}}</span>
+	                        </div>
+	                    </div>
+	                    <div class="col-xs-2">
+	                    	<a class="btn btn-primary view align-middle" [routerLink]="['/wallet/advance-transaction/', transaction._id]">{{'view' | t}}</a>
+	                    </div>
+	                </div>
+	        	</div>
+	    	</div>
+		</div>
+		<div *ngIf="currentTransactions.length == 0">
+		    <div class="text-center"><span>{{'no_history' | t}}</span></div>
+		</div>
+	</ng-container>
+	<div class="text-center" *ngIf="waitResponse">
+        <span style="font-size: 40px;"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+	<div class="text-right history-paging margin-top-15px">
+		<button class="btn btn-default" [disabled]="currentPage == 1 || waitResponse" (click)="pageChanged($event)">{{'previous_' | t}}</button>
+	    
+	    <!-- Pagination-->
+	    <pagination 
+	        [totalItems]="totalRecord"
+	        [itemsPerPage]="limit" 
+	        (pageChanged)="pageChanged($event.page)" 
+	        [maxSize]="5"
+	        [directionLinks]="false"
+	        [ngModel]="currentPage"
+	    ></pagination>
+
+	    <button class="btn btn-default" [disabled]="currentPage == totalPage || waitResponse" (click)="pageChanged(currentPage + 1)">{{'next_' | t}}</button>
+	</div>
+</div>

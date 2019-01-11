@@ -1,0 +1,100 @@
+<div id="assetDialogMultiSign" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'select_an_asset' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" *ngIf="loading">
+                    <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                </div>
+                <div *ngIf="!loading">
+                    <div *ngIf=" options.mode == 'buy'">
+                        <div *ngIf="options.ownedAssets">
+                            <label>{{'owned_assets' | t}}</label>
+                            <div class="text-center font-shadow" *ngIf="!ownedAssets || ownedAssets.length === 0">{{'you_have_no_asset' | t}}</div>
+                            <ul class="nav nav-pills" *ngIf="ownedAssets && ownedAssets.length > 0">
+                                <li class="margin-bottom-15px margin-right-15px" role="presentation" *ngFor="let asset of ownedAssets">
+                                    <div class="asset {{asset._id == selectedAsset?._id? 'selected' : ''}}" (click)="selectAsset(asset)">
+                                        <div style="position: relative; width: 30px; display: inline-block;">
+                                            <img class="img-dialog" [src]="asset.logo ? asset.logo : './../../../../assets/images/asset_icons/RIA.png'" onError="this.src='./../../../../assets/images/asset_icons/default.png'" (error)="onError($event, asset, ownedAssets)"/>
+                                            <span *ngIf="asset.isErrorImage" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.asset_code.substr(0,3) }}</span>
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <span>{{asset.asset_type === 'native'? ('native_' | t) : asset.asset_code}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div *ngIf="options.otherAssets">
+                            <label>{{'more_' | t}}</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>
+                                <input class="form-control" type="text" [(ngModel)]="assetFilter" #refAssetFilter (input)="filterAsset(refAssetFilter.value)" />
+                            </div>
+                            <div class="text-center font-shadow" *ngIf="assetFilter && (!filteredAssets || (filteredAssets && filteredAssets.length==0))">
+                                {{'no_result_found' | t}}
+                            </div>
+                            <ul class="nav nav-pills" *ngIf="!filtering">
+                                <li class="margin-bottom-15px margin-right-15px" role="presentation" *ngFor="let asset of filteredAssets">
+                                    <div class="asset {{asset._id==selectedAsset?._id? 'selected' : ''}}" (click)="selectAsset(asset)">
+                                        <div style="position: relative; width: 30px; display: inline-block;">
+                                            <img class="img-dialog" [src]="asset.logo ? asset.logo : './../../../../assets/images/asset_icons/RIA.png'" onError="this.src='./../../../../assets/images/asset_icons/default.png'" (error)="onError($event, asset, filteredAssets)"/>
+                                            <span *ngIf="asset.isErrorImage && asset.asset_type !== 'native'"
+                                                style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.name?.substr(0,3) }}
+                                            </span>
+                                           </div>
+                                        <div style="display: inline-block;">
+                                            <span>{{asset.asset_type === 'native'? ('native_' | t) : asset.name}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div *ngIf="options.mode == 'issue'">
+                        <label>{{'issuing_assets' | t}}</label>
+                        <div class="text-center font-shadow" *ngIf="!issuingAssets || issuingAssets.length==0">{{'you_have_no_asset' | t}}</div>
+                        <ul class="nav nav-pills" *ngIf="issuingAssets && issuingAssets.length > 0">
+                            <li class="margin-bottom-15px margin-right-15px" role="presentation" *ngFor="let asset of issuingAssets">
+                                <div class="asset {{asset._id==selectedAsset?._id? 'selected' : ''}}" (click)="selectAsset(asset)">
+                                    <div style="position: relative; width: 30px; display: inline-block;">
+                                        <img class="img-dialog" [src]="asset.logo ? asset.logo : './../../../../assets/images/asset_icons/RIA.png'" onError="this.src='./../../../../assets/images/asset_icons/default.png'" (error)="onError($event, asset, issuingAssets)"/>
+                                        <span *ngIf="asset.isErrorImage" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.name?.substr(0,3) }}</span>
+                                    </div>
+                                    <div style="display: inline-block;">
+                                        <span>{{asset.asset_type === 'native'? ('native_' | t) : asset.name}}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="options.mode == 'sell'">
+                        <label>{{'from_wallet' | t}}</label>
+                        <select class="form-control margin-bottom-15px" [(ngModel)]="selectedWallet" (change)="changeWallet(selectedWallet)">
+                            <option [ngValue]="null">{{'select_wallet' | t}}</option>
+                            <option *ngFor="let wallet of wallets" [ngValue]="wallet" [disabled]="wallet.block || !wallet.active">{{wallet.name}} {{ wallet.active && !wallet.block ? '' : !wallet.active && wallet.block ? ('inactive_and_blocked' | t) : !wallet.active ? ('inactive_' | t) : ('blocked_' | t) }}</option>
+                        </select>
+                        <div *ngIf="selectedWallet">
+                            <ul class="nav nav-pills">
+                                <li class="margin-bottom-15px margin-right-15px" role="presentation" *ngFor="let asset of selectedWallet.balances">
+                                    <div class="asset {{asset._id == selectedAsset?._id ? 'selected' : ''}}" (click)="selectAsset(asset)"><img class="img-dialog" [src]="asset.logo ? asset.logo : './../../../../assets/images/asset_icons/RIA.png'" onError="this.src='./../../../../assets/images/asset_icons/default.png'" (error)="onError($event, asset, selectedWallet.balances)"/>
+                                        <span *ngIf="asset.isErrorImage" style="position: absolute; top: 12px; left: -25px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.asset_code.substr(0,3) }}</span>
+                                        <span>{{asset.asset_type === 'native'? ('native_' | t) : asset.asset_code}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-center" *ngIf="filtering"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary action" type="button" (click)="OK()" [disabled]="!selectedAsset">{{'ok_' | t}}</button>
+            </div>
+        </div>
+    </div>
+</div>

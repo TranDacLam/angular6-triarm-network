@@ -1,0 +1,30 @@
+
+.progress-volume{
+	display: block;
+	width: 100%;
+	min-width: 60px;
+}
+
+.w50{
+  width: 50%;
+}
+
+.history-paging{
+  button{
+    vertical-align: top;
+  }
+  ul{
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 1500px){
+  .history-table table{
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+.label-history {
+  background: #2e8b57;
+}

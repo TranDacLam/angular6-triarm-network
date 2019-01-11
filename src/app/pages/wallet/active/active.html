@@ -1,0 +1,47 @@
+<h3>{{'active_wallet' | t}}</h3>
+<span>{{'active_wallet_explain' | t}}</span>
+<div>
+    <div class="panel panel-default">
+        <div class="panel-body has-margin-bottom">
+            <form class="restoreForm">
+                <div class="checkbox">
+                	<label>
+                		<input type="checkbox" [(ngModel)]="fromMyWalletCheckbox" name="fromMyWalletCheckbox" />&nbsp; {{'active_my_wallet' | t}}
+                	</label>
+                	<br/>
+                	<span style="margin-left: 30px;">{{'active_my_wallet_instruction' | t}}</span>
+                </div>
+                <label>{{'wallet_address' | t}}</label>
+                <input class="form-control margin-bottom-15px" type="text"  [(ngModel)]="otherAddressWallet" name="otherAddressWallet" *ngIf="!fromMyWalletCheckbox" />
+                <select class="form-control margin-bottom-15px" *ngIf="fromMyWalletCheckbox" name="myAddressWallet" [(ngModel)]="myAddressWallet">
+                	<option value="">{{'select_wallet' | t}}</option>
+                	<ng-container *ngFor="let wallet of wallets">
+                		<option class="ellipsis" [value]="wallet.address" *ngIf="!wallet.active">{{wallet.name}}</option>
+                	</ng-container>
+                </select>
+                <label>{{'user_wallet_fund' | t}}</label>
+                <select class="form-control margin-bottom-15px" name="walletId" [(ngModel)]="walletId">
+                    <option value="">{{'select_wallet' | t}}</option>
+                    <ng-container *ngFor="let wallet of wallets">
+                    	<option class="ellipsis" [value]="wallet._id" *ngIf="wallet.active && !wallet.block">{{wallet.name}}</option> 
+                    </ng-container>
+                </select>
+                <label>{{'starting_balance' | t}} ({{'minimum_starting_balance' | t}})</label>
+                <input class="form-control margin-bottom-15px" type="number" [(ngModel)]="startingBalance" name="startingBalance" /> 
+                <div class="text-center margin-bottom-15px">
+                	<button class="action btn btn-primary" *ngIf="!waitResponse" (click)="activeWallet()" [disabled]=" !walletId || !startingBalance ||  (fromMyWalletCheckbox ? !myAddressWallet : (!otherAddressWallet || otherAddressWallet.length !== 56)) ">{{'active_' | t}}</button>
+                </div>
+                <div class="text-center ng-hide" *ngIf="waitResponse">
+                	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                </div>
+	        </form>
+	    </div>
+	</div>
+</div>
+
+<!-- MODAL -->
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>

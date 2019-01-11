@@ -1,0 +1,67 @@
+<div class="wallet-issuer">
+    <ul class="nav nav-tabs" style="margin-bottom: 30px;">
+        <li id="new-asset-select" [class.active]="active_tab == 'new-asset'">
+        	<a data-toggle="tab" href="#new-asset-tab" (click)="setStorageSessionIssue('new-asset')">{{'create_asset' | t}}</a>
+        </li>
+        <li id="issuing-select" [class.active]="active_tab == 'issuing'">
+        	<a data-toggle="tab" href="#issuing-tab" (click)="setStorageSessionIssue('issuing')">{{'issuing_money' | t}}</a>
+        </li>
+        <li id="converter-select" [class.active]="active_tab == 'converter'">
+        	<a data-toggle="tab" href="#converter-tab" (click)="setStorageSessionIssue('converter')">{{'token_converter' | t}}</a>
+        </li>
+    </ul>
+    <div>
+        <div class="text-center" *ngIf="!loadFinished">
+        	<span style="font-size: 40px;"><i class="fa fa-spinner fa-spin"></i></span>
+        </div>
+        <div class="text-center" *ngIf="(!issuer || !issuer.lastRequest) && loadFinished">
+        	<span>{{'not_issuer' | t}} &nbsp;</span>
+        	<a href="/wallet/settings#general">{{'setting_page' | t}}</a>
+        </div>
+        <div class="text-center" *ngIf="issuer && issuer.lastRequest && (issuer.lastRequest.status === 1) && loadFinished">
+        	<span innerHTML="{{'issuer_information_verify_FREFIX' | t}} <a href='mailto:'>{{'contact_us' | t}}</a> {{'issuer_information_verify_SUFFIX' | t}}"></span>
+        </div>
+        <div class="text-center" *ngIf="issuer && issuer.lastRequest && (issuer.lastRequest.status === 2) && loadFinished">
+        	<span>{{'not_issuer' | t}} &nbsp;</span>
+        	<a href="/wallet/settings#general">{{'setting_page' | t}}</a>
+        </div>
+        <div class="text-center" *ngIf="issuer && issuer.lastRequest && (issuer.lastRequest.status === 3) && loadFinished && !issuer.active">
+        	<span innerHTML="{{'issuer_information_inactive_PREFIX' | t}} <a href='mailto:'>{{'contact_us' | t}}</a> {{'issuer_information_inactive_SUFFIX' | t}}"></span>
+        </div>
+    </div>
+    <div class="tab-content">
+	    <div class="tab-pane fade {{ active_tab == 'new-asset' ? 'active in' : ''}}" id="new-asset-tab">
+            <ng-container *ngIf="active_tab == 'new-asset'">
+    	        <app-advance-new-asset
+    	        	[issuer]="issuer"
+                    [myAssets]="myAssets"
+                    [myWallets]="myWallets"
+                    (on_new_asset_issue)="onNewAssetIssue()"
+    	        >
+    	        </app-advance-new-asset>
+            </ng-container>
+		</div>
+		<div class="tab-pane fade {{ active_tab == 'issuing' ? 'active in' : ''}}" id="issuing-tab">
+            <ng-container *ngIf="active_tab == 'issuing'">
+    		    <app-advance-new-issuing
+    		    	[issuer]="issuer"
+                    [myAssets]="myAssets"
+                    [myWallets]="myWallets"
+                    (on_replace_item_new_issuing)="onReplaceItemNewIssuing($event)"
+    		    >
+    		    </app-advance-new-issuing>
+            </ng-container>
+		</div>
+		<div class="tab-pane fade {{ active_tab == 'converter' ? 'active in' : ''}}" id="converter-tab">
+            <ng-container *ngIf="active_tab == 'converter'">
+    		    <app-advance-convert-asset
+    		    	[issuer]="issuer"
+                    [myAssets]="myAssets"
+                    [myWallets]="myWallets"
+                    (on_replace_item_convert)="onReplaceItemConvert($event)"
+    		    >
+    		    </app-advance-convert-asset>
+            </ng-container>
+		</div>
+	</div>
+</div>

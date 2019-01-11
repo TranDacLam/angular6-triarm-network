@@ -1,0 +1,88 @@
+@import './../my-variables';
+.wallet-issuer {
+  .nav-tabs > li {
+    //width: 33%;
+    text-align: center;
+
+    > a {
+      font-weight: bold;
+    }
+  }
+
+  .nav-tabs > li.active > a {
+    background-color: $accent_color !important;
+    color: white !important;
+  }
+
+
+  .asset-wrapper {
+    padding: 0px 15px;
+    margin-bottom:15px;
+    &:last-child{
+      margin-bottom: 0px;
+    }
+    .asset {
+      background: whitesmoke;
+      padding:10px;
+      border-radius: 4px;
+    }
+  }
+
+  .asset-img {
+    //margin: auto;
+    //max-width: 80px;
+    //padding: 5px;
+    //border: 1px solid lightgray;
+    //border-radius: 4px;
+    .loading{
+      font-size: 20px;
+    }
+    img {
+      width:60px;
+      height: 40px;
+    }
+  }
+
+  .wallet {
+    cursor: pointer;
+    padding:10px;
+    margin-right:15px;
+    margin-bottom:15px;
+    border: 1px solid lightgray;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+
+  .wallet:hover {
+    background: lightgray;
+
+  }
+
+  .wallet.selected {
+    background: seagreen;
+    color: white;
+  }
+
+  .wallet.selected a {
+    color: black !important;
+  }
+
+  .asset-detail{
+    padding:10px;
+    background: whitesmoke;
+   &:hover{
+     background: lightgrey;
+   }
+  }
+
+}
+
+.authorzation li{
+  list-style: none
+}
+
+.text-align{
+  text-align: justify;
+  line-height: 1.7;
+}

@@ -1,0 +1,48 @@
+<div class="wallet-wrapper">
+    <button class="btn btn-primary action margin-bottom-15px margin-right-15px" [routerLink]="['/wallet/new']" [disabled]="!userService.current_user.verifyEmail || !userService.current_user.verifySMS || !userService.current_user.verifyGA">
+        <i
+        class="fa fa-plus"></i>
+        <span class="hidden-480px"> {{'create_new_wallet' | t}}</span>
+    </button>
+    <a class="btn btn-default action margin-bottom-15px margin-right-15px" [routerLink]="['/wallet/restore']" role="button">
+        <i class="fa fa-repeat"></i>
+        <span class="hidden-480px"> {{'restore_a_wallet' | t}}</span>
+    </a>
+    <a
+        class="btn btn-warning action margin-bottom-15px margin-right-15px" [routerLink]="['/wallet/active']" role="button">
+        <i class="fa fa-warning"></i>
+        <span
+        class="hidden-480px"> {{'active_wallet' | t}}</span>
+    </a>
+    <a class="btn btn-danger action margin-bottom-15px margin-right-15px" [routerLink]="['/wallet/merge']" role="button">
+        <i class="fa fa-compress"></i>
+        <span class="hidden-480px"> {{'merge_wallet' | t}}</span>
+    </a>
+    <a
+        class="btn btn-success action margin-bottom-15px margin-right-15px" [routerLink]="['/wallet/issue']" role="button">
+        <i class="fa fa-money"></i>
+        <span
+        class="hidden-480px"> {{'issuer_mode' | t}}</span>
+    </a>
+    <ng-container *ngIf="!waitData">
+        <div *ngIf="wallets && wallets.length">
+            <select class="form-control margin-bottom-15px"
+                [(ngModel)]="selectedWallet" *ngIf="!waitResponse" style="border-color: seagreen; display: block !important;">
+                <option *ngFor="let wallet of wallets" [ngValue]="wallet">{{wallet.name}} - {{wallet.address}}</option>
+            </select>
+            <div class="wallet-list">
+                <div class="wallets">
+                    <div class="panel-group" id="accordion">
+                        <app-wallet [wallets]="wallets" [selectedWallet]="selectedWallet"></app-wallet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="no-wallet" *ngIf='!wallets || wallets.length==0'>
+            {{'create_first_wallet' | t}}
+        </div>    
+    </ng-container>
+    <div class="text-center" *ngIf="waitData">
+        <span style="font-size: 40px;"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+</div>

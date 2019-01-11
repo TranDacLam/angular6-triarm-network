@@ -1,0 +1,302 @@
+<ul class="nav nav-tabs" style="margin-bottom: 30px;">
+    <li class="nav-tabs-li {{ active_tab == 'general' ? 'active' : ''}}" id="generalSelect">
+        <a data-toggle="tab" href="#general_tab" (click)="setStorageSessionSettings('general')">{{'general_' | t}}</a>
+    </li>
+    <li class="nav-tabs-li {{ active_tab == 'security' ? 'active' : ''}}" id="securitySelect">
+        <a data-toggle="tab" href="#security_tab" (click)="setStorageSessionSettings('security')">{{'security_' | t}}</a>
+    </li>
+</ul>
+
+<div class="tab-content" *ngIf="userService.current_user">
+    <div class="tab-pane fade {{ active_tab == 'general' ? 'active in' : ''}}" id="general_tab">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3><label>{{'issuer_account' | t}}</label></h3>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="margin-bottom-15px">
+                                    {{'issuer_account_note' | t}}
+                                </div>
+                                <div>
+                                    <div *ngIf="issuer">
+                                        <div class="text-left">
+                                            <label>{{'personal_information_of_issuer' | t}}</label>
+                                        </div>
+                                        <div class="text-left can-toggle demo-rebrand-1" style="margin-top: 10px;">
+                                            <input id="issuer-enable-toggle" type="checkbox" [checked]="issuer.publicPersonalInfo" (change)="toggleInfoIssuer()">
+                                            <label for="issuer-enable-toggle">
+                                                <div class="can-toggle__switch" [attr.data-checked]="'public_' | t" [attr.data-unchecked]="'private_' | t"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right margin-bottom-15px" *ngIf="issuer && issuerLatestRequest">
+                                        <span>
+                                            <span class="label label-success" *ngIf="issuer && issuerLatestRequest && issuerLatestRequest.status === 3">
+                                                <i class="fa fa-check-circle-o"></i>&nbsp; {{'accepted' | t}}
+                                            </span>
+                                            <span class="label label-danger" *ngIf="issuer && issuerLatestRequest && issuerLatestRequest.status === 2">
+                                                <i class="fa fa-times"></i>&nbsp; {{'rejected_' | t}}
+                                            </span>
+                                            <span class="label label-warning" *ngIf="issuer && issuerLatestRequest && issuerLatestRequest.status === 1">
+                                                <i class="fa fa-clock-o"></i>&nbsp; {{'pending_' | t}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" *ngIf="issuer && issuerLatestRequest">
+                                    <div class="panel-body has-margin-bottom">
+                                        <label>{{'issuer' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.name}}
+                                        </div>
+                                        <label>{{'address' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.address}}
+                                        </div>
+                                        <label>{{'organization' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.organization}}
+                                        </div>
+                                        <label>{{'telephone_number' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.telNumber}}
+                                        </div>
+                                        <label>{{'token_will_issue_no_explain' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.tokens}}
+                                        </div>
+                                        <label>{{'number_of_token_will_issue' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.totalOfTokens}}
+                                        </div>
+                                        <label>{{'purpose_issue_token_no_explain' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.purposeIssue}}
+                                        </div>
+                                        <label>{{'token_pr_solution' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.prSolution}}
+                                        </div>
+                                        <label>{{'participant_feature_no_explain' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.participantFeature}}
+                                        </div>
+                                        <label>{{'number_of_user_estimate' | t}}</label>
+                                        <div class="margin-bottom-15px">
+                                            {{issuerLatestRequest.numberUserEstimate}}
+                                        </div>
+                                        <div style="margin-bottom: 5px;">
+                                            <label>{{'identity_card' | t}}</label>
+                                            <div style="margin-bottom: 10px; overflow: hidden;">
+                                                <label>
+                                                    <img class="issuer-upload-images" *ngIf="issuerLatestRequest.issuerImage[0]" [src]="issuerLatestRequest.issuerImage[0]" style="max-width: 160px; max-height: 110px;" />
+                                                </label>
+                                                <label>
+                                                    <img class="issuer-upload-images" *ngIf="issuerLatestRequest.issuerImage[1]" [src]="issuerLatestRequest.issuerImage[1]" style="max-width: 160px; max-height: 110px;" /> 
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <button class="btn btn-default" 
+                                        *ngIf="issuer && issuerLatestRequest" data-toggle="modal" data-target="#issuerRequestHistoryDialog">
+                                            <i class="fa fa-clock-o"></i>
+                                            <span>&nbsp; {{'history_' | t}}</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <button class="btn btn-primary" *ngIf="(issuerLatestRequest && issuerLatestRequest.status !== 3 && issuer.lastRequest.status !== 3)" data-toggle="modal" data-target="#issuerDialog">
+                                            <span>{{'resubmit_' | t}}</span>
+                                        </button>
+                                        <button class="btn btn-primary"
+                                            *ngIf="(issuer || issuerLatestRequest && issuer.lastRequest.status === 3)" data-toggle="modal" data-target="#issuerDialog">
+                                            <span>{{'edit_issuer_info' | t}}</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-xs-6"></div>
+                                </div>
+                                <div class="text-center" *ngIf="!issuer">
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#issuerDialog">
+                                        <span>{{'become_an_issuer' | t}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <h3><label>{{'email_' | t}} &amp; {{'password_' | t}}</label></h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <label>{{'email_' | t}}</label>
+                        <div class="margin-bottom-15px">{{userService.current_user.email}}</div>
+                        <div ng-show="userService.current_user.armId">
+                            <label>{{'arm_id' | t}}</label>
+                            <div class="margin-bottom-15px">{{userService.current_user.armId}}</div>
+                        </div>
+                        <label>{{'password_' | t}}</label>
+                        <div>********</div>
+                        <button class="btn btn-danger margin-top-15px" data-toggle="modal" data-target="#changePassowrd">
+                            <i class="fa fa-lock"></i>
+                            <span>&nbsp; {{'change_password' | t}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade {{ active_tab == 'security' ? 'active in' : ''}}" id="security_tab">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h3><label>{{'two_step_verification' | t}}</label></h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="margin-bottom-15px">{{'two_step_verification_description' | t}}</div>
+                        <label>{{'status_' | t}}</label>
+                        <div class="margin-bottom-15px" *ngIf="userService.current_user && userService.current_user.tfaEnabled">
+                            <div class="label label-success">
+                                <i class="fa fa-check-circle-o">&nbsp; {{'enabled' | t}}</i>
+                            </div>
+                            <span>&nbsp;</span>
+                            <a href="#">{{'why_keep_tfa_enabled' | t}}</a>
+                        </div>
+                        <div class="margin-bottom-15px"*ngIf="userService.current_user && !userService.current_user.tfaEnabled">
+                            <div class="label label-danger">
+                                <i class="fa fa-times-circle">&nbsp; {{'disabled_' | t}}</i>
+                            </div>
+                            <span>&nbsp;</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label>{{'select_your_prefered_method' | t}}</label>
+                                <div class="radio" style="margin-top: 0px;">
+                                    <label>
+                                        <input type="radio" [disabled]="!userService.current_user.verifyGA" [(ngModel)]="tfaMethod" name="tfaMethod" [value]="1" (change)="changeTFAMethod(1)"/>
+                                        {{'google_authenticator' | t}}
+                                    </label>
+                                    <span>&nbsp;</span>
+                                    <span class="label label-success" *ngIf="userService.current_user.verifyGA && !resetGAProcess">
+                                        <i class="fa fa-check-circle">&nbsp;</i>
+                                        {{'verified_' | t}}
+                                    </span>
+                                </div>
+                                <span>&nbsp;</span>
+                                <span
+                                    *ngIf="userService.current_user.resetGADelayTime && userService.current_user.verifyGA && helper.getUnixTimeFromString(userService.current_user.resetGADelayTime) >= date_now">
+                                    <span class="label label-warning">
+                                        <i class="fa fa-clock-o">&nbsp;</i> | {{'request_cooldown' | t}}
+                                    </span><span>&nbsp; {{helper.getFormatedTimeDistance(date_now, userService.current_user.resetGADelayTime)}}
+                                    </span>
+                                </span>
+                                <span>&nbsp;</span>
+                                <a data-toggle="modal" data-target="#verifyGaDialog" *ngIf="!userService.current_user.verifyGA">({{'settings_' | t}})</a>
+                                <a data-toggle="modal" data-target="#resetTfaDialog" *ngIf="userService.current_user.verifyGA && !resetGAProcess && (!userService.current_user.resetGADelayTime || (helper.getUnixTimeFromString(userService.current_user.resetGADelayTime) < date_now))">({{'reset_' | t}})</a><span class="error-input-dialog" *ngIf="msg_reset_tfa_dialog">
+                                    ({{msg_reset_tfa_dialog}})
+                                </span>
+                                <div *ngIf="userService.current_user.verifyGA" style="margin-left: 15px;">
+                                    <input type="checkbox" [(ngModel)]="loginTFARequire" (change)="changeLoginTFARequire($event)" />
+                                    &nbsp; {{'tfa_login' | t}}
+                                </div>
+                                <span *ngIf="resetGAProcess">
+                                    <i class="fa fa-spinner fa-spin"></i> {{'is_being_reset' | t}}
+                                </span>
+                                
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <img src="./../../../../assets/images/support/ga-intro.png" style="max-width: 125px; margin-top: 20px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <h3><label>{{'account_verification' | t}}</label></h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="margin-bottom-15px">{{'account_verification_description' | t}}</div>
+                        <label>{{'account_information_verification' | t}}</label>
+                        <div>
+                            <span>
+                                <i class="text-danger fa fa-times" *ngIf="!userService.current_user.verifyEmail"></i>
+                                <i class="text-success fa fa-check" *ngIf="userService.current_user.verifyEmail"></i>
+                            </span>
+                            <span>&nbsp; {{'email_' | t}}: &nbsp;</span>
+                            <span class="bold-text">{{userService.current_user.email}} &nbsp;</span>
+                            <a data-toggle="modal" data-target="#verifyEmailDialog" *ngIf="!userService.current_user.verifyEmail">{{'verify_' | t}}</a>
+                            <span>&nbsp;</span>
+                            <span class="label label-success" *ngIf="userService.current_user.verifyEmail">
+                                <i class="fa fa-check-circle">&nbsp;</i> | {{'verified_' | t}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3><label>{{'recent_login_history' | t}}</label></h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive text-center">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>{{'date_' | t}}</td>
+                                        <td>{{'ip_' | t}}</td>
+                                        <td>{{'geolocation_' | t}}</td>
+                                        <td>{{'status_' | t}}</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let history of loginHistories">
+                                        <td>{{history.date | date: 'yyyy/MM/dd H:mm:ss'}}</td>
+                                        <td>{{history.ipAddress}}</td>
+                                        <td>{{history.geoLocation  === "Unknown location" ? ('unknown_location' | t) : history.geoLocation}}</td>
+                                        <td>{{history.status ? ('success_' | t) : ('failed_' | t)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-center">
+                            <div class="font-shadow font-italic" [hidden]="loginHistories && loginHistories.length > 0"> {{'you_have_no_login_history' | t}}
+                            </div>
+                            <pagination *ngIf="loginHistories && loginHistories.length > 0" [boundaryLinks]="true"
+                                [totalItems]="loginHistoriesArray.length" [itemsPerPage]="5" (pageChanged)="pageChanged($event)" [maxSize]="5"
+                            ></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dalog -->
+<app-issuer-request-history-dialog *ngIf="issuer" [issuer_id]="issuer._id"
+></app-issuer-request-history-dialog>
+
+<app-issuer-dialog (changeSubmit)="onIssuerDialog()"></app-issuer-dialog>
+
+<app-change-password-dialog></app-change-password-dialog>
+
+<app-reset-tfa-dialog 
+    [title]="'resetting_ga' | t" 
+    [message]="'resetting_ga_note' | t"
+    type="password"
+    (changeSubmit)="inputDialog($event)"
+></app-reset-tfa-dialog>
+
+<app-verify-ga-dialog
+    (change_verify_ga)="changeVerifyGa($event)"
+></app-verify-ga-dialog>
+
+<app-verify-email-address-dialog
+    (change_verify_email)="changeVerifyEmail($event)"
+>
+</app-verify-email-address-dialog>

@@ -1,0 +1,54 @@
+.backup-db {
+  .jumbotron {
+    border-radius: 5px;
+    padding: 25px !important;
+  }
+  .mt0 {
+    margin-top: 0;
+  }
+  .mt5 {
+    margin-top: 5px;
+  }
+  .time {
+    padding-left: 15px;
+  }
+
+  table {
+    font-size: 14px;
+    thead {
+      th:last-child {
+        width: 120px;
+      }
+    }
+    td, th {
+      vertical-align: middle !important;
+    }
+    td.action {
+      .btn {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .jumbotron.restore {
+    p, label {
+      font-size: 14px;
+    }
+  }
+
+  /* Add animation */
+  tr.backup-file.ng-leave {
+    transition: all linear 0.25s;
+    opacity: .5;
+  }
+
+  button.btn.btn-sm.btn-danger {
+    width: 80px;
+    .fa.fa-spinner.fa-spin {
+      font-size: 18px;
+    }
+  }
+  .fz18 {
+    font-size: 18px;
+  }
+}

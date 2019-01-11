@@ -1,0 +1,35 @@
+<div id="setWalletPropertiesDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'asset_properties' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <div class="warning-message-content text-align">
+                        <div>{{'set_wallet_options_warning_1' | t}}</div>
+                        <div>{{'set_wallet_options_warning_2' | t}}</div>
+                    </div>
+                </div>
+                <ul class="authorzation">
+                    <li class="margin-top-15px">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="authRequired"/>
+                                <span>&nbsp;{{'AUTHORIZATION_REQUIRED' | t}}  &nbsp;</span>
+                                <i class="fa fa-eye"></i>
+                            </label>
+                        </div>
+                        <div>{{'authorization_required_explain' | t}}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default action margin-right-15px" type="button" (click)="close()">{{'cancel_' | t}}</button>
+                <button class="btn btn-primary action" type="button" (click)="OK()">{{'set_' | t}}</button>
+            </div>
+        </div>
+    </div>
+</div>

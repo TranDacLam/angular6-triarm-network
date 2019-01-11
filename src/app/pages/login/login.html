@@ -1,0 +1,70 @@
+<div id="header">
+    <app-header></app-header>
+</div>
+
+<div class="login-ui">
+    <div class="login-wrapper">
+        <div class="login-dialog">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="text-center dialog-header">
+                        <span>{{'login_' | t }}</span>
+                    </div>
+                </div>
+                <form class="panel-body" [formGroup]="formLogin">
+                    <div class="padding-15px">
+                        <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+                        <fieldset>
+                            <div class="form-group">
+                                <label>{{ 'email_or_armId' | t}}</label>
+                                <app-input
+                                    form_control_name="email"
+                                    type="email" 
+                                    [form]="formLogin"
+                                >
+                                </app-input>
+                            </div>
+                            <div class="form-group">
+                                <label>{{ 'password_' | t}}</label>
+                                <app-input
+                                    form_control_name="password"
+                                    type="password" 
+                                    [form]="formLogin"
+                                >
+                                </app-input>
+                            </div>
+                            <!-- <div class="form-group">
+                                <re-captcha formControlName="recaptcha" (resolved)="resolved($event)" siteKey="{{siteKeyRecapcha}}"></re-captcha>
+                            </div> -->
+                                <div class="form-group" style="margin-bottom: 0px;">
+                                    <button class="btn btn-primary max-width" (click)="login()" [disabled]="!formLogin.valid" *ngIf="!processing">
+                                        <span>{{ 'login' | t}}</span>
+                                    </button>
+                                    <div class="text-center margin-top-15px">
+                                        <a [routerLink]="['/forgot-password']">{{'forgot_your_password' | t }}</a>
+                                    </div>
+                                <div class="text-center margin-top-15px">
+                                    <i class="fa fa-spinner fa-spin fa-2x fa-fw" *ngIf="processing"></i>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="text-center create-wallet"><span>{{'have_account_question' | t }}</span></div>
+        <div class="text-center create-wallet">
+            <a [routerLink]="['/new-account']">{{'create_account' | t }}</a>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <app-footer></app-footer>
+</div>
+
+<app-tfa-confirm  
+    [option_extra]="option_extra" 
+    [email]="formLogin.get('email').value"
+    (on_confirm)="onTfaConfirm($event)"
+>
+</app-tfa-confirm>

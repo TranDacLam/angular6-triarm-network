@@ -1,0 +1,82 @@
+<div class="nav-side-menu" *ngIf="userService.current_user">
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="menu-list">
+        <ul class="menu-content collapse out" id="menu-content">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" data-toggle="collapse" data-target="#dashboard">
+                <a><i class="fa fa-television fa-2x"></i>
+                    <span>{{'admin_dashboard' | t}} <span class="arrow"></span></span>
+                </a>
+                <ul class="sub-menu collapse" [routerLinkActive]="['in']" [routerLinkActiveOptions]="{exact:true}" id="dashboard">
+                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                        <a [routerLink]="['/admin']">{{'summary_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/mail']">{{'mailbox_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/news']">{{'news_heading' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/multisign/wallets']">{{'multisign_wallet' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/backup-db']">{{'database_backup' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/first-wallet-store']">{{'first_wallet_store' | t}}</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" data-toggle="collapse" data-target="#ico_manage">
+                <a><i class="fa fa-money fa-2x"></i>
+                    <span>{{'ico_' | t}} <span class="arrow"></span></span>
+                </a>
+                <ul class="sub-menu collapse" [routerLinkActive]="['in']" id="ico_manage">
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/ico']">{{'dashboard_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/ico/manage-currency']">{{'currency_manage' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/ico/control']">{{'ico_control' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/ico/wallet-management']">{{'wallet_management' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/ico/history-withdraw']">{{'history_withdraw' | t}}</a>
+                    </li>
+                </ul>
+            </li> -->
+            <li [routerLinkActive]="['active']" data-toggle="collapse" data-target="#user-management">
+                <a><i class="fa fa-user-circle fa-2x"></i>
+                    <span>{{'user_manage' | t}} <span class="arrow"></span></span>
+                </a>
+                <ul class="sub-menu collapse" [routerLinkActive]="['in']" id="user-management">
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/user-management/issuer']">{{'issuer_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/user-management/merchant']">{{'merchant_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/user-management/user']">{{'user_' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/user-management/subscriber']">{{'subscriber' | t}}</a>
+                    </li>
+                    <li [routerLinkActive]="['active']">
+                        <a [routerLink]="['/admin/user-management/resend-email']">{{'reset_user' | t}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a (click)="logout()">
+                    <i class="fa fa-sign-out fa-2x"></i>
+                    <span class="logout">{{'log_out' | t}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

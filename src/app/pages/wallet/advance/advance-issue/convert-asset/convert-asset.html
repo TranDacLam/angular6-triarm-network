@@ -1,0 +1,139 @@
+<div>
+    <div *ngIf="issuer && issuer.lastRequest && issuer.lastRequest.status === 3 && issuer.active">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="panel-header-title">{{'convert_asset' | t}}</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <fieldset [disabled]="processing">
+                            <div class="margin-bottom-15px">
+                            	<label>{{'select_asset' | t}} &nbsp;</label>
+                            	<a *ngIf="convertAsset && convertAsset._id && !processing" (click)="selectConvertAsset()">{{'change_' | t}}</a>
+                                <div *ngIf="!(convertAsset && convertAsset._id)">
+                                	<button class="btn btn-default" (click)="selectConvertAsset()">{{'select_an_asset' | t}}</button>
+                                </div>
+                                <div *ngIf="convertAsset && convertAsset._id">
+                                    <div class="margin-bottom-15px" *ngIf="!!convertAsset._id" style="background: whitesmoke; border-radius: 4px; padding: 10px;">
+                                        <div class="row flexbox">
+                                            <div class="col-xs-12 col-sm-4 valign-center">
+                                                <div class="asset-img text-center">
+                                                	<span class="loading" *ngIf="convertAsset.isLogoBeingChanged"><i class="fa fa-spinner fa-spin"></i></span>
+                                                	<img class="asset-logo-img img-reponsive img-thumbnail" [src]="convertAsset.logo + '?decache' + date_now" [class.hidden-image]="convertAsset.isLogoBeingChanged" (load)="convertAsset.isLogoBeingChanged = false;"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-8 valign-center">
+                                                <div>
+                                                	<label>{{'name_' | t}}: &nbsp;</label>
+                                                	<span>{{convertAsset.name}}</span>
+                                                	<span>
+                                                		<span>&nbsp;</span>
+                                                		<i class="fa fa-snowflake-o" *ngIf="helper.bitwiseAnd(convertAsset.walletID.property, '0x01')"></i>
+                                                		<span>&nbsp;</span>
+                                                        <i class="fa fa-eye" *ngIf="helper.bitwiseAnd(convertAsset.walletID.property, '0x02')"></i>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                	<label>{{'decimal_place' | t}}: &nbsp;</label>
+                                                	<span>{{convertAsset.decimalPlace}}</span>
+                                                </div>
+                                                <div>
+                                                	<label>{{'ratio_' | t}}: &nbsp;</label>
+                                                	<span>1/{{1/convertAsset.ratio}}</span>
+                                                </div>
+                                                <div>
+                                                	<label>{{'capital_' | t}}: &nbsp;</label>
+                                                	<span>{{convertAsset.capital | currency : '': '' : currencyDigitsInfo(convertAsset.decimalPlace)}}</span>
+                                                </div>
+                                                <div>
+                                                	<label>{{'issuing_wallet' | t}}: &nbsp;</label>
+                                                	<a target="_blank" href="/wallet/my-wallets;walletId={{convertAsset.walletID._id}}">
+                                                		<span>{{convertAsset.walletID.name}} &nbsp;</span>
+                                                		<i class="fa fa-external-link"></i>
+                                                	</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="margin-bottom-15px" *ngIf="convertAsset && convertAsset._id">
+                                <div class="margin-bottom-15px">
+                                	<label>{{'wallet_balances' | t}} &nbsp;</label>
+                                	<span>{{totalBalance.toString(10) | currency : '' : '' : currencyDigitsInfo(convertAsset.decimalPlace)}} / {{convertAsset.capital | currency : '' : '' : currencyDigitsInfo(convertAsset.decimalPlace)}}</span>
+                                </div>
+                                <div>
+                                    <ul class="nav nav-pills">
+                                        <li *ngFor="let wallet of filteredWallets">
+                                            <div class="wallet" [class.selected]="wallet._id === convertWallet?._id" (click)="selectConvertWallet(wallet)">
+                                                <div>
+                                                	<label>{{'wallet_' | t}}: &nbsp;</label>
+                                                	<a target="_blank" href="/wallet/my-wallets;walletId={{wallet._id}}">
+                                                		<span>{{wallet.name}} &nbsp;</span>
+                                                		<i class="fa fa-external-link"></i>
+                                                	</a>
+                                                </div>
+                                                <div>
+                                                	<label>{{'token_balance' | t}}: &nbsp;</label>
+                                                	<span>{{getTokenBalance(wallet, convertAsset) | currency : '' : '' : currencyDigitsInfo(convertAsset.decimalPlace)}}</span>
+                                                </div>
+                                                <div>
+                                                    <label>&nbsp;</label>
+                                                    <i class="fa fa-handshake-o" *ngIf="wallet.type === 1">&nbsp;{{'advance_wallet' | t}}</i>
+                                                    <i class="icon-wallet" *ngIf="wallet.type === 0">&nbsp;{{'normal_wallet' | t}}</i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="margin-bottom-15px">
+                                <div>
+                                	<label>{{'convert_amount' | t}} &nbsp;</label>
+                                	<span *ngIf="!convertWallet">({{'please_select_wallet' | t}})</span>
+                                </div>
+                                <div class="input-group margin-bottom-15px">
+                                	<span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+                                	<input class="form-control" [(ngModel)]="convertAmount" [disabled]="!convertAsset || !convertAsset._id || !convertWallet" (input)="changeConvertAmount()"
+                                    />
+                                </div>
+                                <div>
+                                	<label>{{'native_receive' | t}} &nbsp;</label>
+                                </div>
+                                <div class="input-group">
+                                	<span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                	<input class="form-control" [disabled]="true" value="{{getRefundAmount(convertAmount) | currency : '' : '' : '1.7'}}" />
+                                </div>
+                            </div>
+                            <div class="text-center">
+                            	<button class="action btn btn-primary" (click)="convertAssetToNative()" [disabled]="!convertAmount">
+                            		<span *ngIf="processing"><i class="fa fa-spinner fa-spin"></i>
+                            			<span>&nbsp;</span>
+                            		</span>
+                            		<span>{{'convert_' | t}}</span>
+                            	</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-asset-dialog-multi-sign
+    [options]="options_asset" 
+    (on_asset_dialog)="onAssetDialog($event)" >
+</app-asset-dialog-multi-sign>
+
+<app-tfa-confirm
+    [option_extra]="{}"
+    (on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
+
+<app-choose-signer-dialog
+    [options]="options_choose_signer"
+    (on_choose_signer_dialog)="onChooseSignerDialog($event)"
+>
+</app-choose-signer-dialog>

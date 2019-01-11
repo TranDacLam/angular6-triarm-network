@@ -1,0 +1,24 @@
+.component {
+    button {
+        -webkit-appearance: none;
+        min-width: 160px;
+        height: 55px;
+        font-size: 18px;
+        background-color: #428BCA;
+        text-transform: uppercase;
+        color: white;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: none;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        &.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+}

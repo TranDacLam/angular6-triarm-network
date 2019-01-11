@@ -1,0 +1,36 @@
+
+.account-new {
+
+  img.success, img.qrcode {
+    display: block;
+    margin: 10px auto;
+  }
+
+  img.success {
+    height: 100px;
+  }
+
+  img.qrcode {
+    height: 200px;
+    @media screen and (max-width: 479px) {
+      height: 100px;
+    }
+  }
+
+  .backup-code{
+    margin-top:15px;
+    font-family: monospace;
+    background: white;
+    font-size: 24px;
+    padding: 10px;
+    color: black;
+  }
+
+  .backup-warning{
+    margin-bottom: 15px;
+    background: #d9534f;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+  }
+}

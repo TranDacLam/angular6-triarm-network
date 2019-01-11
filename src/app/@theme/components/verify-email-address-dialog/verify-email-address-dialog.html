@@ -1,0 +1,30 @@
+<div id="verifyEmailDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'email_address_verification' | t}}</h3>
+            </div>
+            <div class="modal-body text-center">
+                <div class="margin-bottom-15px" innerHTML="{{'we_sent_you_email_code_PREFIX' | t}} <strong>{{userService.current_user.email}}</strong> {{'we_sent_you_email_code_SUFFIX' | t}}"></div>
+                <img class="margin-bottom-15px" src="./../../../assets/images/support/email-verification-guide.png" style="max-height: 150px;" />
+                <div class="margin-bottom-15px">
+                    <span>{{'input_email_verification_code' | t}}</span>
+                    <a *ngIf="!sendingCode" role="button" (click)="resendEmail()">{{'resend_email' | t}}</a>
+                    <i class="fa fa-spinner fa-spin" *ngIf="sendingCode"></i>
+                </div>
+
+                <app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+
+                <input class="form-control code-verify" type="text" [(ngModel)]="code" />
+                <button class="btn btn-primary margin-top-15px action"
+                    type="button" (click)="OK()" [disabled]="!code || processing">
+                    <span *ngIf="processing">&nbsp;
+                        <i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                    <span>{{'verify_' | t}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

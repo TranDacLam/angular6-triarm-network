@@ -1,0 +1,80 @@
+<div class="asset-permission">
+    <div class="panel-header-title">{{'asset_permission' | t}}</div>
+    <div class="row" *ngIf="asset">
+        <div class="col-xs-4 text-center">
+            <h4>{{asset.name}}</h4>
+        </div>
+        <div class="col-xs-8 row">
+            <div class="col-xs-12 text-right" style="margin-bottom: 5px;">
+            	<button class="btn btn-sm" (click)="checkAll()" style="margin-right: 5px;">
+            		<span *ngIf="waitingResponse">&nbsp;<i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+            		<span *ngIf="!waitingResponse">{{'select_all' | t}}</span>
+            	</button>
+                <button class="btn btn-sm btn-success" (click)="allowTrust('all',true)" [disabled]="waitingResponse || !haveRequestSelected" *ngIf="availableSigner" style="margin-right: 5px;">
+                	<span *ngIf="waitingResponse">&nbsp;<i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                	<span *ngIf="!waitingResponse">{{'accept_' | t}}</span>
+                </button>
+                <button class="btn btn-sm btn-danger" (click)="allowTrust('all',false)" [disabled]="waitingResponse || !haveRequestSelected" *ngIf="availableSigner" style="margin-right: 5px;">
+                	<span *ngIf="waitingResponse">&nbsp;<i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                	<span *ngIf="!waitingResponse">{{'reject_' | t}}</span>
+                </button>
+            </div>
+	        <div class="col-xs-8 col-xs-offset-4 pull-right">
+	        	<angular2-multiselect [data]="showingFilter" 
+		            [(ngModel)]="select_filter" 
+		            [settings]="select_settings"
+		            (onSelect)="onSelectFilterStatus($event)"
+		            (onDeSelect)="onDeSelectFilterStatus($event)"
+		            (onSelectAll)="onSelectAllFilterStatus()"
+		            (onDeSelectAll)="onDeSelectAllFilterStatus()"
+		           > 
+		        </angular2-multiselect>
+	        </div>
+	    </div>
+	</div>
+	<div class="panel panel-default margin-top-15px">
+	    <div class="panel-body">
+	    	<ng-container *ngFor="let request of trustRequests">
+		        <div class="margin-bottom-15px" *ngIf="trustRequests.length > 0 && trust_filter.indexOf(request.status) >= 0" style="padding: 15px; background-color: whitesmoke;">
+		            <div class="row">
+		                <div class="col-xs-8 ellipsis">
+		                    <div class="col-xs-1 checkbox text-right" style="padding-right: 10px;">
+		                    	<input type="checkbox" *ngIf="request.status === 1" [disabled]="waitingChange || request.status === 1 ? false : true" [(ngModel)]="request.checked" (change)="checkChange(request._id)" value="request._id" />
+		                    	<input type="checkbox" *ngIf="request.status !== 1"
+		                            [checked]="request.status === 3 ? true : false" [disabled]="true" />
+		                    </div>
+		                    <div class="col-xs-11">
+		                        <div><label>{{'wallet_' | t}}</label></div>
+		                        <div class="ellipsis"><span>{{request.walletID.address}}</span></div>
+		                    </div>
+		                </div>
+		                <div class="col-xs-4 text-right">
+		                    <div>
+		                    	<span class="label label-primary" *ngIf="request.status === 4"><i class="fa fa-ban"></i>&nbsp; {{'canceled_' | t}}</span>
+		                    	<span class="label label-success" *ngIf="request.status === 3"><i class="fa fa-check"></i>&nbsp; {{'accepted_' | t}}</span>
+		                        <span class="label label-danger" *ngIf="request.status === 2"><i class="fa fa-times"></i>&nbsp; {{'rejected_' | t}}</span>
+		                        <span class="label label-warning" *ngIf="request.status === 1"><i class="fa fa-clock-o"></i>&nbsp; {{'pending_' | t}}</span>
+		                    </div>
+		                    <div class="font-italic font-shadow" style="font-size: 12px; margin-top: 5px;">
+		                    	<span>{{helper.formatTime(request.createdOn, '', 'LLL')}}</span>
+		                    </div>
+		                    <div *ngIf="request.status === 1" style="margin-top: 3px;">
+		                    	<button class="btn btn-xs btn-success" (click)="allowTrust(request._id,true)"><i class="fa fa-check"></i></button>
+		                    	<button class="btn btn-xs btn-danger" style="margin-left: 3px;" (click)="allowTrust(request._id,false)"><i class="fa fa-times"></i></button>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </ng-container>
+	        <div class="row text-center" *ngIf="!(trustRequests.length > 0)">
+	            <div>No asset trust</div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<app-choose-signer-dialog
+    [options]="options_choose_signer" 
+    (on_choose_signer_dialog)="onChooseSignerDialog($event)" >
+>
+</app-choose-signer-dialog>

@@ -1,0 +1,60 @@
+<div class="wallet">
+    <div class="panel panel-default panel-wallet">
+        <div class="panel-heading panel-wallet-header" id="heading{{selectedWallet._id}}" role="tab" data-parent="#accordion" aria-expanded="true">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="wallet-control">
+                        <a *ngIf="selectedWallet.block">
+                            <i class="fa fa-lock wallet-control-item" (click)="openUnblockWalletDialog(selectedWallet)" style="margin-left: 5px;"></i>
+                        </a>
+                        <a *ngIf="!selectedWallet.block && selectedWallet.active">
+                            <i class="fa fa-info-circle wallet-control-item"></i>
+                        </a>
+                        <a *ngIf="!selectedWallet.active && !selectedWallet.block" (click)="activeWallet(selectedWallet)">
+                            <i class="fa fa-warning warning-color wallet-control-item"></i>
+                        </a>
+                    </div>
+                    <div class="wallet-name">
+                        <span class="editable-click" style="border-bottom: none !important;" *ngIf="!is_rename_wallet" (click)="onFocusRenameWallet()">{{selectedWallet.name}} &nbsp;<i class="fa fa-pencil"></i>
+                        </span>
+                        <input *ngIf="is_rename_wallet" type="text" class="form-control rename-wallet" value="{{selectedWallet.name}}" (change)="renameWallet(nameWallet.value)" (focusout)="onFocusOutRenameWallet()" #nameWallet>
+                    </div>
+                    <div class="wallet-address" id="{{selectedWallet.address}}"
+                        style="padding-top: 10px;">
+                        <a class="wallet-address-copy" style="text-decoration: none;">
+                            <i class="fa fa-copy" (click)="copyWalletAddress(selectedWallet.address)"></i>
+                        </a>
+                        <span class="wallet-address-text">&nbsp; {{selectedWallet.address}}&nbsp;
+                            <i class="fa fa-circle" [ngStyle]="selectedWallet.multisignType === 1 && {'color':'red'} || selectedWallet.multisignType === 2 && {'color':'green'}"></i>
+                        </span>
+                    </div>
+                    <span class="copied">{{'copied_' | t}}</span>
+                </div>
+                <div class="col-xs-4 text-right">
+                    <img src="{{selectedWallet.qrcode}}" style="height: 70px;" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-collapse collapse in" id="collapse{{selectedWallet._id}}" role="tabpanel">
+            <div class="panel-body" style="padding-bottom: 5px;">
+                <div class="text-center margin-bottom-15px" *ngIf="!selectedWallet.active || selectedWallet.block">
+                    <div *ngIf="!selectedWallet.active">{{'wallet_not_active_info' | t}}</div>
+                    <div *ngIf="selectedWallet.block">{{'wallet_blocked_info' | t}}</div>
+                </div>
+                <div>
+                    <app-asset-multisign
+                        [selectedWallet]="selectedWallet"
+                        [currentSelectAssetID]="currentSelectAssetID"
+                    ></app-asset-multisign>
+                    <p class="padding-15" *ngIf="selectedWallet.balances.length==0">{{'wallet_no_asset' | t}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-wallet-active-dialog
+    [data]="data_wallet_active"
+    (on_wallet_active_dialog)="onWalletActiveDialog()"
+>
+</app-wallet-active-dialog>

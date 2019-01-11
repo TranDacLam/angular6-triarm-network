@@ -1,0 +1,29 @@
+.asset {
+    cursor: pointer;
+    min-width: 100px;
+    background-color: lightgrey;
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.asset:hover {
+    background-color: darkgray !important;
+    color: white;
+}
+
+.asset.selected {
+    background-color: seagreen !important;
+    color: white;
+}
+
+.img-dialog {
+    width: 30px;
+    height: 20px;
+}
+
+.asset span {
+    padding:5px;
+    font-size:16px;
+    font-weight:bold;
+}

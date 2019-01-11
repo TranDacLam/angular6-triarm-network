@@ -1,0 +1,31 @@
+<div id="newsDetailModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body" style="height:90%; overflow-y: auto;" *ngIf="news_detail">
+                <button class="close" type="button" data-dismiss="modal" style="margin-right: 5px;margin-top: 5px;">&times;</button>
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-home">&nbsp;</i>
+                        <a href="">{{'home_' | t}}</a>
+                    </li>
+                    <li>{{'news_heading' | t}}</li>
+                    <li class="active">{{news_detail.title}}</li>
+                </ol>
+                <h4 class="modal-title bold-text">{{news_detail.title}}</h4>
+                <ul class="post-tags">
+                    <li><i class="fa fa-clock-o">&nbsp; {{news_detail.createdAt | date: 'yyyy - MM - dd'}}</i></li>
+                    <li>
+                        <i class="fa fa-user">&nbsp; {{'created_by' | t}}: </i>
+                        {{news_createdBy.firstname}}  {{news_createdBy.middlename}} 
+                        {{news_createdBy.lastname}}
+                    </li>
+                </ul>
+                <hr/>
+                <div class="form-group">
+                    <p [innerHTML]="news_detail.content"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

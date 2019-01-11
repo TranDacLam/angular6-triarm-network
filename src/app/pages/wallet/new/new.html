@@ -1,0 +1,69 @@
+<div class="wallet-new">
+    <h3>{{'create_new_wallet' | t}}</h3>
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <fieldset [disabled]="waitResponse">
+                    <div class="warning-message">
+                        <div>{{'warning_header' | t}}</div>
+                        <div class="content">{{'secret_key_note' | t}}</div>
+                    </div>
+
+                    <app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+                    
+                    <label>{{'wallet_address' | t}}</label>
+                    <div class="input-group">
+                    	<input class="form-control" type="text" readonly value="{{ publicKey }}" />
+                    	<span class="input-group-btn">
+                    		<button class="btn btn-default" type="button" (click)="getKeypair()">{{'renew_' | t}}</button>
+                    	</span>
+                    </div>
+                    <label>{{'wallet_secret_key' | t}}</label>
+                    <div class="input-group">
+                    	<input class="form-control" [(ngModel)]="secretKey" readonly="true" />
+                    	<span class="input-group-btn">
+                    		<button class="wallet-address-copy btn btn-default" [disabled]="copied" type="button" (click)="setCopied(secretKey)">
+                    			<span *ngIf="!copied">{{'copy_' | t}}</span>
+                        		<span *ngIf="copied">{{'copied_' | t}}</span>
+                            </button>
+                        </span>
+		            </div>
+		            <label>{{'wallet_name' | t}}</label>
+		            <input class="form-control margin-bottom-15px" type="text" [placeholder]="'optional_' | t" [(ngModel)]="name" />
+		            <div class="checkbox" *ngIf="!isFirstWallet">
+		            	<label>
+		            		<input type="checkbox" value="" [(ngModel)]="disabledWalletOptionCheckbox" (change)="disabledWalletOption = !disabledWalletOptionCheckbox"/>
+		            		&nbsp;{{'user_wallet_fund' | t}}
+		            	</label>
+		            	<select class="form-control margin-bottom-15px" [disabled]="disabledWalletOption" [(ngModel)]="walletId">
+		            		<option value="">{{'select_wallet' | t}}</option>
+		            		<ng-container *ngFor="let wallet of wallets">
+		            			<option class="ellipsis" [value]="wallet._id" [disabled]="!wallet.active || wallet.block">
+		            				{{wallet.name}} {{!wallet.active && wallet.block ? ('inactive_and_blocked' | t) : wallet.block ? ('blocked_' | t) : !wallet.active ? ('inactive_' | t) : ""}}
+		            			</option>
+		            		</ng-container>
+		            	</select>
+		            </div>
+		            <div *ngIf="!isFirstWallet">
+		            	<label>{{'starting_balance' | t}} ({{'minimum_starting_balance' | t}})</label>
+		            	<input class="form-control margin-bottom-15px" type="number" [(ngModel)]="startingBalance" [disabled]="disabledWalletOption" ng-init="startingBalance=20" value="20" min="20" /></div>
+		        <p *ngIf="isFirstWallet">{{'create_first_wallet_introduction' | t}}</p>
+		        <div class="text-center" *ngIf="!waitResponse">
+		        	<button class="btn btn-default margin-bottom-15px action" (click)="save()">{{'save_' | t}}</button>
+		        	<button class="btn btn-primary margin-left-15px margin-bottom-15px action" *ngIf="!isFirstWallet" [disabled]="disabledWalletOption || !walletId || !isGreater20(startingBalance)" (click)="create()">{{'create_' | t}}</button>
+		            </div>
+		        </fieldset>
+		    </div>
+		    <div class="text-center" *ngIf="waitResponse">
+            	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+            </div>
+		</div>
+	</div>
+</div>
+
+<!-- MODAL -->
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>

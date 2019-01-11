@@ -1,0 +1,24 @@
+<div id="tfaConfirmDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog" *ngIf="option_extra">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'TFA_' | t}}</h3>
+            </div>
+            <div class="modal-body text-center">
+                <img src="./../../../assets/images/support/ga-guide.png" style="max-height: 150px;" />
+                <div class="margin-bottom-15px text-center">
+                    <div *ngIf="option_extra.loginTFARequire">{{'input_ga_code_login' | t}}</div>
+                    <div *ngIf="!option_extra.loginTFARequire">{{'input_ga_code' | t}}</div>
+                    <div class="text-center" *ngIf="email">
+                        {{email}}
+                    </div>
+                </div><input class="form-control code-verify" type="text" [(ngModel)]="code" />
+                <button class="btn btn-primary margin-top-15px action" type="button" (click)="onConfirm()" *ngIf="!processing" [disabled]="!code">
+                    <span>{{'confirm_' | t}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

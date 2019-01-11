@@ -1,0 +1,66 @@
+<div class="valign-center">
+    <div class="row" style="font-size: 20px; font-weight: bold;">
+        <div class="col-md-12">
+            <h1>{{'reset_user_and_resend_email_title' | t}}</h1>
+
+            <app-alert-messages messages_alert="{{msg_alert}}" type="success" (valueChange)="msg_alert = $event"></app-alert-messages>
+            
+            <p style="font-size: 16px; font-weight: bold;color:red;">
+            	<i class="fa fa-warning" style="color:red;"></i>
+            	<span>{{'reset_user_and_resend_email_warning_message' | t}}</span>
+            </p>
+            <div class="input-group">
+            	<span class="input-group-addon">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>
+            	<input class="form-control" [placeholder]="'type_email_to_search' | t" [(ngModel)]="searchEmailInput" (change)="searchByEmail()" ng-model-options="{ debounce: 500 }" />
+            </div>
+            <div class="text-right"
+                style="margin-bottom: 15px;">
+                <button class="btn btn-sm btn-danger" (click)="checkAll(false)" style="margin-right: 5px;" [disabled]="waitingChange">Deselect all</button>
+                <button class="btn btn-sm btn-success" (click)="checkAll(true)" style="margin-right: 5px;" [disabled]="waitingChange">Select all</button>
+                <button class="btn btn-sm btn-primary" (click)="sendEmail()" [disabled]="waitingChange">Send email</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">{{'no_' | t}}</th>
+                        <th class="text-center">{{'email_' | t}}</th>
+                        <th class="text-center">{{'first_name' | t}}</th>
+                        <th class="text-center">{{'middle_name' | t}}</th>
+                        <th class="text-center">{{'last_name' | t}}</th>
+                        <th class="text-center">{{'arm_id' | t}}</th>
+                        <th class="text-center">{{'control_' | t}}</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="waitTableData">
+                    <tr>
+                        <td class="text-center" colspan="11"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>
+                    </tr>
+                </tbody>
+                <tbody *ngIf="!waitTableData">
+                    <tr *ngFor="let user of allUsers; let i = index">
+                        <td>
+                            <div class="text-center">{{ (currentPage - 1) * limit + (i + 1) }}</div>
+                        </td>
+                        <td class="text-center">{{user.email}}</td>
+                        <td class="text-center">{{user.firstname}}</td>
+                        <td class="text-center">{{user.middlename}}</td>
+                        <td class="text-center">{{user.lastname}}</td>
+                        <td class="text-center">{{user.armId}}</td>
+                        <td class="text-center">
+                        	<input type="checkbox" [(ngModel)]="user.selected" (change)="checkChange(user._id)" [value]="user._id" [disabled]="waitingChange" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+            	<pagination *ngIf="allUsers && allUsers.length > 0" 
+                    [totalItems]="totalUsers" [(ngModel)]="currentPage" [itemsPerPage]="limit" (pageChanged)="pageChanged($event)" [maxSize]="5" [boundaryLinks]="true" [rotate]="true"
+                ></pagination>
+            </div>
+        </div>
+    </div>
+</div>

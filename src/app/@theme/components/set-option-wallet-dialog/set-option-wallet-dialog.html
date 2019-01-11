@@ -1,0 +1,121 @@
+<div id="setOptionWallet" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div>
+                <div class="card" style="margin:0;">
+                    <div class="toolbar">
+                        <div class="toolbar-tools">
+                            <h2>
+                                <i class="fa fa-bars"></i>
+                                <span>{{'Setup wallet' | t}}</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="md-no-padding">
+                        <div class="steppers">
+                            <ul id="progressbar">
+                                <li [class]="stepData[0].active ? 'active' : ''">{{'choose_wallet_type' | t}}</li>
+                                <li [class]="stepData[1].active ? 'active' : ''">{{'generate_keypairs' | t}}</li>
+                                <li [class]="stepData[2].active ? 'active' : ''">{{'finish_' | t}}</li>
+                            </ul>
+                            <div class="step-content .step-active" *ngIf="stepData[0].process">
+                                <div>
+                                    <form name="step1">
+                                        <div class="md-padding md-content">
+                                            <div class="layout-align-center-stretch layout-row">
+                                                <div style="width: 400px;" class="flex-nogrow">
+                                                    <h4>{{'select_a_wallet_' | t}}</h4>
+                                                    <div class="md-block md-input-container">
+                                                        <div *ngIf="wallets && wallets.length">
+                                                            <h5>Wallet:</h5>
+                                                            <select class="form-control margin-bottom-15px" [(ngModel)]="stepData[0].data.selectedWallet" name="selectedWallet-step1"*ngIf="!waitResponse" style="border-color: seagreen; display: block !important;">
+                                                                <option *ngFor="let wallet of wallets" [value]="wallet.address">{{wallet.name}} - {{wallet.address}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="md-block md-input-container">
+                                                        <div class="radio">
+                                                            <input type="radio" name="checked_wallet"class="md-primary md-radio-button radio-hot" value="hot_wallet" [(ngModel)]="stepData[0].data.walletType" />{{'hot_wallet' | t}}
+                                                        </div>
+                                                        <div class="radio">
+                                                            <input type="radio"name="checked_wallet" class="radio-cold md-radio-button" value="cold_wallet" [(ngModel)]="stepData[0].data.walletType"/>{{'cold_wallet' | t}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layout-row">
+                                            <div class="layout-align-end-stretch layout-row flex">
+                                                <button class="md-warn md-button md-ink-ripple text-uppercase" (click)="cancel()">{{'cancel_' | t}}</button>
+                                                <button (click)="nextStep()" class="md-primary md-raised md-button md-ink-ripple text-uppercase" type="submit" [disabled]="stepData[0].data.selectedWallet ? false : true">{{
+                                                'next_' | t}}</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="step-content .step-active" *ngIf="stepData[1].process">
+                                <div>
+                                    <form name="step2">
+                                        <div class="md-padding md-content">
+                                            <div class="layout-align-center-stretch layout-row">
+                                                <div class="flex-nogrow" style="width: 400px;">
+                                                    <h4>{{'generate_and_save_keypairs' | t}}</h4>
+                                                    <div class="md-block">
+                                                        <p>Keypair:</p>
+                                                        <ul class="list-group list-group-flush" style="font-size: 10px;">
+                                                            <li class="list-group-item" *ngFor="let keypair of keypairs"><span><i class="fa fa-address-book">{{keypair.publicKey}}</i></span><br/><span><i class="fa fa-key">{{keypair.secretKey}}</i></span></li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <kendo-excelexport [data]="data_export" [fileName]="file_name_export" #excelexport>     <kendo-excelexport-column       field="publicKey" [locked]="true" title="PUBLIC KEY" [width]="200">
+                                                        </kendo-excelexport-column>
+                                                        <kendo-excelexport-column       field="secretKey" [locked]="true" title="SECRET KEY" [width]="200">
+                                                        </kendo-excelexport-column>
+                                                    </kendo-excelexport>
+
+                                                    <div class="md-block">
+                                                        <button class="md-primary md-raised md-button md-ink-ripple text-uppercase" type="button" (click)="getKeys()" *ngIf="!isLoading && !isGen">{{'generate' | t}}</button>
+                                                        <div *ngIf="isLoading">
+                                                            <div></div>
+                                                        </div>
+                                                        <button class="md-success md-raised text-uppercase" type="button" (click)="downKeypairs(keypairs)" *ngIf="isGen">{{'download_csv' | t}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layout-row">
+                                            <div class="flex">
+                                                <button class="md-button md-ink-ripple text-uppercase" type="button" (click)="moveToPreviousStep()">{{'back_' | t}}</button>
+                                            </div>
+                                            <div fclass="layout-align-end-stretch layout-row flex">
+                                                <button class="md-warn md-button md-ink-ripple text-uppercase" (click)="cancel()">{{'cancel_'}}</button>
+                                                <button (click)="nextStep()" class="md-primary md-raised md-button md-ink-ripple text-uppercase" type="submit" [disabled]="showBusyText || !isGen">{{'next_' | t}}</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div *ngIf="stepData[2].process">
+                                <div>
+                                    <form name="step2">
+                                        <div class="md-padding">
+                                            <div class="layout-align-center-center layout-column" style='min-height: 200px'>
+                                                <h4>{{'auto_setting_wallet' | t}}!</h4>
+                                                <button class="md-primary md-raised md-button ng-scope md-ink-ripple" (click)="done()" [disabled]="!isSetting"><i class="fa fa-spinner fa-spin fa-2x fa-fw fz18" *ngIf="!isSetting"></i>&nbsp; {{'done' | t}}</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<app-tfa-confirm [option_extra]="option_extra" (on_confirm)="onConfirmTfa($event)"></app-tfa-confirm>

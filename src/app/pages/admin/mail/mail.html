@@ -1,0 +1,246 @@
+<div>
+    <h2>{{'email_' | t}}</h2>
+    <div class="mail-frame margin-top-15px">
+        <div style="width:100% height: 100%;">
+            <div class="mail-panel-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 flexbox margin-bottom-15px" *ngIf="adminEmailAddresses">
+                        <angular2-multiselect [data]="adminEmailAddresses" 
+                            [(ngModel)]="selectedAdminEmailAddresses" 
+                            [settings]="filterSettings"> 
+                        </angular2-multiselect>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 text-right">
+                        <button class="btn btn-default" data-toggle="modal" data-target="#adminEmailAddressDialog">
+                            <span><i class="fa fa-cog"></i></span>
+                            <span>&nbsp; {{'manage_email_addresses' | t}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mail-panel-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-3 margin-bottom-15px">
+                        <div>
+                            <div class="mailbox">
+                                <a (click)="changeShowMode('inbox')" [class]="showMode == 'inbox' ? 'active' : ''">
+                                    <span><i class="fa fa-inbox"></i>
+                                        <span>&nbsp;</span>
+                                        <span>{{'unread_emails' | t}}</span>
+                                    </span>
+                                    <span class="badge pull-right">{{unreadThreadCount}}</span>
+                                </a>
+                            </div>
+                            <div
+                                class="mailbox">
+                                <a (click)="changeShowMode('flagged')" [class]="showMode == 'flagged' ? 'active' : ''">
+                                    <span><i class="fa fa-star"></i>
+                                        <span>&nbsp;</span>
+                                        <span>{{'flagged_emails' | t}}</span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="mailbox">
+                                <a (click)="changeShowMode('sent')" [class]="showMode == 'sent' ? 'active' : ''">
+                                    <span><i class="fa fa-paper-plane"></i>
+                                        <span>&nbsp;</span>
+                                        <span>{{'all_emails' | t}}</span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        <div class="text-center" style="font-size: 16px;" *ngIf="waitResponse">
+                            <span><i class="fa fa-spinner fa-spin"></i>
+                                <span>&nbsp;</span><span>{{'loading_emails' | t}}</span>
+                            </span>
+                        </div>
+                        <div class="row flexbox" *ngIf="!waitResponse">
+                            <div class="col-xs-12 col-sm-6 valign-center margin-bottom-15px">
+                                <button class="btn btn-default margin-right-15px" (click)="hideThread()" *ngIf="selectedThread">
+                                    <span><i class="fa fa-arrow-left"></i><span>&nbsp; </span>{{'go_back' | t}}</span>
+                                </button>
+                                <div class="dropdown margin-right-15px" style="display: inline-block;">
+                                    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown">
+                                        <i class="fa fa-envelope-o"></i>
+                                        <span>&nbsp; {{'send_email' | t}}</span><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li *ngFor="let item of adminEmailAddresses">
+                                            <a href="" (click)="composeMail(item.email, this)"> {{'as_' | t}} &nbsp; {{item.email}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-default" (click)="reloadEmails()"><i class="fa fa-refresh"></i><span>&nbsp; {{'refresh_' | t}}</span>
+                                </button>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 text-right valign-center margin-bottom-15px">
+                                <button class="btn btn-default" *ngIf="selectedThread" (click)="deleteThread(selectedThread)"><span *ngIf="selectedThread.isBeingRemoved">
+                                    <i class="fa fa-spinner fa-spin"></i>&nbsp;</span><span>{{'delete_conversation' | t}}</span>
+                                    <span><i class="fa fa-trash"></i></span>
+                                </button>
+                                <!-- Pagination -->
+                            </div>
+                        </div>
+                        <div class="mail-content-wrapper" *ngIf="!waitResponse">
+                            <div *ngIf="!selectedThread">
+                                <div *ngIf="showMode !== 'inbox'">
+                                    <table class="table-responsive" style="width:100%; padding: 0px 15px;">
+                                        <ng-container *ngFor="let thread of filteredThreads.slice((currentThreadPage-1)*threadsPerPage, currentThreadPage*threadsPerPage)">
+                                            <tr class="thread-row" [class]="thread.isBeingRemoved ? 'remove' : ''" *ngIf="thread.emails">
+                                                <td>
+                                                    <a (click)="flagThread(thread)">
+                                                        <span class="span-button color-warning"><i class="fa fa-star-o" *ngIf="!thread.flagged"></i><i class="fa fa-star" *ngIf="thread.flagged"></i>
+                                                        </span>
+                                                    </a>
+                                                    <span>&nbsp;</span>
+                                                </td>
+                                                <td (click)="showThread(thread)">
+                                                    <div [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'">{{getSenderName(thread.emails[thread.emails.length - 1].from[0]) + (thread.emails.length >= 2? " (" + thread.emails.length + ")" : "")}}</div>
+                                                    <div *ngIf="showMode === 'sent'">{{'to_' | t}}: {{getSenderName(thread.emails[thread.emails.length - 1].to[0])}}</div>
+                                                </td>
+                                                <td (click)="showThread(thread)">
+                                                    <div class="email-subject">
+                                                        <span *ngIf="thread.isBeingRemoved"><i class="fa fa-spinner fa-spin"></i><span>&nbsp;</span></span><span [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'"></span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span>{{getFromNow(thread.emails[thread.emails.length - 1].receivedDate)}}</span>
+                                                </td>
+                                            </tr>
+                                        </ng-container>
+                                    </table>
+                                    <div *ngIf="!waitResponse && filteredThreads.length==0">
+                                        <div class="no-email text-center font-shadow">{{'no_email_in_this_folder' | t}}</div>
+                                    </div>
+                                </div>
+                                <table class="table-responsive" style="width:100%; padding: 0px 15px;" *ngIf="showMode === 'inbox'">
+                                    <tr class="tr-separator">
+                                        <td colspan="4">
+                                            <div class="text-center">{{'unread_' | t}}</div>
+                                        </td>
+                                    </tr>
+                                    <ng-container *ngFor="let thread of unreadThreads">
+                                        <tr class="thread-row" [class]="thread.isBeingRemoved ? 'remove' : ''" *ngIf="thread.emails">
+                                            <td>
+                                                <a (click)="flagThread(thread)">
+                                                    <span class="span-button color-warning"><i class="fa fa-star-o" *ngIf="!thread.flagged"></i><i class="fa fa-star" *ngIf="thread.flagged"></i></span>
+                                                </a><span>&nbsp;</span>
+                                            </td>
+                                            <td click()="showThread(thread)">
+                                                <span [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'">{{getSenderName(thread.emails[thread.emails.length - 1].from[0]) + (thread.emails.length >= 2? " (" + thread.emails.length + ")" : "")}}</span>
+                                            </td>
+                                            <td (click)="showThread(thread)">
+                                                <div class="email-subject">
+                                                    <span *ngIf="thread.isBeingRemoved"><i class="fa fa-spinner fa-spin"></i><span>&nbsp;</span>
+                                                    </span>
+                                                    <span [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'"></span>
+                                                </div>
+                                            </td>
+                                            <td class="text-right">
+                                                <span>{{getFromNow(thread.emails[thread.emails.length - 1].receivedDate)}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    <tr class="tr-separator" *ngIf="showMode === 'inbox'">
+                                        <td colspan="4">
+                                            <div class="text-center">{{'others_' | t}}</div>
+                                        </td>
+                                    </tr>
+                                    <ng-container *ngFor="let thread of otherThreads.slice((currentThreadPage-1)*threadsPerPage, currentThreadPage*threadsPerPage)">
+                                        <tr class="thread-row" [class]="thread.isBeingRemoved ? 'remove' : ''" *ngIf="thread.emails">
+                                            <td><a (click)="flagThread(thread)">
+                                                <span class="span-button color-warning"><i class="fa fa-star-o" *ngIf="!thread.flagged"></i><i class="fa fa-star" *ngIf="thread.flagged"></i>
+                                                </span></a>
+                                                <span>&nbsp;</span>
+                                            </td>
+                                            <td (click)="showThread(thread)">
+                                                <span [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'">{{getSenderName(thread.emails[thread.emails.length - 1].from[0]) + (thread.emails.length >= 2? " (" + thread.emails.length + ")" : "")}}</span>
+                                            </td>
+                                            <td (click)="showThread(thread)">
+                                                <div class="email-subject">
+                                                    <span ng-show="thread.isBeingRemoved"><i class="fa fa-spinner fa-spin"></i><span>&nbsp;</span>
+                                                    </span>
+                                                    <span [style.font-weight]=" thread.newEmails.length ? 'bold' : 'normal'"></span>
+                                                </div>
+                                            </td>
+                                            <td class="text-right">
+                                                <span>{{getFromNow(thread.emails[thread.emails.length - 1].receivedDate)}}</span>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </table>
+                            </div>
+                            <div *ngIf="selectedThread">
+                                <div class="thread-header">
+                                    <a class="margin-right-15px" href="" (click)="flagThread(selectedThread)">
+                                        <span class="span-button color-warning">
+                                            <i class="fa fa-star-o" *ngIf="!selectedThread.flagged"></i><i class="fa fa-star" *ngIf="selectedThread.flagged"></i>
+                                        </span>
+                                    </a>
+                                    <span class="thread-header-title"> </span>
+                                </div>
+                                <div class="email-thread-box" *ngIf="!selectedThread.isBeingRemoved">
+                                    <div *ngFor="let email of selectedThread.emails">
+                                        <div class="email-box">
+                                            <div class="email-header" (click)="toggleEmailContent(selectedThread, email)">
+                                                <div class="row flexbox">
+                                                    <div class="col-xs-1 valign-center">
+                                                        <span style="font-size: 16px;"><i class="fa fa-envelope" *ngIf="isUnreadEmail(selectedThread, email)"></i><i class="fa fa-envelope-open" *ngIf="!isUnreadEmail(selectedThread, email)"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        class="col-xs-8 valign-center">
+                                                        <div>: {{getSenderName(email.from[0])}}</div>
+                                                        <div><span>: &nbsp;</span><span *ngFor="let emailAddress of email.to">{{getSenderName(emailAddress)}}; &nbsp;</span></div>
+                                                    </div>
+                                                    <div class="col-xs-3 text-right valign-center">
+                                                        <span>{{getFromNow(email.receivedDate)}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="email-content" *ngIf="email.isShown">
+                                                <div class="text-center" *ngIf="email.loadingContent">
+                                                    <i class="fa fa-spinner fa-spin"></i><span>&nbsp;</span>
+                                                    <span> </span>
+                                                </div>
+                                                <div *ngIf="email.content">
+                                                    <div class="btn-group margin-bottom-15px">
+                                                        <button class="btn btn-danger" id="split-button" type="button" (click)="reply(selectedThread, email)"> </button>
+                                                        <button class="btn btn-danger" type="button" uib-dropdown-toggle="">
+                                                            <span>&nbsp;</span><span class="caret"></span>
+                                                            <span>&nbsp;</span>
+                                                        </button>
+                                                        <ul
+                                                            class="dropdown-menu" uib-dropdown-menu="" role="menu" aria-labelledby="split-button">
+                                                            <li role="menuitem">
+                                                                <a href="#" (click)="reply(selectedThread, email)"> </a>
+                                                            </li>
+                                                            <li role="menuitem">
+                                                                <a href="#" (click)="reply(selectedThread, email, true)"></a>
+                                                            </li>
+                                                            <li role="menuitem">
+                                                                <a href="#" (click)="reply(selectedThread, email, false, true)"></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="email-html-content text-center text-italic" *ngIf="!(email.content.html || email.content.textAsHtml)"> </div>
+                                                    <div class="email-html-content" *ngIf="email.content.html || email.content.textAsHtml" ng-bind-html="email.content.html || email.content.textAsHtml"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-admin-email-address-dialog>
+</app-admin-email-address-dialog>

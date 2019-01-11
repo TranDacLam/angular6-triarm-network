@@ -1,0 +1,1097 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>static-web documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">static-web documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search">
+</div>
+            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>MyWalletsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/wallet/my-wallets/my-wallets.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>my-wallets.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./my-wallets.html</code></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/pages/wallet/my-wallets/my-wallets.ts:8</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+        <h3 id="methods">
+            Methods
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ngOnInit"></a>
+                        <span class="name">
+                            <b>
+                            ngOnInit
+                            </b>
+                            <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+<code>ngOnInit()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/pages/wallet/my-wallets/my-wallets.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &#x27;@angular/core&#x27;;
+
+@Component({
+    templateUrl: &#x27;./my-wallets.html&#x27;,
+    styleUrls: [&#x27;./my-wallets.scss&#x27;]
+})
+
+export class MyWalletsComponent implements OnInit {
+    constructor() {}
+
+    ngOnInit() {}
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;wallet-wrapper&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary action margin-bottom-15px margin-right-15px&quot;
+        ng-click&#x3D;&quot;newWalletPage()&quot; ng-disabled&#x3D;&quot;!$localStorage.user.verifyEmail || !$localStorage.user.verifySMS || !$localStorage.user.verifyGA&quot;&gt;
+        &lt;i
+        class&#x3D;&quot;fa fa-plus&quot;&gt;&lt;/i&gt;
+        &lt;span class&#x3D;&quot;hidden-480px&quot;&gt; Create new wallet&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;a class&#x3D;&quot;btn btn-default action margin-bottom-15px margin-right-15px&quot;
+        href&#x3D;&quot;/wallet/restore&quot; role&#x3D;&quot;button&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-repeat&quot;&gt;&lt;/i&gt;
+        &lt;span class&#x3D;&quot;hidden-480px&quot;&gt; Import a wallet&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a
+        class&#x3D;&quot;btn btn-warning action margin-bottom-15px margin-right-15px&quot; href&#x3D;&quot;/wallet/active&quot; role&#x3D;&quot;button&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-warning&quot;&gt;&lt;/i&gt;
+        &lt;span
+        class&#x3D;&quot;hidden-480px&quot;&gt; Active wallet&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class&#x3D;&quot;btn btn-danger action margin-bottom-15px margin-right-15px&quot;
+        href&#x3D;&quot;/wallet/merge&quot; role&#x3D;&quot;button&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-compress&quot;&gt;&lt;/i&gt;
+        &lt;span class&#x3D;&quot;hidden-480px&quot;&gt; Merge wallet&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a
+        class&#x3D;&quot;btn btn-success action margin-bottom-15px margin-right-15px&quot; href&#x3D;&quot;/wallet/issue&quot; role&#x3D;&quot;button&quot;&gt;
+        &lt;i class&#x3D;&quot;fa fa-money&quot;&gt;&lt;/i&gt;
+        &lt;span
+        class&#x3D;&quot;hidden-480px&quot;&gt; Issuer mode&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;div ng-show&#x3D;&quot;wallets &amp;amp;&amp;amp; wallets.length&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+        &lt;select class&#x3D;&quot;form-control margin-bottom-15px ng-pristine ng-untouched ng-valid ng-not-empty&quot;
+            ng-model&#x3D;&quot;selectedWallet&quot; ng-hide&#x3D;&quot;waitResponse&quot; style&#x3D;&quot;border-color: seagreen; display: block !important;&quot;
+            aria-hidden&#x3D;&quot;false&quot; aria-invalid&#x3D;&quot;false&quot;&gt;
+            &lt;!-- ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:11&quot;
+                selected&#x3D;&quot;selected&quot;&gt;demo - GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H&lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:12&quot;&gt;demo
+                holding fee - GC5LVEZ2TVZNQI2S4XUQU65VJU2475CBIHOU6XF3MHUJDB63AWZLKAD7
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:13&quot;&gt;Test1576
+                - GBAYMUEEX2VE6GYJXAEDCLKUXG6IXAARC2MDNSXVIV54X6TWT7Q5E5TA
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:14&quot;&gt;TEST1161
+                - GCPJBAMB3366T6APDMFDSGD2VKPAPRXLGS2G4AF4ZZUAUX2TLHCSXUEJ
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:15&quot;&gt;ABC
+                - GBZJME35TJGH2CW4SD4UCCWP4TLCRKJCPBUSECLBJ4LOC6Q3DBPVMS5A
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:16&quot;&gt;ABC
+                - GBUXOBHZKCA3HGXTHWNGMSFQV3KPFYRZTHUZWKTCX5Z36Y65643SGTTJ
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:17&quot;&gt;STREAM
+                - GAH56BIFRTVGX3UDXXIAWYPSAYWCFY2DHYQCHVUSK4BY6A7CFO4GEMNT
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:18&quot;&gt;BIT
+                - GCE6ZRPLDVCMNQHFUKDWEPOGIRVZLN5NTBQFBXB42NHJXDJHZBZELS3V
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:19&quot;&gt;ARM11111190
+                - GDJNPJJQXZN6BTPDN37IKIKDWG7YMDL4UZCA4XRUCLYVR5DFENY2LZOM
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; class&#x3D;&quot;ng-binding ng-scope&quot; aria-checked&#x3D;&quot;true&quot; value&#x3D;&quot;object:20&quot;&gt;ARM11111190
+                - GA2QGD6KD3VNIK7HO4IUV5LWZW3EA2DZ6THDGK2DRKU36I2EZEZZ3UU3
+            &lt;/option&gt;
+            &lt;!-- end ngRepeat: wallet in wallets --&gt;
+        &lt;/select&gt;
+        &lt;div class&#x3D;&quot;wallet-list&quot;&gt;
+            &lt;div class&#x3D;&quot;wallets&quot;&gt;
+                &lt;div class&#x3D;&quot;panel-group&quot; id&#x3D;&quot;accordion&quot;&gt;
+                    &lt;script&gt;$(document).ready(function(){
+                    $(document).on(&#x27;click&#x27;, &#x27;.wallet-address-copy&#x27;, function() {
+                        $(&#x27;.copied&#x27;).show();
+                        setTimeout(function(){
+                            $(&#x27;.copied&#x27;).fadeOut(500);
+                        }, 700);
+                    })
+                    });
+                &lt;/script&gt;
+                    &lt;div class&#x3D;&quot;wallet&quot;&gt;
+                        &lt;div class&#x3D;&quot;panel panel-default panel-wallet&quot;&gt;
+                            &lt;div class&#x3D;&quot;panel-heading panel-wallet-header&quot; id&#x3D;&quot;heading5aa2255c576889030ec31129&quot; role&#x3D;&quot;tab&quot;
+                            data-parent&#x3D;&quot;#accordion&quot; aria-expanded&#x3D;&quot;true&quot;&gt;
+                                &lt;div class&#x3D;&quot;row&quot;&gt;
+                                    &lt;div class&#x3D;&quot;col-xs-8&quot;&gt;
+                                        &lt;div class&#x3D;&quot;wallet-control&quot;&gt;
+                                            &lt;a href&#x3D;&quot;#&quot; ng-show&#x3D;&quot;selectedWallet.block&quot; aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                &lt;i
+                                    class&#x3D;&quot;fa fa-lock wallet-control-item&quot; ng-click&#x3D;&quot;openUnblockWalletDialog(selectedWallet)&quot;
+                                    style&#x3D;&quot;margin-left: 5px;&quot; role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;0&quot;&gt;&lt;/i&gt;
+                                            &lt;/a&gt;
+                                            &lt;a href&#x3D;&quot;#&quot; ng-show&#x3D;&quot;!selectedWallet.block &amp;amp;&amp;amp; selectedWallet.active&quot;
+                                    aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                &lt;i class&#x3D;&quot;fa fa-info-circle wallet-control-item&quot;&gt;&lt;/i&gt;
+                                            &lt;/a&gt;
+                                            &lt;a href&#x3D;&quot;#&quot;
+                                    ng-show&#x3D;&quot;!selectedWallet.active &amp;amp;&amp;amp; !selectedWallet.block&quot; ng-click&#x3D;&quot;activeWallet(selectedWallet)&quot;
+                                    aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                &lt;i class&#x3D;&quot;fa fa-warning warning-color wallet-control-item&quot;&gt;&lt;/i&gt;
+                                            &lt;/a&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class&#x3D;&quot;wallet-name&quot;&gt;
+                                            &lt;span editable-text&#x3D;&quot;selectedWallet.name&quot; onbeforesave&#x3D;&quot;renameWallet($data)&quot;
+                                    buttons&#x3D;&quot;no&quot; style&#x3D;&quot;border-bottom: none !important;&quot; class&#x3D;&quot;ng-scope ng-binding editable editable-click&quot;&gt;demo
+                                    &amp;nbsp;
+                                                &lt;i class&#x3D;&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;
+                                            &lt;/span&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class&#x3D;&quot;wallet-address&quot; id&#x3D;&quot;GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H&quot; style&#x3D;&quot;padding-top: 10px;&quot;&gt;
+                                            &lt;a
+                                    class&#x3D;&quot;wallet-address-copy&quot; href&#x3D;&quot;#&quot; data-clipboard-text&#x3D;&quot;GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H&quot;
+                                    style&#x3D;&quot;text-decoration: none;&quot;&gt;
+                                                &lt;i class&#x3D;&quot;fa fa-copy&quot;&gt;&lt;/i&gt;
+                                            &lt;/a&gt;
+                                            &lt;span class&#x3D;&quot;wallet-address-text ng-binding&quot;&gt;&amp;nbsp;
+                                    GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H&lt;/span&gt;
+                                        &lt;/div&gt;
+                                        &lt;span class&#x3D;&quot;copied&quot;&gt;Copied&lt;/span&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class&#x3D;&quot;col-xs-4 text-right&quot;&gt;
+                                        &lt;img ng-src&#x3D;&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAklEQVR4AewaftIAAATqSURBVO3BQY4cSRIEQdNA/f/Lun30ywaQSK8ekjAR/JGqJSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYtOqhadVC06qVp0UrXopGrRSdWiT14C8pvUTEAmNROQTWomIDdqJiA3aiYgv0nNGydVi06qFp1ULfpkmZpNQG7UTEAmNU8AmdRMQCY1N0A2qdkEZNNJ1aKTqkUnVYs++TIgT6h5Asik5gbIpGYTkEnNNwF5Qs03nVQtOqladFK16JO/nJoJyKRmUjMBmdRsAnKj5l9yUrXopGrRSdWiT/5xQG7UTEBu1ExA3gAyqfmbnVQtOqladFK16JMvU/NNQCY1E5AbIE8AeULNBGSTmj/JSdWik6pFJ1WLPlkG5E+mZgIyqZmATGomIJOaCcikZgLyBJA/2UnVopOqRSdVi/BH/mFAJjU3QG7U1P93UrXopGrRSdWiT14CMqmZgExqngByo2YCMqmZgExqngAyqZmATGomIDdqboBMam6ATGomIJOaN06qFp1ULTqpWoQ/sgjIE2omIJOaCcik5gkgk5obIJOa3wTkRs0NkBs1m06qFp1ULTqpWvTJS0Bu1ExAngDyBJAngGwCMqm5ATKpeQLIjZoJyARkUvPGSdWik6pFJ1WLPnlJzQ2QN9RMQN5Q8waQ36RmArJJzaaTqkUnVYtOqhZ98hKQN4BMaiYgN0AmNTdAJjUTkBs1N0BugExqJiCTmr/JSdWik6pFJ1WLPnlJzRtAbtRMQCY1E5BJzaTmCTUTkEnNE2qeAPKEmv/SSdWik6pFJ1WLPnkJyI2aJ4DcqJmATGomIJOaGzW/Ccgbap5QMwGZ1LxxUrXopGrRSdUi/JEvAjKpuQEyqZmA3KiZgLyhZhOQGzVPANmk5o2TqkUnVYtOqhZ98hKQSc2k5gbIpGYC8gSQJ9RMQJ4AMqmZgNyomYBMaiYgk5oJyBNqNp1ULTqpWnRStQh/ZBGQSc0E5EbNDZAbNROQSc0EZFJzA+QJNROQJ9TcAJnU3AC5UfPGSdWik6pFJ1WLPnkJyA2QSc0EZALyhJo31ExAnlAzAZmAbAJyA2RSc6Nm00nVopOqRSdViz55Sc0NkBs1/yUgk5oJyKTmRs0E5EbNBOQNNROQ33RSteikatFJ1SL8kReA3KiZgGxScwNkUjMBeUPNG0B+k5pvOqladFK16KRq0ScvqXlCzSYgk5obIJOaCciNmgnIpOYNNU8AmdRMQG6ATGreOKladFK16KRq0ScvAflNar5JzQ2QGyCTmjeATGpugNwA+aaTqkUnVYtOqhZ9skzNJiA3ap5QMwG5UXOj5pvUPKFmAjKp+aaTqkUnVYtOqhZ98mVAnlDzTUAmNROQGzUTkEnNBOQJIJvU/KaTqkUnVYtOqhZ98o8BcqPmRs0bQG7UTEAmNROQSc0bQCY1m06qFp1ULTqpWvTJXw7IjZoJyKRmArJJzRNAJjUTkEnNDZAbIJOaN06qFp1ULTqpWvTJl6n5JjU3QCY1T6iZgNyomYBMap4AMqmZgExqbtRMQDadVC06qVp0UrXok2VAfhOQSc0NkCeATGqeUDMBmdRMQJ5QMwGZ1ExAvumkatFJ1aKTqkX4I1VLTqoWnVQtOqladFK16KRq0UnVopOqRSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkX/Ay6PP1eCC67lAAAAAElFTkSuQmCC&quot;
+                                style&#x3D;&quot;height: 70px;&quot; src&#x3D;&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAklEQVR4AewaftIAAATqSURBVO3BQY4cSRIEQdNA/f/Lun30ywaQSK8ekjAR/JGqJSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYtOqhadVC06qVp0UrXopGrRSdWiT14C8pvUTEAmNROQTWomIDdqJiA3aiYgv0nNGydVi06qFp1ULfpkmZpNQG7UTEAmNU8AmdRMQCY1N0A2qdkEZNNJ1aKTqkUnVYs++TIgT6h5Asik5gbIpGYTkEnNNwF5Qs03nVQtOqladFK16JO/nJoJyKRmUjMBmdRsAnKj5l9yUrXopGrRSdWiT/5xQG7UTEBu1ExA3gAyqfmbnVQtOqladFK16JMvU/NNQCY1E5AbIE8AeULNBGSTmj/JSdWik6pFJ1WLPlkG5E+mZgIyqZmATGomIJOaCcikZgLyBJA/2UnVopOqRSdVi/BH/mFAJjU3QG7U1P93UrXopGrRSdWiT14CMqmZgExqngByo2YCMqmZgExqngAyqZmATGomIDdqboBMam6ATGomIJOaN06qFp1ULTqpWoQ/sgjIE2omIJOaCcik5gkgk5obIJOa3wTkRs0NkBs1m06qFp1ULTqpWvTJS0Bu1ExAngDyBJAngGwCMqm5ATKpeQLIjZoJyARkUvPGSdWik6pFJ1WLPnlJzQ2QN9RMQN5Q8waQ36RmArJJzaaTqkUnVYtOqhZ98hKQN4BMaiYgN0AmNTdAJjUTkBs1N0BugExqJiCTmr/JSdWik6pFJ1WLPnlJzRtAbtRMQCY1E5BJzaTmCTUTkEnNE2qeAPKEmv/SSdWik6pFJ1WLPnkJyI2aJ4DcqJmATGomIJOaGzW/Ccgbap5QMwGZ1LxxUrXopGrRSdUi/JEvAjKpuQEyqZmA3KiZgLyhZhOQGzVPANmk5o2TqkUnVYtOqhZ98hKQSc2k5gbIpGYC8gSQJ9RMQJ4AMqmZgNyomYBMaiYgk5oJyBNqNp1ULTqpWnRStQh/ZBGQSc0E5EbNDZAbNROQSc0EZFJzA+QJNROQJ9TcAJnU3AC5UfPGSdWik6pFJ1WLPnkJyA2QSc0EZALyhJo31ExAnlAzAZmAbAJyA2RSc6Nm00nVopOqRSdViz55Sc0NkBs1/yUgk5oJyKTmRs0E5EbNBOQNNROQ33RSteikatFJ1SL8kReA3KiZgGxScwNkUjMBeUPNG0B+k5pvOqladFK16KRq0ScvqXlCzSYgk5obIJOaCciNmgnIpOYNNU8AmdRMQG6ATGreOKladFK16KRq0ScvAflNar5JzQ2QGyCTmjeATGpugNwA+aaTqkUnVYtOqhZ9skzNJiA3ap5QMwG5UXOj5pvUPKFmAjKp+aaTqkUnVYtOqhZ98mVAnlDzTUAmNROQGzUTkEnNBOQJIJvU/KaTqkUnVYtOqhZ98o8BcqPmRs0bQG7UTEAmNROQSc0bQCY1m06qFp1ULTqpWvTJXw7IjZoJyKRmArJJzRNAJjUTkEnNDZAbIJOaN06qFp1ULTqpWvTJl6n5JjU3QCY1T6iZgNyomYBMap4AMqmZgExqbtRMQDadVC06qVp0UrXok2VAfhOQSc0NkCeATGqeUDMBmdRMQJ5QMwGZ1ExAvumkatFJ1aKTqkX4I1VLTqoWnVQtOqladFK16KRq0UnVopOqRSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkX/Ay6PP1eCC67lAAAAAElFTkSuQmCC&quot;&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                                &lt;div class&#x3D;&quot;panel-collapse collapse in&quot; id&#x3D;&quot;collapse5aa2255c576889030ec31129&quot; role&#x3D;&quot;tabpanel&quot;
+                            aria-labelledby&#x3D;&quot;headingdemo&quot;&gt;
+                                    &lt;div class&#x3D;&quot;panel-body&quot; style&#x3D;&quot;padding-bottom: 5px;&quot;&gt;
+                                        &lt;!-- ngIf: !selectedWallet.active || selectedWallet.block || !!global.utils.bitwiseAnd(selectedWallet.extraFlags,&quot;0x01&quot;) --&gt;
+                                        &lt;div&gt;&lt;/div&gt;
+                                        &lt;div&gt;
+                                            &lt;div class&#x3D;&quot;asset text-center&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;addTrustLine(selectedWallet)&quot; ng-hide&#x3D;&quot;selectedWallet.block || !selectedWallet.active || !!global.utils.bitwiseAnd(selectedWallet.extraFlags,&#x27;0x01&#x27;)&quot;
+                                    role&#x3D;&quot;button&quot; tabindex&#x3D;&quot;0&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                &lt;div class&#x3D;&quot;flexbox&quot; style&#x3D;&quot;justify-content: center; padding: 52px; width: 120px; color: gray;&quot;&gt;
+                                                    &lt;i
+                                        class&#x3D;&quot;fa fa-plus valign-center&quot; ng-hide&#x3D;&quot;selectedWallet.addingTrustLine&quot; style&#x3D;&quot;font-size: 40px;&quot;
+                                        aria-hidden&#x3D;&quot;false&quot;&gt;&lt;/i&gt;
+                                                    &lt;i class&#x3D;&quot;fa fa-spinner fa-spin valign-center ng-hide&quot; ng-show&#x3D;&quot;selectedWallet.addingTrustLine&quot;
+                                        style&#x3D;&quot;font-size: 40px;&quot; aria-hidden&#x3D;&quot;true&quot;&gt;&lt;/i&gt;
+                                                &lt;/div&gt;
+                                                &lt;div style&#x3D;&quot;font-size: 8px;&quot;&gt;&amp;nbsp;&lt;/div&gt;
+                                            &lt;/div&gt;
+                                            &lt;!-- ngRepeat: balance in selectedWallet.balances --&gt;
+                                            &lt;div class&#x3D;&quot;asset ng-scope&quot; ng-repeat&#x3D;&quot;balance in selectedWallet.balances&quot;&gt;
+                                                &lt;div class&#x3D;&quot;text-center&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;openDialog(selectedWallet, balance)&quot; role&#x3D;&quot;button&quot;
+                                        tabindex&#x3D;&quot;0&quot;&gt;
+                                                    &lt;div style&#x3D;&quot;margin-bottom: 4px; position: relative;&quot;&gt;
+                                                        &lt;img class&#x3D;&quot;img-asset&quot; ng-src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a9363fa57620b43cdab9512-logo&quot;
+                                            err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot; src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a9363fa57620b43cdab9512-logo&quot;&gt;
+                                                            &lt;!-- ngIf: active --&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;table ng-show&#x3D;&quot;currentSelectAssetID !&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;width: 100%;&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                            &lt;tbody&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td&gt;
+                                                                        &lt;div class&#x3D;&quot;flexbox&quot;&gt;
+                                                                            &lt;span class&#x3D;&quot;v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty&quot;
+                                                    ng-model&#x3D;&quot;balance.asset_code&quot; aria-invalid&#x3D;&quot;false&quot;&gt;TUANCOIN&lt;/span&gt;
+                                                                        &lt;/div&gt;
+                                                                    &lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td&gt;
+                                                                        &lt;span class&#x3D;&quot;amount ng-binding&quot;&gt;0.0000&lt;/span&gt;
+                                                                    &lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td ng-show&#x3D;&quot;balance.blockAmount &gt; 0&quot; aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                                        &lt;span class&#x3D;&quot;amount text-danger ng-binding&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;0.0000&lt;/span&gt;
+                                                                    &lt;/td&gt;
+                                                                    &lt;td ng-show&#x3D;&quot;balance.blockAmount &#x3D;&#x3D; 0&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                        &lt;span class&#x3D;&quot;amount text-danger&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;
+                                                                    &lt;/td&gt;
+                                                                    &lt;!--span(ng-if&#x3D;&#x27;checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)&#x27;) pending--&gt;
+                                                                &lt;/tr&gt;
+                                                                &lt;tr&gt;
+                                                                    &lt;td class&#x3D;&quot;text-right&quot; ng-show&#x3D;&quot;assetStatus.STATUS_PENDING &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                        &lt;i class&#x3D;&quot;fa fa-clock-o text-warning&quot;&gt;&lt;/i&gt;
+                                                                    &lt;/td&gt;
+                                                                    &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_REJECTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                        &lt;i class&#x3D;&quot;fa fa-window-close text-danger&quot;&gt;&lt;/i&gt;
+                                                                    &lt;/td&gt;
+                                                                    &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_ACCEPTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                        &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                    &lt;/td&gt;
+                                                                    &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;0 &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                        &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                    &lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                            &lt;/tbody&gt;
+                                                        &lt;/table&gt;
+                                                        &lt;div class&#x3D;&quot;flexbox ng-hide&quot; ng-show&#x3D;&quot;currentSelectAssetID &#x3D;&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;justify-content: center; padding: 18px; width: 120px; color: gray;&quot;
+                                        aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                            &lt;i class&#x3D;&quot;fa fa-spinner fa-spin valign-center&quot; style&#x3D;&quot;font-size: 40px;&quot;&gt;&lt;/i&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                &lt;/div&gt;
+                                                &lt;!-- end ngRepeat: balance in selectedWallet.balances --&gt;
+                                                &lt;div class&#x3D;&quot;asset ng-scope&quot; ng-repeat&#x3D;&quot;balance in selectedWallet.balances&quot;&gt;
+                                                    &lt;div class&#x3D;&quot;text-center&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;openDialog(selectedWallet, balance)&quot; role&#x3D;&quot;button&quot;
+                                        tabindex&#x3D;&quot;0&quot;&gt;
+                                                        &lt;div style&#x3D;&quot;margin-bottom: 4px; position: relative;&quot;&gt;
+                                                            &lt;img class&#x3D;&quot;img-asset&quot; ng-src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a95259ccd92d67507a95f12-logo&quot;
+                                            err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot; src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a95259ccd92d67507a95f12-logo&quot;&gt;
+                                                                &lt;!-- ngIf: active --&gt;
+                                                            &lt;/div&gt;
+                                                            &lt;table ng-show&#x3D;&quot;currentSelectAssetID !&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;width: 100%;&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                &lt;tbody&gt;
+                                                                    &lt;tr&gt;
+                                                                        &lt;td&gt;
+                                                                            &lt;div class&#x3D;&quot;flexbox&quot;&gt;
+                                                                                &lt;span class&#x3D;&quot;v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty&quot;
+                                                    ng-model&#x3D;&quot;balance.asset_code&quot; aria-invalid&#x3D;&quot;false&quot;&gt;BAPCOIN&lt;/span&gt;
+                                                                            &lt;/div&gt;
+                                                                        &lt;/td&gt;
+                                                                    &lt;/tr&gt;
+                                                                    &lt;tr&gt;
+                                                                        &lt;td&gt;
+                                                                            &lt;span class&#x3D;&quot;amount ng-binding&quot;&gt;0.0000000&lt;/span&gt;
+                                                                        &lt;/td&gt;
+                                                                    &lt;/tr&gt;
+                                                                    &lt;tr&gt;
+                                                                        &lt;td ng-show&#x3D;&quot;balance.blockAmount &gt; 0&quot; aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                                            &lt;span class&#x3D;&quot;amount text-danger ng-binding&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;0.0000000&lt;/span&gt;
+                                                                        &lt;/td&gt;
+                                                                        &lt;td ng-show&#x3D;&quot;balance.blockAmount &#x3D;&#x3D; 0&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                            &lt;span class&#x3D;&quot;amount text-danger&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;
+                                                                        &lt;/td&gt;
+                                                                        &lt;!--span(ng-if&#x3D;&#x27;checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)&#x27;) pending--&gt;
+                                                                    &lt;/tr&gt;
+                                                                    &lt;tr&gt;
+                                                                        &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_PENDING &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                            &lt;i class&#x3D;&quot;fa fa-clock-o text-warning&quot;&gt;&lt;/i&gt;
+                                                                        &lt;/td&gt;
+                                                                        &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_REJECTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                            &lt;i class&#x3D;&quot;fa fa-window-close text-danger&quot;&gt;&lt;/i&gt;
+                                                                        &lt;/td&gt;
+                                                                        &lt;td class&#x3D;&quot;text-right&quot; ng-show&#x3D;&quot;assetStatus.STATUS_ACCEPTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                            &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                        &lt;/td&gt;
+                                                                        &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;0 &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                            &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                        &lt;/td&gt;
+                                                                    &lt;/tr&gt;
+                                                                &lt;/tbody&gt;
+                                                            &lt;/table&gt;
+                                                            &lt;div class&#x3D;&quot;flexbox ng-hide&quot; ng-show&#x3D;&quot;currentSelectAssetID &#x3D;&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;justify-content: center; padding: 18px; width: 120px; color: gray;&quot;
+                                        aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                &lt;i class&#x3D;&quot;fa fa-spinner fa-spin valign-center&quot; style&#x3D;&quot;font-size: 40px;&quot;&gt;&lt;/i&gt;
+                                                            &lt;/div&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                    &lt;!-- end ngRepeat: balance in selectedWallet.balances --&gt;
+                                                    &lt;div class&#x3D;&quot;asset ng-scope&quot; ng-repeat&#x3D;&quot;balance in selectedWallet.balances&quot;&gt;
+                                                        &lt;div class&#x3D;&quot;text-center&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;openDialog(selectedWallet, balance)&quot; role&#x3D;&quot;button&quot;
+                                        tabindex&#x3D;&quot;0&quot;&gt;
+                                                            &lt;div style&#x3D;&quot;margin-bottom: 4px; position: relative;&quot;&gt;
+                                                                &lt;img class&#x3D;&quot;img-asset&quot; ng-src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/logo-GBT-5a816d7e0238ae3d9b0c3998&quot;
+                                            err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot; src&#x3D;&quot;https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/logo-GBT-5a816d7e0238ae3d9b0c3998&quot;&gt;
+                                                                    &lt;!-- ngIf: active --&gt;
+                                                                &lt;/div&gt;
+                                                                &lt;table ng-show&#x3D;&quot;currentSelectAssetID !&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;width: 100%;&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                    &lt;tbody&gt;
+                                                                        &lt;tr&gt;
+                                                                            &lt;td&gt;
+                                                                                &lt;div class&#x3D;&quot;flexbox&quot;&gt;
+                                                                                    &lt;span class&#x3D;&quot;v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty&quot;
+                                                    ng-model&#x3D;&quot;balance.asset_code&quot; aria-invalid&#x3D;&quot;false&quot;&gt;GBT&lt;/span&gt;
+                                                                                &lt;/div&gt;
+                                                                            &lt;/td&gt;
+                                                                        &lt;/tr&gt;
+                                                                        &lt;tr&gt;
+                                                                            &lt;td&gt;
+                                                                                &lt;span class&#x3D;&quot;amount ng-binding&quot;&gt;6.486&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                                                        &lt;/tr&gt;
+                                                                        &lt;tr&gt;
+                                                                            &lt;td ng-show&#x3D;&quot;balance.blockAmount &gt; 0&quot; aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                                                &lt;span class&#x3D;&quot;amount text-danger ng-binding&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;0.000&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                                                            &lt;td ng-show&#x3D;&quot;balance.blockAmount &#x3D;&#x3D; 0&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                                &lt;span class&#x3D;&quot;amount text-danger&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;
+                                                                            &lt;/td&gt;
+                                                                            &lt;!--span(ng-if&#x3D;&#x27;checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)&#x27;) pending--&gt;
+                                                                        &lt;/tr&gt;
+                                                                        &lt;tr&gt;
+                                                                            &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_PENDING &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                &lt;i class&#x3D;&quot;fa fa-clock-o text-warning&quot;&gt;&lt;/i&gt;
+                                                                            &lt;/td&gt;
+                                                                            &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_REJECTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                &lt;i class&#x3D;&quot;fa fa-window-close text-danger&quot;&gt;&lt;/i&gt;
+                                                                            &lt;/td&gt;
+                                                                            &lt;td class&#x3D;&quot;text-right&quot; ng-show&#x3D;&quot;assetStatus.STATUS_ACCEPTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                                &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                            &lt;/td&gt;
+                                                                            &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;0 &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                            &lt;/td&gt;
+                                                                        &lt;/tr&gt;
+                                                                    &lt;/tbody&gt;
+                                                                &lt;/table&gt;
+                                                                &lt;div class&#x3D;&quot;flexbox ng-hide&quot; ng-show&#x3D;&quot;currentSelectAssetID &#x3D;&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;justify-content: center; padding: 18px; width: 120px; color: gray;&quot;
+                                        aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                    &lt;i class&#x3D;&quot;fa fa-spinner fa-spin valign-center&quot; style&#x3D;&quot;font-size: 40px;&quot;&gt;&lt;/i&gt;
+                                                                &lt;/div&gt;
+                                                            &lt;/div&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;!-- end ngRepeat: balance in selectedWallet.balances --&gt;
+                                                        &lt;div class&#x3D;&quot;asset ng-scope&quot; ng-repeat&#x3D;&quot;balance in selectedWallet.balances&quot;&gt;
+                                                            &lt;div class&#x3D;&quot;text-center&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;openDialog(selectedWallet, balance)&quot; role&#x3D;&quot;button&quot;
+                                        tabindex&#x3D;&quot;0&quot;&gt;
+                                                                &lt;div style&#x3D;&quot;margin-bottom: 4px; position: relative;&quot;&gt;
+                                                                    &lt;img class&#x3D;&quot;img-asset&quot; err-src&#x3D;&quot;/images/asset_icons/default.png&quot;
+                                            empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot; src&#x3D;&quot;/images/asset_icons/RIA.png&quot;&gt;
+                                                                        &lt;!-- ngIf: active --&gt;
+                                                                        &lt;span
+                                            class&#x3D;&quot;asset-inside ng-binding ng-scope&quot; ng-if&#x3D;&quot;active&quot; style&#x3D;&quot;position: absolute; top: 25px; left: 0px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 15px; text-shadow: 0 0 4px #EBEBFE;&quot;&gt;&lt;/span&gt;
+                                                                        &lt;!-- end ngIf: active --&gt;
+                                                                    &lt;/div&gt;
+                                                                    &lt;table ng-show&#x3D;&quot;currentSelectAssetID !&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;width: 100%;&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                        &lt;tbody&gt;
+                                                                            &lt;tr&gt;
+                                                                                &lt;td&gt;
+                                                                                    &lt;div class&#x3D;&quot;flexbox&quot;&gt;
+                                                                                        &lt;span class&#x3D;&quot;v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-empty&quot;
+                                                    ng-model&#x3D;&quot;balance.asset_code&quot; aria-invalid&#x3D;&quot;false&quot;&gt;RIA&lt;/span&gt;
+                                                                                    &lt;/div&gt;
+                                                                                &lt;/td&gt;
+                                                                            &lt;/tr&gt;
+                                                                            &lt;tr&gt;
+                                                                                &lt;td&gt;
+                                                                                    &lt;span class&#x3D;&quot;amount ng-binding&quot;&gt;765.5605000&lt;/span&gt;
+                                                                                &lt;/td&gt;
+                                                                            &lt;/tr&gt;
+                                                                            &lt;tr&gt;
+                                                                                &lt;td ng-show&#x3D;&quot;balance.blockAmount &gt; 0&quot; aria-hidden&#x3D;&quot;true&quot; class&#x3D;&quot;ng-hide&quot;&gt;
+                                                                                    &lt;span class&#x3D;&quot;amount text-danger ng-binding&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;0.0000000&lt;/span&gt;
+                                                                                &lt;/td&gt;
+                                                                                &lt;td ng-show&#x3D;&quot;balance.blockAmount &#x3D;&#x3D; 0&quot; aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                                    &lt;span class&#x3D;&quot;amount text-danger&quot;
+                                                    style&#x3D;&quot;font-size: 12px;&quot;&gt;&amp;nbsp;&lt;/span&gt;
+                                                                                &lt;/td&gt;
+                                                                                &lt;!--span(ng-if&#x3D;&#x27;checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)&#x27;) pending--&gt;
+                                                                            &lt;/tr&gt;
+                                                                            &lt;tr&gt;
+                                                                                &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_PENDING &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                    &lt;i class&#x3D;&quot;fa fa-clock-o text-warning&quot;&gt;&lt;/i&gt;
+                                                                                &lt;/td&gt;
+                                                                                &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;assetStatus.STATUS_REJECTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                    &lt;i class&#x3D;&quot;fa fa-window-close text-danger&quot;&gt;&lt;/i&gt;
+                                                                                &lt;/td&gt;
+                                                                                &lt;td class&#x3D;&quot;text-right&quot; ng-show&#x3D;&quot;assetStatus.STATUS_ACCEPTED &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;false&quot;&gt;
+                                                                                    &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                                &lt;/td&gt;
+                                                                                &lt;td class&#x3D;&quot;text-right ng-hide&quot; ng-show&#x3D;&quot;0 &#x3D;&#x3D;&#x3D; getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)&quot;
+                                                    aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                                    &lt;i class&#x3D;&quot;fa fa-check-square text-success&quot;&gt;&lt;/i&gt;
+                                                                                &lt;/td&gt;
+                                                                            &lt;/tr&gt;
+                                                                        &lt;/tbody&gt;
+                                                                    &lt;/table&gt;
+                                                                    &lt;div class&#x3D;&quot;flexbox ng-hide&quot; ng-show&#x3D;&quot;currentSelectAssetID &#x3D;&#x3D;&#x3D; balance._id&quot; style&#x3D;&quot;justify-content: center; padding: 18px; width: 120px; color: gray;&quot;
+                                        aria-hidden&#x3D;&quot;true&quot;&gt;
+                                                                        &lt;i class&#x3D;&quot;fa fa-spinner fa-spin valign-center&quot; style&#x3D;&quot;font-size: 40px;&quot;&gt;&lt;/i&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/div&gt;
+                                                            &lt;/div&gt;
+                                                            &lt;!-- end ngRepeat: balance in selectedWallet.balances --&gt;
+                                                            &lt;p class&#x3D;&quot;padding-15 ng-hide&quot; ng-show&#x3D;&quot;selectedWallet.balances.length&#x3D;&#x3D;0&quot; aria-hidden&#x3D;&quot;true&quot;&gt;This
+                                    wallet has no asset
+                                &lt;/p&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                &lt;/div&gt;
+                                            &lt;/div&gt;
+                                        &lt;/div&gt;
+                                        &lt;script&gt;app.controller(&#x27;ActiveWalletDialogController&#x27;, [&#x27;$uibModalInstance&#x27;, &#x27;$http&#x27;, &#x27;$scope&#x27;, &#x27;data&#x27;, function($modalInstance, $http, $scope, data){
+                    $scope.unactiveWallet &#x3D; data.wallet;
+                    $scope.walletsToActive &#x3D; null;
+                    $scope.idWalletActive &#x3D; null;
+                    $scope.startingBalance &#x3D; null;
+                    $scope.waitResponse &#x3D; false;
+                    $scope.transactionFee &#x3D; 0;
+                    $scope.verifyGaCode &#x3D; null;
+                    
+                    $scope.close &#x3D; function(){
+                        $modalInstance.dismiss();
+                    }
+                    
+                    $scope.init &#x3D; function(){
+                        $scope.waitResponse &#x3D; true;
+                        var dataBatch &#x3D; {
+                            options: {},
+                            commands: [
+                                {
+                                    name: &#x27;get_all_user_wallets&#x27;,
+                                    params: {
+                                        with_assets: false
+                                    }
+                                },
+                                {
+                                    name: &#x27;transaction_fee&#x27;,
+                                    params: {}
+                                }
+                            ]
+                        }
+                        $http.post(&#x27;/batch&#x27;, dataBatch)
+                        .then(
+                            function(response){
+                                $scope.waitResponse &#x3D; false;
+                                if (response.data.success &amp;&amp; response.data.results[1].success)
+                                    $scope.transactionFee &#x3D; response.data.results[1].result;
+                                if (response.data.success &amp;&amp; response.data.results[0].success){
+                                    $scope.walletsToActive &#x3D; response.data.results[0].result;
+                                } else {
+                                    if ( response.data.results[0].error &amp;&amp; response.data.results[0].error.errorCode &#x3D;&#x3D; 12 )
+                                        document.location.href&#x3D;&#x27;/login?redirect&#x3D;&#x27;+ encodeURIComponent(window.location.pathname);
+                                    alert(&#x27;Error: &#x27; + response.data.results[0].error.errorMessage);
+                                }
+                            },
+                            function(err){
+                                alert(&#x27;Error: &#x27; + err);
+                            }
+                        );
+                    }
+                    
+                    $scope.activeWallet &#x3D; function(){
+                        $scope.waitResponse &#x3D; true;
+                        var dataBatch &#x3D; {
+                            name: &#x27;active_wallet&#x27;,
+                            params: {
+                                publicKey: $scope.unactiveWallet.address,
+                                walletId: $scope.idWalletActive,
+                                startingBalance: $scope.startingBalance,
+                                code: $scope.verifyGaCode
+                            }
+                        }
+                        $http.post(&#x27;/rpc&#x27;, dataBatch)
+                        .then(
+                            function(response){
+                                $scope.waitResponse &#x3D; false;
+                                if (response.data.success){
+                                    $modalInstance.close(true);
+                                } else {
+                                    if (response.data.error.errorCode &#x3D;&#x3D;&#x3D; 12 )
+                                        document.location.href&#x3D;&#x27;/login?redirect&#x3D;&#x27;+ encodeURIComponent(window.location.pathname);
+                                    alert(&#x27;Error: &#x27; + response.data.error.errorMessage);
+                                }
+                            },
+                            function(err){
+                                alert(&#x27;Error: &#x27; + err);
+                            }
+                        );
+                    }
+                    
+                    $scope.init();
+                    
+                    }]);
+                &lt;/script&gt;
+                                        &lt;script type&#x3D;&quot;text/ng-template&quot; id&#x3D;&quot;ActiveWalletDialog&quot;&gt;
+                                            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                                                &lt;button class&#x3D;&quot;close&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;close()&quot;&gt;&amp;times;&lt;/button&gt;
+                                                &lt;h4 class&#x3D;&quot;modal-title bold-text&quot;&gt;Active wallet&lt;/h4&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                                                &lt;h3 class&#x3D;&quot;fs-title text-center margin-bottom-15px&quot; style&#x3D;&quot;margin-top: 0px;&quot;&gt;Sending amount of asset from an active and non block wallet to active this wallet.&lt;/h3&gt;
+                                                &lt;div&gt;
+                                                    &lt;div class&#x3D;&quot;panel panel-default&quot;&gt;
+                                                        &lt;div class&#x3D;&quot;panel-body&quot;&gt;
+                                                            &lt;fieldset ng-disabled&#x3D;&quot;waitResponse&quot;&gt;
+                                                                &lt;label&gt;Wallet address&lt;/label&gt;
+                                                                &lt;input class&#x3D;&quot;form-control margin-bottom-15px&quot; type&#x3D;&quot;text&quot; readonly&#x3D;&quot;true&quot; value&#x3D;&quot;{{ unactiveWallet.address }}&quot;/&gt;
+                                                                &lt;label&gt;Wallet name&lt;/label&gt;
+                                                                &lt;input class&#x3D;&quot;form-control margin-bottom-15px&quot; type&#x3D;&quot;text&quot; readonly&#x3D;&quot;true&quot; value&#x3D;&quot;{{unactiveWallet.name || &#x27;&#x27;}}&quot;/&gt;
+                                                                &lt;label&gt;&amp;nbsp;Funding wallet&lt;/label&gt;
+                                                                &lt;select class&#x3D;&quot;form-control margin-bottom-15px&quot; ng-model&#x3D;&quot;idWalletActive&quot;&gt;
+                                                                    &lt;option value&#x3D;&quot;&quot;&gt;Select wallet&lt;/option&gt;
+                                                                    &lt;option class&#x3D;&quot;ellipsis&quot; ng-repeat&#x3D;&quot;wallet in walletsToActive&quot; value&#x3D;&quot;{{wallet._id}}&quot; ng-disabled&#x3D;&quot;wallet.block || !wallet.active&quot;&gt;{{wallet.name}} {{ wallet.active &amp;&amp; !wallet.block ? &#x27;&#x27; : !wallet.active &amp;&amp; wallet.block ? &#x27;(Inactive and blocked)&#x27; : !wallet.active ? &#x27;(inactive)&#x27; : &#x27;(Blocked)&#x27; }}&lt;/option&gt;
+                                                                &lt;/select&gt;
+                                                                &lt;label&gt;Starting balance&lt;/label&gt;
+                                                                &lt;input class&#x3D;&quot;form-control margin-bottom-15px&quot; type&#x3D;&quot;number&quot; ng-model&#x3D;&quot;startingBalance&quot;/&gt;
+                                                                &lt;label&gt;Verification code&lt;/label&gt;
+                                                                &lt;input class&#x3D;&quot;form-control margin-bottom-15px&quot; type&#x3D;&quot;text&quot; ng-model&#x3D;&quot;verifyGaCode&quot;/&gt;
+                                                                &lt;div class&#x3D;&quot;margin-bottom-15px&quot; style&#x3D;&quot;color:red;&quot;&gt;
+                                                                    &lt;!--| &amp;nbsp; #{__(&#x27;transaction_fee_notice&#x27;, &#x27;{{transactionFee}}&#x27; )}--&gt;
+                                                                &lt;/div&gt;
+                                                                &lt;div class&#x3D;&quot;text-center&quot; ng-hide&#x3D;&quot;waitResponse&quot;&gt;
+                                                                    &lt;button class&#x3D;&quot;btn btn-primary action&quot; ng-disabled&#x3D;&quot;!idWalletActive&quot; ng-click&#x3D;&quot;activeWallet()&quot;&gt;Active&lt;/button&gt;
+                                                                &lt;/div&gt;
+                                                                &lt;div class&#x3D;&quot;text-center margin-top-15px&quot; ng-show&#x3D;&quot;waitResponse&quot;&gt;
+                                                                    &lt;i class&#x3D;&quot;fa fa-spinner fa-spin fa-2x fa-fw&quot;&gt;&lt;/i&gt;
+                                                                &lt;/div&gt;
+                                                            &lt;/fieldset&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                &lt;/div&gt;
+                                            &lt;/div&gt;
+                                        &lt;/script&gt;
+                                        &lt;style&gt;&lt;/style&gt;
+                                        &lt;script&gt;app.controller(&#x27;AssetDialogController&#x27;, [&#x27;$scope&#x27;, &#x27;$uibModalInstance&#x27;, &#x27;$http&#x27;, &#x27;options&#x27;, function ($scope, $modalInstance, $http, options) {
+                    $scope.allAssets &#x3D; [];
+                    $scope.ownedAssets &#x3D; [];
+                    
+                    $scope.wallets &#x3D; null;
+                    $scope.selectedWallet &#x3D; null;
+                    $scope.loading &#x3D; true;
+                    
+                    $scope.issuingAssets &#x3D; [];
+                    $scope.filteredAssets &#x3D; null;
+                    $scope.selectedAsset &#x3D; null;
+                    $scope.assetFilter &#x3D; &quot;&quot;;
+                    $scope.filtering &#x3D; false;
+                    
+                    $scope.options &#x3D; options;
+                    
+                    $scope.close &#x3D; function () {
+                        $modalInstance.dismiss();
+                    };
+                    
+                    $scope.OK &#x3D; function () {
+                        var data &#x3D; {
+                            selectedAsset: $scope.selectedAsset,
+                            selectedWallet: $scope.selectedWallet
+                        }
+                        $modalInstance.close(data);
+                    };
+                    $scope.changeWallet &#x3D; function (selectedWallet) {
+                        $scope.selectedAsset &#x3D; null;
+                        $scope.selectedWallet &#x3D; selectedWallet;
+                    };
+                    $scope.selectAsset &#x3D; function (asset) {
+                        $scope.selectedAsset &#x3D; asset;
+                    };
+                    
+                    $scope.filterAsset &#x3D; function (filter) {
+                        filter &#x3D; filter.toLowerCase();
+                        $scope.filtering &#x3D; true;
+                        if ($scope.otherAssets) {
+                            $scope.filteredAssets &#x3D; $scope.otherAssets.filter(function (asset) {
+                                var u1 &#x3D; asset.name ? asset.name.toLowerCase().indexOf(filter) &gt;&#x3D; 0 : false;
+                                var u2 &#x3D; false; //asset.issuer &amp;&amp; asset.issuer.name.toLowerCase().indexOf(filter);
+                                var u3 &#x3D; false; //asset.issuer &amp;&amp; asset.issuer.address.toLowerCase().indexOf(filter);
+                                return (filter &#x3D;&#x3D;&#x3D; &#x27;@&#x27; || (filter &amp;&amp; (u1 || u2 || u3)));
+                            });
+                        }
+                        $scope.filtering &#x3D; false;
+                    };
+                    
+                    $scope.init &#x3D; function () {
+                        //-- request to get all user&#x27;s asset and
+                        var data &#x3D; {
+                            options: {},
+                            commands: [
+                                {
+                                    name: &#x27;get_all_assets&#x27;,
+                                    params: {}
+                                },
+                                {
+                                    name: &#x27;get_all_user_wallets&#x27;,
+                                    params: {
+                                        with_assets: true
+                                    }
+                                },
+                                {
+                                    name: &#x27;get_all_user_assets&#x27;,
+                                    params: {withoutAdvance: options.withoutAdvance}
+                                }
+                            ]
+                        };
+                    
+                        $http.post(&#x27;/batch&#x27;, data).then(
+                            function (response) {
+                                $scope.loading &#x3D; false;
+                                console.log(response.data);
+                                if (response.data.success) {
+                                    if (response.data.results[0].error &amp;&amp; response.data.results[0].error.errorCode &#x3D;&#x3D;&#x3D; 12)
+                                        document.location.href &#x3D; &#x27;/login?redirect&#x3D;&#x27; + encodeURIComponent(window.location.pathname);
+                                    $scope.allAssets &#x3D; response.data.results[0].success ? response.data.results[0].result : [];
+                                    $scope.wallets &#x3D; response.data.results[1].success ? response.data.results[1].result : [];
+                                    $scope.issuingAssets &#x3D; response.data.results[2].success ? response.data.results[2].result : [];
+                    
+                                    //-- extract ownedAssets
+                                    $scope.ownedAssets &#x3D; [];
+                                    $scope.wallets.some(function (wallet) {
+                                        if (wallet.balances) {
+                                            wallet.balances.forEach(function (balance) {
+                                                //-- check if ownedAssets has already contained this asset
+                                                var contain &#x3D; false;
+                                                for (b in $scope.ownedAssets) {
+                                                    if ($scope.ownedAssets[b]._id &#x3D;&#x3D;&#x3D; balance._id) {
+                                                        contain &#x3D; true;
+                                                        break;
+                                                    }
+                                                }
+                                                if (!contain) $scope.ownedAssets.push(balance);
+                                            });
+                                        }
+                                    });
+                    
+                                    $scope.otherAssets &#x3D; [];
+                                    $scope.allAssets.forEach(function (asset) {
+                                        var contain &#x3D; $scope.ownedAssets.some(function (ownAsset) {
+                                            if (ownAsset._id &#x3D;&#x3D;&#x3D; asset._id) return true;
+                                        });
+                                        if (!contain) {
+                                            $scope.otherAssets.push(asset);
+                                        }
+                                    });
+                                }
+                            },
+                            function (err) {
+                                $scope.loading &#x3D; false;
+                            }
+                        );
+                    };
+                    
+                    $scope.init();
+                    }]);
+                &lt;/script&gt;
+                                        &lt;style&gt;.asset {
+                    cursor: pointer;
+                    min-width: 100px;
+                    background-color: lightgrey;
+                    color: black;
+                    padding: 10px;
+                    border-radius: 4px;
+                    }
+                    .asset:hover {
+                    background-color: darkgray !important;
+                    color: white;
+                    }
+                    .asset.selected {
+                    background-color: seagreen !important;
+                    color: white;
+                    }
+                    .img-dialog {
+                    width: 30px;
+                    height: 20px;
+                    }
+                    .asset span {
+                    padding:5px;
+                    font-size:16px;
+                    font-weight:bold;
+                    }
+                &lt;/style&gt;
+                                        &lt;script type&#x3D;&quot;text/ng-template&quot; id&#x3D;&quot;assetDialog&quot;&gt;
+                                            &lt;div class&#x3D;&quot;modal-header&quot;&gt;
+                                                &lt;button class&#x3D;&quot;close&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;close()&quot;&gt;&amp;times;&lt;/button&gt;
+                                                &lt;h3 class&#x3D;&quot;modal-title bold-text&quot;&gt;Select an asset&lt;/h3&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;modal-body&quot;&gt;
+                                                &lt;div class&#x3D;&quot;text-center&quot; ng-show&#x3D;&quot;loading&quot;&gt;
+                                                    &lt;i class&#x3D;&quot;fa fa-spinner fa-spin fa-2x fa-fw&quot;&gt;&lt;/i&gt;
+                                                &lt;/div&gt;
+                                                &lt;div ng-hide&#x3D;&quot;loading&quot;&gt;
+                                                    &lt;div ng-if&#x3D;&quot;options.mode&#x3D;&#x3D;&amp;quot;buy&amp;quot;&quot;&gt;
+                                                        &lt;div ng-if&#x3D;&quot;options.ownedAssets&quot;&gt;
+                                                            &lt;label&gt;Owned assets&lt;/label&gt;
+                                                            &lt;div class&#x3D;&quot;text-center font-shadow&quot; ng-show&#x3D;&quot;!ownedAssets || ownedAssets.length &#x3D;&#x3D;&#x3D; 0&quot;&gt;You have no asset&lt;/div&gt;
+                                                            &lt;ul class&#x3D;&quot;nav nav-pills&quot; ng-show&#x3D;&quot;ownedAssets &amp;amp;&amp;amp; ownedAssets.length&amp;gt;0&quot;&gt;
+                                                                &lt;li class&#x3D;&quot;margin-bottom-15px margin-right-15px&quot; role&#x3D;&quot;presentation&quot; ng-repeat&#x3D;&quot;asset in ownedAssets&quot;&gt;
+                                                                    &lt;div class&#x3D;&quot;asset {{asset._id&#x3D;&#x3D;selectedAsset._id? &amp;quot;selected&amp;quot; : &amp;quot;&amp;quot;}}&quot; ng-click&#x3D;&quot;selectAsset(asset)&quot;&gt;
+                                                                        &lt;div style&#x3D;&quot;position: relative; width: 30px; display: inline-block;&quot;&gt;
+                                                                            &lt;img class&#x3D;&quot;img-dialog&quot; ng-src&#x3D;&quot;{{asset.logo}}&quot; err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot;/&gt;
+                                                                            &lt;span ng-if&#x3D;&quot;active&quot; style&#x3D;&quot;position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;&quot;&gt;{{ asset.asset_code.substr(0,3) }}&lt;/span&gt;
+                                                                        &lt;/div&gt;
+                                                                        &lt;div style&#x3D;&quot;display: inline-block;&quot;&gt;
+                                                                            &lt;span&gt;{{asset.asset_type &#x3D;&#x3D;&#x3D; &#x27;native&#x27;? &#x27;RIA&#x27; : asset.asset_code}}&lt;/span&gt;
+                                                                        &lt;/div&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/li&gt;
+                                                            &lt;/ul&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div ng-if&#x3D;&quot;options.otherAssets&quot;&gt;
+                                                            &lt;label&gt;More&lt;/label&gt;
+                                                            &lt;div class&#x3D;&quot;input-group&quot;&gt;
+                                                                &lt;span class&#x3D;&quot;input-group-addon&quot;&gt;&amp;nbsp;
+                                                                    &lt;i class&#x3D;&quot;fa fa-search&quot;&gt;&lt;/i&gt;&amp;nbsp;
+                                                                &lt;/span&gt;
+                                                                &lt;input class&#x3D;&quot;form-control&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Search for issuer asset...&quot; ng-model&#x3D;&quot;assetFilter&quot; ng-change&#x3D;&quot;filterAsset(assetFilter)&quot;/&gt;
+                                                            &lt;/div&gt;
+                                                            &lt;div class&#x3D;&quot;text-center font-shadow&quot; ng-show&#x3D;&quot;assetFilter &amp;amp;&amp;amp; (!filteredAssets || (filteredAssets &amp;amp;&amp;amp; filteredAssets.length&#x3D;&#x3D;0))&quot;&gt;No result found&lt;/div&gt;
+                                                            &lt;ul class&#x3D;&quot;nav nav-pills&quot; ng-hide&#x3D;&quot;filtering&quot;&gt;
+                                                                &lt;li class&#x3D;&quot;margin-bottom-15px margin-right-15px&quot; role&#x3D;&quot;presentation&quot; ng-repeat&#x3D;&quot;asset in filteredAssets&quot;&gt;
+                                                                    &lt;div class&#x3D;&quot;asset {{asset._id&#x3D;&#x3D;selectedAsset._id? &amp;quot;selected&amp;quot; : &amp;quot;&amp;quot;}}&quot; ng-click&#x3D;&quot;selectAsset(asset)&quot;&gt;
+                                                                        &lt;div style&#x3D;&quot;position: relative; width: 30px; display: inline-block;&quot;&gt;
+                                                                            &lt;img class&#x3D;&quot;img-dialog&quot; ng-src&#x3D;&quot;{{asset.logo}}&quot; err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;{{ asset.asset_type &#x3D;&#x3D;&#x3D; &#x27;native&#x27;? &#x27;/images/asset_icons/RIA.png&#x27; : &#x27;/images/asset_icons/default.png&#x27;}}&quot;/&gt;
+                                                                            &lt;span ng-if&#x3D;&quot;active &amp;amp;&amp;amp; asset.asset_type !&#x3D;&#x3D; &amp;quot;native&amp;quot;&quot; style&#x3D;&quot;position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;&quot;&gt;{{ asset.name.substr(0,3) }}&lt;/span&gt;
+                                                                        &lt;/div&gt;
+                                                                        &lt;div style&#x3D;&quot;display: inline-block;&quot;&gt;
+                                                                            &lt;span&gt;{{asset.asset_type &#x3D;&#x3D;&#x3D; &#x27;native&#x27;? &#x27;RIA&#x27; : asset.name}}&lt;/span&gt;
+                                                                        &lt;/div&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/li&gt;
+                                                            &lt;/ul&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                    &lt;div ng-if&#x3D;&quot;options.mode&#x3D;&#x3D;&amp;quot;issue&amp;quot;&quot;&gt;
+                                                        &lt;label&gt;Issuing assets&lt;/label&gt;
+                                                        &lt;div class&#x3D;&quot;text-center font-shadow&quot; ng-show&#x3D;&quot;!issuingAssets || issuingAssets.length&#x3D;&#x3D;0&quot;&gt;You have no asset&lt;/div&gt;
+                                                        &lt;ul class&#x3D;&quot;nav nav-pills&quot; ng-show&#x3D;&quot;issuingAssets &amp;amp;&amp;amp; issuingAssets.length&amp;gt;0&quot;&gt;
+                                                            &lt;li class&#x3D;&quot;margin-bottom-15px margin-right-15px&quot; role&#x3D;&quot;presentation&quot; ng-repeat&#x3D;&quot;asset in issuingAssets&quot;&gt;
+                                                                &lt;div class&#x3D;&quot;asset {{asset._id&#x3D;&#x3D;selectedAsset._id? &amp;quot;selected&amp;quot; : &amp;quot;&amp;quot;}}&quot; ng-click&#x3D;&quot;selectAsset(asset)&quot;&gt;
+                                                                    &lt;div style&#x3D;&quot;position: relative; width: 30px; display: inline-block;&quot;&gt;
+                                                                        &lt;img class&#x3D;&quot;img-dialog&quot; ng-src&#x3D;&quot;{{asset.logo}}&quot; err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot;/&gt;
+                                                                        &lt;span ng-if&#x3D;&quot;active&quot; style&#x3D;&quot;position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;&quot;&gt;{{ asset.name.substr(0,3) }}&lt;/span&gt;
+                                                                    &lt;/div&gt;
+                                                                    &lt;div style&#x3D;&quot;display: inline-block;&quot;&gt;
+                                                                        &lt;span&gt;{{asset.asset_type &#x3D;&#x3D;&#x3D; &#x27;native&#x27;? &#x27;RIA&#x27; : asset.name}}&lt;/span&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/div&gt;
+                                                            &lt;/li&gt;
+                                                        &lt;/ul&gt;
+                                                    &lt;/div&gt;
+                                                    &lt;div ng-if&#x3D;&quot;options.mode&#x3D;&#x3D;&amp;quot;sell&amp;quot;&quot;&gt;
+                                                        &lt;label&gt;from wallet&lt;/label&gt;
+                                                        &lt;select class&#x3D;&quot;form-control margin-bottom-15px&quot; ng-model&#x3D;&quot;selectedWallet&quot; ng-change&#x3D;&quot;changeWallet(selectedWallet)&quot;&gt;
+                                                            &lt;option value&#x3D;&quot;&quot;&gt;Select wallet&lt;/option&gt;
+                                                            &lt;option ng-repeat&#x3D;&quot;wallet in wallets&quot; ng-value&#x3D;&quot;wallet&quot; ng-disabled&#x3D;&quot;wallet.block || !wallet.active&quot;&gt;{{wallet.name}} {{ wallet.active &amp;&amp; !wallet.block ? &#x27;&#x27; : !wallet.active &amp;&amp; wallet.block ? &#x27;(Inactive and blocked)&#x27; : !wallet.active ? &#x27;(inactive)&#x27; : &#x27;(Blocked)&#x27; }}&lt;/option&gt;
+                                                        &lt;/select&gt;
+                                                        &lt;div&gt;
+                                                            &lt;ul class&#x3D;&quot;nav nav-pills&quot;&gt;
+                                                                &lt;li class&#x3D;&quot;margin-bottom-15px margin-right-15px&quot; role&#x3D;&quot;presentation&quot; ng-repeat&#x3D;&quot;asset in selectedWallet.balances&quot;&gt;
+                                                                    &lt;div class&#x3D;&quot;asset {{asset._id&#x3D;&#x3D;selectedAsset._id? &amp;quot;selected&amp;quot; : &amp;quot;&amp;quot;}}&quot; ng-click&#x3D;&quot;selectAsset(asset)&quot;&gt;
+                                                                        &lt;img class&#x3D;&quot;img-dialog&quot; ng-src&#x3D;&quot;{{asset.logo}}&quot; err-src&#x3D;&quot;/images/asset_icons/default.png&quot; empty-src&#x3D;&quot;/images/asset_icons/RIA.png&quot;/&gt;
+                                                                        &lt;span ng-if&#x3D;&quot;active&quot; style&#x3D;&quot;position: absolute; top: 12px; left: -25px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;&quot;&gt;{{ asset.name.substr(0,3) }}&lt;/span&gt;
+                                                                        &lt;span&gt;{{asset.asset_type &#x3D;&#x3D;&#x3D; &#x27;native&#x27;? &#x27;RIA&#x27; : asset.asset_code}}&lt;/span&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/li&gt;
+                                                            &lt;/ul&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div class&#x3D;&quot;text-center&quot; ng-show&#x3D;&quot;filtering&quot;&gt;
+                                                            &lt;i class&#x3D;&quot;fa fa-spinner fa-spin fa-2x fa-fw&quot;&gt;&lt;/i&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/div&gt;
+                                                &lt;/div&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class&#x3D;&quot;modal-footer&quot;&gt;
+                                                &lt;button class&#x3D;&quot;btn btn-primary action&quot; type&#x3D;&quot;button&quot; ng-click&#x3D;&quot;OK()&quot; ng-disabled&#x3D;&quot;!selectedAsset&quot;&gt;OK&lt;/button&gt;
+                                            &lt;/div&gt;
+                                        &lt;/script&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;no-wallet ng-hide&quot; ng-show&#x3D;&quot;!wallets || wallets.length&#x3D;&#x3D;0&quot; aria-hidden&#x3D;&quot;true&quot;&gt;Create your first wallet&lt;/div&gt;
+                    &lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="wallet-wrapper">    <button class="btn btn-primary action margin-bottom-15px margin-right-15px"        ng-click="newWalletPage()" ng-disabled="!$localStorage.user.verifyEmail || !$localStorage.user.verifySMS || !$localStorage.user.verifyGA">        <i        class="fa fa-plus"></i>        <span class="hidden-480px"> Create new wallet</span>    </button>    <a class="btn btn-default action margin-bottom-15px margin-right-15px"        href="/wallet/restore" role="button">        <i class="fa fa-repeat"></i>        <span class="hidden-480px"> Import a wallet</span>    </a>    <a        class="btn btn-warning action margin-bottom-15px margin-right-15px" href="/wallet/active" role="button">        <i class="fa fa-warning"></i>        <span        class="hidden-480px"> Active wallet</span>    </a>    <a class="btn btn-danger action margin-bottom-15px margin-right-15px"        href="/wallet/merge" role="button">        <i class="fa fa-compress"></i>        <span class="hidden-480px"> Merge wallet</span>    </a>    <a        class="btn btn-success action margin-bottom-15px margin-right-15px" href="/wallet/issue" role="button">        <i class="fa fa-money"></i>        <span        class="hidden-480px"> Issuer mode</span>    </a>    <div ng-show="wallets &amp;&amp; wallets.length" aria-hidden="false">        <select class="form-control margin-bottom-15px ng-pristine ng-untouched ng-valid ng-not-empty"            ng-model="selectedWallet" ng-hide="waitResponse" style="border-color: seagreen; display: block !important;"            aria-hidden="false" aria-invalid="false">            <!-- ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:11"                selected="selected">demo - GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H</option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:12">demo                holding fee - GC5LVEZ2TVZNQI2S4XUQU65VJU2475CBIHOU6XF3MHUJDB63AWZLKAD7            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:13">Test1576                - GBAYMUEEX2VE6GYJXAEDCLKUXG6IXAARC2MDNSXVIV54X6TWT7Q5E5TA            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:14">TEST1161                - GCPJBAMB3366T6APDMFDSGD2VKPAPRXLGS2G4AF4ZZUAUX2TLHCSXUEJ            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:15">ABC                - GBZJME35TJGH2CW4SD4UCCWP4TLCRKJCPBUSECLBJ4LOC6Q3DBPVMS5A            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:16">ABC                - GBUXOBHZKCA3HGXTHWNGMSFQV3KPFYRZTHUZWKTCX5Z36Y65643SGTTJ            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:17">STREAM                - GAH56BIFRTVGX3UDXXIAWYPSAYWCFY2DHYQCHVUSK4BY6A7CFO4GEMNT            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:18">BIT                - GCE6ZRPLDVCMNQHFUKDWEPOGIRVZLN5NTBQFBXB42NHJXDJHZBZELS3V            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:19">ARM11111190                - GDJNPJJQXZN6BTPDN37IKIKDWG7YMDL4UZCA4XRUCLYVR5DFENY2LZOM            </option>            <!-- end ngRepeat: wallet in wallets -->            <option ng-repeat="wallet in wallets" ng-value="wallet" class="ng-binding ng-scope" aria-checked="true" value="object:20">ARM11111190                - GA2QGD6KD3VNIK7HO4IUV5LWZW3EA2DZ6THDGK2DRKU36I2EZEZZ3UU3            </option>            <!-- end ngRepeat: wallet in wallets -->        </select>        <div class="wallet-list">            <div class="wallets">                <div class="panel-group" id="accordion">                    <script>$(document).ready(function(){                    $(document).on(\'click\', \'.wallet-address-copy\', function() {                        $(\'.copied\').show();                        setTimeout(function(){                            $(\'.copied\').fadeOut(500);                        }, 700);                    })                    });                </script>                    <div class="wallet">                        <div class="panel panel-default panel-wallet">                            <div class="panel-heading panel-wallet-header" id="heading5aa2255c576889030ec31129" role="tab"                            data-parent="#accordion" aria-expanded="true">                                <div class="row">                                    <div class="col-xs-8">                                        <div class="wallet-control">                                            <a href="#" ng-show="selectedWallet.block" aria-hidden="true" class="ng-hide">                                                <i                                    class="fa fa-lock wallet-control-item" ng-click="openUnblockWalletDialog(selectedWallet)"                                    style="margin-left: 5px;" role="button" tabindex="0"></i>                                            </a>                                            <a href="#" ng-show="!selectedWallet.block &amp;&amp; selectedWallet.active"                                    aria-hidden="false">                                                <i class="fa fa-info-circle wallet-control-item"></i>                                            </a>                                            <a href="#"                                    ng-show="!selectedWallet.active &amp;&amp; !selectedWallet.block" ng-click="activeWallet(selectedWallet)"                                    aria-hidden="true" class="ng-hide">                                                <i class="fa fa-warning warning-color wallet-control-item"></i>                                            </a>                                        </div>                                        <div class="wallet-name">                                            <span editable-text="selectedWallet.name" onbeforesave="renameWallet($data)"                                    buttons="no" style="border-bottom: none !important;" class="ng-scope ng-binding editable editable-click">demo                                    &nbsp;                                                <i class="fa fa-pencil"></i>                                            </span>                                        </div>                                        <div class="wallet-address" id="GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H" style="padding-top: 10px;">                                            <a                                    class="wallet-address-copy" href="#" data-clipboard-text="GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H"                                    style="text-decoration: none;">                                                <i class="fa fa-copy"></i>                                            </a>                                            <span class="wallet-address-text ng-binding">&nbsp;                                    GBWCP4PJEIVQKV7QR7DFDTVXZ3L3T7HY7R6KI6TJO5MKEUG2MR4YEM5H</span>                                        </div>                                        <span class="copied">Copied</span>                                    </div>                                    <div class="col-xs-4 text-right">                                        <img ng-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAklEQVR4AewaftIAAATqSURBVO3BQY4cSRIEQdNA/f/Lun30ywaQSK8ekjAR/JGqJSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYtOqhadVC06qVp0UrXopGrRSdWiT14C8pvUTEAmNROQTWomIDdqJiA3aiYgv0nNGydVi06qFp1ULfpkmZpNQG7UTEAmNU8AmdRMQCY1N0A2qdkEZNNJ1aKTqkUnVYs++TIgT6h5Asik5gbIpGYTkEnNNwF5Qs03nVQtOqladFK16JO/nJoJyKRmUjMBmdRsAnKj5l9yUrXopGrRSdWiT/5xQG7UTEBu1ExA3gAyqfmbnVQtOqladFK16JMvU/NNQCY1E5AbIE8AeULNBGSTmj/JSdWik6pFJ1WLPlkG5E+mZgIyqZmATGomIJOaCcikZgLyBJA/2UnVopOqRSdVi/BH/mFAJjU3QG7U1P93UrXopGrRSdWiT14CMqmZgExqngByo2YCMqmZgExqngAyqZmATGomIDdqboBMam6ATGomIJOaN06qFp1ULTqpWoQ/sgjIE2omIJOaCcik5gkgk5obIJOa3wTkRs0NkBs1m06qFp1ULTqpWvTJS0Bu1ExAngDyBJAngGwCMqm5ATKpeQLIjZoJyARkUvPGSdWik6pFJ1WLPnlJzQ2QN9RMQN5Q8waQ36RmArJJzaaTqkUnVYtOqhZ98hKQN4BMaiYgN0AmNTdAJjUTkBs1N0BugExqJiCTmr/JSdWik6pFJ1WLPnlJzRtAbtRMQCY1E5BJzaTmCTUTkEnNE2qeAPKEmv/SSdWik6pFJ1WLPnkJyI2aJ4DcqJmATGomIJOaGzW/Ccgbap5QMwGZ1LxxUrXopGrRSdUi/JEvAjKpuQEyqZmA3KiZgLyhZhOQGzVPANmk5o2TqkUnVYtOqhZ98hKQSc2k5gbIpGYC8gSQJ9RMQJ4AMqmZgNyomYBMaiYgk5oJyBNqNp1ULTqpWnRStQh/ZBGQSc0E5EbNDZAbNROQSc0EZFJzA+QJNROQJ9TcAJnU3AC5UfPGSdWik6pFJ1WLPnkJyA2QSc0EZALyhJo31ExAnlAzAZmAbAJyA2RSc6Nm00nVopOqRSdViz55Sc0NkBs1/yUgk5oJyKTmRs0E5EbNBOQNNROQ33RSteikatFJ1SL8kReA3KiZgGxScwNkUjMBeUPNG0B+k5pvOqladFK16KRq0ScvqXlCzSYgk5obIJOaCciNmgnIpOYNNU8AmdRMQG6ATGreOKladFK16KRq0ScvAflNar5JzQ2QGyCTmjeATGpugNwA+aaTqkUnVYtOqhZ9skzNJiA3ap5QMwG5UXOj5pvUPKFmAjKp+aaTqkUnVYtOqhZ98mVAnlDzTUAmNROQGzUTkEnNBOQJIJvU/KaTqkUnVYtOqhZ98o8BcqPmRs0bQG7UTEAmNROQSc0bQCY1m06qFp1ULTqpWvTJXw7IjZoJyKRmArJJzRNAJjUTkEnNDZAbIJOaN06qFp1ULTqpWvTJl6n5JjU3QCY1T6iZgNyomYBMap4AMqmZgExqbtRMQDadVC06qVp0UrXok2VAfhOQSc0NkCeATGqeUDMBmdRMQJ5QMwGZ1ExAvumkatFJ1aKTqkX4I1VLTqoWnVQtOqladFK16KRq0UnVopOqRSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkX/Ay6PP1eCC67lAAAAAElFTkSuQmCC"                                style="height: 70px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAYAAAB1PADUAAAAAklEQVR4AewaftIAAATqSURBVO3BQY4cSRIEQdNA/f/Lun30ywaQSK8ekjAR/JGqJSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkUnVYtOqhadVC06qVp0UrXopGrRSdWiT14C8pvUTEAmNROQTWomIDdqJiA3aiYgv0nNGydVi06qFp1ULfpkmZpNQG7UTEAmNU8AmdRMQCY1N0A2qdkEZNNJ1aKTqkUnVYs++TIgT6h5Asik5gbIpGYTkEnNNwF5Qs03nVQtOqladFK16JO/nJoJyKRmUjMBmdRsAnKj5l9yUrXopGrRSdWiT/5xQG7UTEBu1ExA3gAyqfmbnVQtOqladFK16JMvU/NNQCY1E5AbIE8AeULNBGSTmj/JSdWik6pFJ1WLPlkG5E+mZgIyqZmATGomIJOaCcikZgLyBJA/2UnVopOqRSdVi/BH/mFAJjU3QG7U1P93UrXopGrRSdWiT14CMqmZgExqngByo2YCMqmZgExqngAyqZmATGomIDdqboBMam6ATGomIJOaN06qFp1ULTqpWoQ/sgjIE2omIJOaCcik5gkgk5obIJOa3wTkRs0NkBs1m06qFp1ULTqpWvTJS0Bu1ExAngDyBJAngGwCMqm5ATKpeQLIjZoJyARkUvPGSdWik6pFJ1WLPnlJzQ2QN9RMQN5Q8waQ36RmArJJzaaTqkUnVYtOqhZ98hKQN4BMaiYgN0AmNTdAJjUTkBs1N0BugExqJiCTmr/JSdWik6pFJ1WLPnlJzRtAbtRMQCY1E5BJzaTmCTUTkEnNE2qeAPKEmv/SSdWik6pFJ1WLPnkJyI2aJ4DcqJmATGomIJOaGzW/Ccgbap5QMwGZ1LxxUrXopGrRSdUi/JEvAjKpuQEyqZmA3KiZgLyhZhOQGzVPANmk5o2TqkUnVYtOqhZ98hKQSc2k5gbIpGYC8gSQJ9RMQJ4AMqmZgNyomYBMaiYgk5oJyBNqNp1ULTqpWnRStQh/ZBGQSc0E5EbNDZAbNROQSc0EZFJzA+QJNROQJ9TcAJnU3AC5UfPGSdWik6pFJ1WLPnkJyA2QSc0EZALyhJo31ExAnlAzAZmAbAJyA2RSc6Nm00nVopOqRSdViz55Sc0NkBs1/yUgk5oJyKTmRs0E5EbNBOQNNROQ33RSteikatFJ1SL8kReA3KiZgGxScwNkUjMBeUPNG0B+k5pvOqladFK16KRq0ScvqXlCzSYgk5obIJOaCciNmgnIpOYNNU8AmdRMQG6ATGreOKladFK16KRq0ScvAflNar5JzQ2QGyCTmjeATGpugNwA+aaTqkUnVYtOqhZ9skzNJiA3ap5QMwG5UXOj5pvUPKFmAjKp+aaTqkUnVYtOqhZ98mVAnlDzTUAmNROQGzUTkEnNBOQJIJvU/KaTqkUnVYtOqhZ98o8BcqPmRs0bQG7UTEAmNROQSc0bQCY1m06qFp1ULTqpWvTJXw7IjZoJyKRmArJJzRNAJjUTkEnNDZAbIJOaN06qFp1ULTqpWvTJl6n5JjU3QCY1T6iZgNyomYBMap4AMqmZgExqbtRMQDadVC06qVp0UrXok2VAfhOQSc0NkCeATGqeUDMBmdRMQJ5QMwGZ1ExAvumkatFJ1aKTqkX4I1VLTqoWnVQtOqladFK16KRq0UnVopOqRSdVi06qFp1ULTqpWnRSteikatFJ1aKTqkX/Ay6PP1eCC67lAAAAAElFTkSuQmCC">                                        </div>                                    </div>                                </div>                                <div class="panel-collapse collapse in" id="collapse5aa2255c576889030ec31129" role="tabpanel"                            aria-labelledby="headingdemo">                                    <div class="panel-body" style="padding-bottom: 5px;">                                        <!-- ngIf: !selectedWallet.active || selectedWallet.block || !!global.utils.bitwiseAnd(selectedWallet.extraFlags,"0x01") -->                                        <div></div>                                        <div>                                            <div class="asset text-center" type="button" ng-click="addTrustLine(selectedWallet)" ng-hide="selectedWallet.block || !selectedWallet.active || !!global.utils.bitwiseAnd(selectedWallet.extraFlags,\'0x01\')"                                    role="button" tabindex="0" aria-hidden="false">                                                <div class="flexbox" style="justify-content: center; padding: 52px; width: 120px; color: gray;">                                                    <i                                        class="fa fa-plus valign-center" ng-hide="selectedWallet.addingTrustLine" style="font-size: 40px;"                                        aria-hidden="false"></i>                                                    <i class="fa fa-spinner fa-spin valign-center ng-hide" ng-show="selectedWallet.addingTrustLine"                                        style="font-size: 40px;" aria-hidden="true"></i>                                                </div>                                                <div style="font-size: 8px;">&nbsp;</div>                                            </div>                                            <!-- ngRepeat: balance in selectedWallet.balances -->                                            <div class="asset ng-scope" ng-repeat="balance in selectedWallet.balances">                                                <div class="text-center" type="button" ng-click="openDialog(selectedWallet, balance)" role="button"                                        tabindex="0">                                                    <div style="margin-bottom: 4px; position: relative;">                                                        <img class="img-asset" ng-src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a9363fa57620b43cdab9512-logo"                                            err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png" src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a9363fa57620b43cdab9512-logo">                                                            <!-- ngIf: active -->                                                        </div>                                                        <table ng-show="currentSelectAssetID !== balance._id" style="width: 100%;" aria-hidden="false">                                                            <tbody>                                                                <tr>                                                                    <td>                                                                        <div class="flexbox">                                                                            <span class="v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty"                                                    ng-model="balance.asset_code" aria-invalid="false">TUANCOIN</span>                                                                        </div>                                                                    </td>                                                                </tr>                                                                <tr>                                                                    <td>                                                                        <span class="amount ng-binding">0.0000</span>                                                                    </td>                                                                </tr>                                                                <tr>                                                                    <td ng-show="balance.blockAmount > 0" aria-hidden="true" class="ng-hide">                                                                        <span class="amount text-danger ng-binding"                                                    style="font-size: 12px;">0.0000</span>                                                                    </td>                                                                    <td ng-show="balance.blockAmount == 0" aria-hidden="false">                                                                        <span class="amount text-danger"                                                    style="font-size: 12px;">&nbsp;</span>                                                                    </td>                                                                    <!--span(ng-if=\'checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)\') pending-->                                                                </tr>                                                                <tr>                                                                    <td class="text-right" ng-show="assetStatus.STATUS_PENDING === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="false">                                                                        <i class="fa fa-clock-o text-warning"></i>                                                                    </td>                                                                    <td class="text-right ng-hide" ng-show="assetStatus.STATUS_REJECTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                        <i class="fa fa-window-close text-danger"></i>                                                                    </td>                                                                    <td class="text-right ng-hide" ng-show="assetStatus.STATUS_ACCEPTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                        <i class="fa fa-check-square text-success"></i>                                                                    </td>                                                                    <td class="text-right ng-hide" ng-show="0 === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                        <i class="fa fa-check-square text-success"></i>                                                                    </td>                                                                </tr>                                                            </tbody>                                                        </table>                                                        <div class="flexbox ng-hide" ng-show="currentSelectAssetID === balance._id" style="justify-content: center; padding: 18px; width: 120px; color: gray;"                                        aria-hidden="true">                                                            <i class="fa fa-spinner fa-spin valign-center" style="font-size: 40px;"></i>                                                        </div>                                                    </div>                                                </div>                                                <!-- end ngRepeat: balance in selectedWallet.balances -->                                                <div class="asset ng-scope" ng-repeat="balance in selectedWallet.balances">                                                    <div class="text-center" type="button" ng-click="openDialog(selectedWallet, balance)" role="button"                                        tabindex="0">                                                        <div style="margin-bottom: 4px; position: relative;">                                                            <img class="img-asset" ng-src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a95259ccd92d67507a95f12-logo"                                            err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png" src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/5a95259ccd92d67507a95f12-logo">                                                                <!-- ngIf: active -->                                                            </div>                                                            <table ng-show="currentSelectAssetID !== balance._id" style="width: 100%;" aria-hidden="false">                                                                <tbody>                                                                    <tr>                                                                        <td>                                                                            <div class="flexbox">                                                                                <span class="v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty"                                                    ng-model="balance.asset_code" aria-invalid="false">BAPCOIN</span>                                                                            </div>                                                                        </td>                                                                    </tr>                                                                    <tr>                                                                        <td>                                                                            <span class="amount ng-binding">0.0000000</span>                                                                        </td>                                                                    </tr>                                                                    <tr>                                                                        <td ng-show="balance.blockAmount > 0" aria-hidden="true" class="ng-hide">                                                                            <span class="amount text-danger ng-binding"                                                    style="font-size: 12px;">0.0000000</span>                                                                        </td>                                                                        <td ng-show="balance.blockAmount == 0" aria-hidden="false">                                                                            <span class="amount text-danger"                                                    style="font-size: 12px;">&nbsp;</span>                                                                        </td>                                                                        <!--span(ng-if=\'checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)\') pending-->                                                                    </tr>                                                                    <tr>                                                                        <td class="text-right ng-hide" ng-show="assetStatus.STATUS_PENDING === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                            <i class="fa fa-clock-o text-warning"></i>                                                                        </td>                                                                        <td class="text-right ng-hide" ng-show="assetStatus.STATUS_REJECTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                            <i class="fa fa-window-close text-danger"></i>                                                                        </td>                                                                        <td class="text-right" ng-show="assetStatus.STATUS_ACCEPTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="false">                                                                            <i class="fa fa-check-square text-success"></i>                                                                        </td>                                                                        <td class="text-right ng-hide" ng-show="0 === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                            <i class="fa fa-check-square text-success"></i>                                                                        </td>                                                                    </tr>                                                                </tbody>                                                            </table>                                                            <div class="flexbox ng-hide" ng-show="currentSelectAssetID === balance._id" style="justify-content: center; padding: 18px; width: 120px; color: gray;"                                        aria-hidden="true">                                                                <i class="fa fa-spinner fa-spin valign-center" style="font-size: 40px;"></i>                                                            </div>                                                        </div>                                                    </div>                                                    <!-- end ngRepeat: balance in selectedWallet.balances -->                                                    <div class="asset ng-scope" ng-repeat="balance in selectedWallet.balances">                                                        <div class="text-center" type="button" ng-click="openDialog(selectedWallet, balance)" role="button"                                        tabindex="0">                                                            <div style="margin-bottom: 4px; position: relative;">                                                                <img class="img-asset" ng-src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/logo-GBT-5a816d7e0238ae3d9b0c3998"                                            err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png" src="https://dev-arm.s3.amazonaws.com/www-assets/images/asset-logo/logo-GBT-5a816d7e0238ae3d9b0c3998">                                                                    <!-- ngIf: active -->                                                                </div>                                                                <table ng-show="currentSelectAssetID !== balance._id" style="width: 100%;" aria-hidden="false">                                                                    <tbody>                                                                        <tr>                                                                            <td>                                                                                <div class="flexbox">                                                                                    <span class="v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-not-empty"                                                    ng-model="balance.asset_code" aria-invalid="false">GBT</span>                                                                                </div>                                                                            </td>                                                                        </tr>                                                                        <tr>                                                                            <td>                                                                                <span class="amount ng-binding">6.486</span>                                                                            </td>                                                                        </tr>                                                                        <tr>                                                                            <td ng-show="balance.blockAmount > 0" aria-hidden="true" class="ng-hide">                                                                                <span class="amount text-danger ng-binding"                                                    style="font-size: 12px;">0.000</span>                                                                            </td>                                                                            <td ng-show="balance.blockAmount == 0" aria-hidden="false">                                                                                <span class="amount text-danger"                                                    style="font-size: 12px;">&nbsp;</span>                                                                            </td>                                                                            <!--span(ng-if=\'checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)\') pending-->                                                                        </tr>                                                                        <tr>                                                                            <td class="text-right ng-hide" ng-show="assetStatus.STATUS_PENDING === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                <i class="fa fa-clock-o text-warning"></i>                                                                            </td>                                                                            <td class="text-right ng-hide" ng-show="assetStatus.STATUS_REJECTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                <i class="fa fa-window-close text-danger"></i>                                                                            </td>                                                                            <td class="text-right" ng-show="assetStatus.STATUS_ACCEPTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="false">                                                                                <i class="fa fa-check-square text-success"></i>                                                                            </td>                                                                            <td class="text-right ng-hide" ng-show="0 === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                <i class="fa fa-check-square text-success"></i>                                                                            </td>                                                                        </tr>                                                                    </tbody>                                                                </table>                                                                <div class="flexbox ng-hide" ng-show="currentSelectAssetID === balance._id" style="justify-content: center; padding: 18px; width: 120px; color: gray;"                                        aria-hidden="true">                                                                    <i class="fa fa-spinner fa-spin valign-center" style="font-size: 40px;"></i>                                                                </div>                                                            </div>                                                        </div>                                                        <!-- end ngRepeat: balance in selectedWallet.balances -->                                                        <div class="asset ng-scope" ng-repeat="balance in selectedWallet.balances">                                                            <div class="text-center" type="button" ng-click="openDialog(selectedWallet, balance)" role="button"                                        tabindex="0">                                                                <div style="margin-bottom: 4px; position: relative;">                                                                    <img class="img-asset" err-src="/images/asset_icons/default.png"                                            empty-src="/images/asset_icons/RIA.png" src="/images/asset_icons/RIA.png">                                                                        <!-- ngIf: active -->                                                                        <span                                            class="asset-inside ng-binding ng-scope" ng-if="active" style="position: absolute; top: 25px; left: 0px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 15px; text-shadow: 0 0 4px #EBEBFE;"></span>                                                                        <!-- end ngIf: active -->                                                                    </div>                                                                    <table ng-show="currentSelectAssetID !== balance._id" style="width: 100%;" aria-hidden="false">                                                                        <tbody>                                                                            <tr>                                                                                <td>                                                                                    <div class="flexbox">                                                                                        <span class="v-center asset-code ng-pristine ng-untouched ng-valid ng-binding ng-empty"                                                    ng-model="balance.asset_code" aria-invalid="false">RIA</span>                                                                                    </div>                                                                                </td>                                                                            </tr>                                                                            <tr>                                                                                <td>                                                                                    <span class="amount ng-binding">765.5605000</span>                                                                                </td>                                                                            </tr>                                                                            <tr>                                                                                <td ng-show="balance.blockAmount > 0" aria-hidden="true" class="ng-hide">                                                                                    <span class="amount text-danger ng-binding"                                                    style="font-size: 12px;">0.0000000</span>                                                                                </td>                                                                                <td ng-show="balance.blockAmount == 0" aria-hidden="false">                                                                                    <span class="amount text-danger"                                                    style="font-size: 12px;">&nbsp;</span>                                                                                </td>                                                                                <!--span(ng-if=\'checkAssetAccept(balance, selectedWallet.lastRequestTrustAsset)\') pending-->                                                                            </tr>                                                                            <tr>                                                                                <td class="text-right ng-hide" ng-show="assetStatus.STATUS_PENDING === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                    <i class="fa fa-clock-o text-warning"></i>                                                                                </td>                                                                                <td class="text-right ng-hide" ng-show="assetStatus.STATUS_REJECTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                    <i class="fa fa-window-close text-danger"></i>                                                                                </td>                                                                                <td class="text-right" ng-show="assetStatus.STATUS_ACCEPTED === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="false">                                                                                    <i class="fa fa-check-square text-success"></i>                                                                                </td>                                                                                <td class="text-right ng-hide" ng-show="0 === getAssetStatus(balance, selectedWallet.lastRequestTrustAsset)"                                                    aria-hidden="true">                                                                                    <i class="fa fa-check-square text-success"></i>                                                                                </td>                                                                            </tr>                                                                        </tbody>                                                                    </table>                                                                    <div class="flexbox ng-hide" ng-show="currentSelectAssetID === balance._id" style="justify-content: center; padding: 18px; width: 120px; color: gray;"                                        aria-hidden="true">                                                                        <i class="fa fa-spinner fa-spin valign-center" style="font-size: 40px;"></i>                                                                    </div>                                                                </div>                                                            </div>                                                            <!-- end ngRepeat: balance in selectedWallet.balances -->                                                            <p class="padding-15 ng-hide" ng-show="selectedWallet.balances.length==0" aria-hidden="true">This                                    wallet has no asset                                </p>                                                        </div>                                                    </div>                                                </div>                                            </div>                                        </div>                                        <script>app.controller(\'ActiveWalletDialogController\', [\'$uibModalInstance\', \'$http\', \'$scope\', \'data\', function($modalInstance, $http, $scope, data){                    $scope.unactiveWallet = data.wallet;                    $scope.walletsToActive = null;                    $scope.idWalletActive = null;                    $scope.startingBalance = null;                    $scope.waitResponse = false;                    $scope.transactionFee = 0;                    $scope.verifyGaCode = null;                                        $scope.close = function(){                        $modalInstance.dismiss();                    }                                        $scope.init = function(){                        $scope.waitResponse = true;                        var dataBatch = {                            options: {},                            commands: [                                {                                    name: \'get_all_user_wallets\',                                    params: {                                        with_assets: false                                    }                                },                                {                                    name: \'transaction_fee\',                                    params: {}                                }                            ]                        }                        $http.post(\'/batch\', dataBatch)                        .then(                            function(response){                                $scope.waitResponse = false;                                if (response.data.success && response.data.results[1].success)                                    $scope.transactionFee = response.data.results[1].result;                                if (response.data.success && response.data.results[0].success){                                    $scope.walletsToActive = response.data.results[0].result;                                } else {                                    if ( response.data.results[0].error && response.data.results[0].error.errorCode == 12 )                                        document.location.href=\'/login?redirect=\'+ encodeURIComponent(window.location.pathname);                                    alert(\'Error: \' + response.data.results[0].error.errorMessage);                                }                            },                            function(err){                                alert(\'Error: \' + err);                            }                        );                    }                                        $scope.activeWallet = function(){                        $scope.waitResponse = true;                        var dataBatch = {                            name: \'active_wallet\',                            params: {                                publicKey: $scope.unactiveWallet.address,                                walletId: $scope.idWalletActive,                                startingBalance: $scope.startingBalance,                                code: $scope.verifyGaCode                            }                        }                        $http.post(\'/rpc\', dataBatch)                        .then(                            function(response){                                $scope.waitResponse = false;                                if (response.data.success){                                    $modalInstance.close(true);                                } else {                                    if (response.data.error.errorCode === 12 )                                        document.location.href=\'/login?redirect=\'+ encodeURIComponent(window.location.pathname);                                    alert(\'Error: \' + response.data.error.errorMessage);                                }                            },                            function(err){                                alert(\'Error: \' + err);                            }                        );                    }                                        $scope.init();                                        }]);                </script>                                        <script type="text/ng-template" id="ActiveWalletDialog">                                            <div class="modal-header">                                                <button class="close" type="button" ng-click="close()">&times;</button>                                                <h4 class="modal-title bold-text">Active wallet</h4>                                            </div>                                            <div class="modal-body">                                                <h3 class="fs-title text-center margin-bottom-15px" style="margin-top: 0px;">Sending amount of asset from an active and non block wallet to active this wallet.</h3>                                                <div>                                                    <div class="panel panel-default">                                                        <div class="panel-body">                                                            <fieldset ng-disabled="waitResponse">                                                                <label>Wallet address</label>                                                                <input class="form-control margin-bottom-15px" type="text" readonly="true" value="{{ unactiveWallet.address }}"/>                                                                <label>Wallet name</label>                                                                <input class="form-control margin-bottom-15px" type="text" readonly="true" value="{{unactiveWallet.name || \'\'}}"/>                                                                <label>&nbsp;Funding wallet</label>                                                                <select class="form-control margin-bottom-15px" ng-model="idWalletActive">                                                                    <option value="">Select wallet</option>                                                                    <option class="ellipsis" ng-repeat="wallet in walletsToActive" value="{{wallet._id}}" ng-disabled="wallet.block || !wallet.active">{{wallet.name}} {{ wallet.active && !wallet.block ? \'\' : !wallet.active && wallet.block ? \'(Inactive and blocked)\' : !wallet.active ? \'(inactive)\' : \'(Blocked)\' }}</option>                                                                </select>                                                                <label>Starting balance</label>                                                                <input class="form-control margin-bottom-15px" type="number" ng-model="startingBalance"/>                                                                <label>Verification code</label>                                                                <input class="form-control margin-bottom-15px" type="text" ng-model="verifyGaCode"/>                                                                <div class="margin-bottom-15px" style="color:red;">                                                                    <!--| &nbsp; #{__(\'transaction_fee_notice\', \'{{transactionFee}}\' )}-->                                                                </div>                                                                <div class="text-center" ng-hide="waitResponse">                                                                    <button class="btn btn-primary action" ng-disabled="!idWalletActive" ng-click="activeWallet()">Active</button>                                                                </div>                                                                <div class="text-center margin-top-15px" ng-show="waitResponse">                                                                    <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>                                                                </div>                                                            </fieldset>                                                        </div>                                                    </div>                                                </div>                                            </div>                                        </script>                                        <style></style>                                        <script>app.controller(\'AssetDialogController\', [\'$scope\', \'$uibModalInstance\', \'$http\', \'options\', function ($scope, $modalInstance, $http, options) {                    $scope.allAssets = [];                    $scope.ownedAssets = [];                                        $scope.wallets = null;                    $scope.selectedWallet = null;                    $scope.loading = true;                                        $scope.issuingAssets = [];                    $scope.filteredAssets = null;                    $scope.selectedAsset = null;                    $scope.assetFilter = "";                    $scope.filtering = false;                                        $scope.options = options;                                        $scope.close = function () {                        $modalInstance.dismiss();                    };                                        $scope.OK = function () {                        var data = {                            selectedAsset: $scope.selectedAsset,                            selectedWallet: $scope.selectedWallet                        }                        $modalInstance.close(data);                    };                    $scope.changeWallet = function (selectedWallet) {                        $scope.selectedAsset = null;                        $scope.selectedWallet = selectedWallet;                    };                    $scope.selectAsset = function (asset) {                        $scope.selectedAsset = asset;                    };                                        $scope.filterAsset = function (filter) {                        filter = filter.toLowerCase();                        $scope.filtering = true;                        if ($scope.otherAssets) {                            $scope.filteredAssets = $scope.otherAssets.filter(function (asset) {                                var u1 = asset.name ? asset.name.toLowerCase().indexOf(filter) >= 0 : false;                                var u2 = false; //asset.issuer && asset.issuer.name.toLowerCase().indexOf(filter);                                var u3 = false; //asset.issuer && asset.issuer.address.toLowerCase().indexOf(filter);                                return (filter === \'@\' || (filter && (u1 || u2 || u3)));                            });                        }                        $scope.filtering = false;                    };                                        $scope.init = function () {                        //-- request to get all user\'s asset and                        var data = {                            options: {},                            commands: [                                {                                    name: \'get_all_assets\',                                    params: {}                                },                                {                                    name: \'get_all_user_wallets\',                                    params: {                                        with_assets: true                                    }                                },                                {                                    name: \'get_all_user_assets\',                                    params: {withoutAdvance: options.withoutAdvance}                                }                            ]                        };                                            $http.post(\'/batch\', data).then(                            function (response) {                                $scope.loading = false;                                console.log(response.data);                                if (response.data.success) {                                    if (response.data.results[0].error && response.data.results[0].error.errorCode === 12)                                        document.location.href = \'/login?redirect=\' + encodeURIComponent(window.location.pathname);                                    $scope.allAssets = response.data.results[0].success ? response.data.results[0].result : [];                                    $scope.wallets = response.data.results[1].success ? response.data.results[1].result : [];                                    $scope.issuingAssets = response.data.results[2].success ? response.data.results[2].result : [];                                                        //-- extract ownedAssets                                    $scope.ownedAssets = [];                                    $scope.wallets.some(function (wallet) {                                        if (wallet.balances) {                                            wallet.balances.forEach(function (balance) {                                                //-- check if ownedAssets has already contained this asset                                                var contain = false;                                                for (b in $scope.ownedAssets) {                                                    if ($scope.ownedAssets[b]._id === balance._id) {                                                        contain = true;                                                        break;                                                    }                                                }                                                if (!contain) $scope.ownedAssets.push(balance);                                            });                                        }                                    });                                                        $scope.otherAssets = [];                                    $scope.allAssets.forEach(function (asset) {                                        var contain = $scope.ownedAssets.some(function (ownAsset) {                                            if (ownAsset._id === asset._id) return true;                                        });                                        if (!contain) {                                            $scope.otherAssets.push(asset);                                        }                                    });                                }                            },                            function (err) {                                $scope.loading = false;                            }                        );                    };                                        $scope.init();                    }]);                </script>                                        <style>.asset {                    cursor: pointer;                    min-width: 100px;                    background-color: lightgrey;                    color: black;                    padding: 10px;                    border-radius: 4px;                    }                    .asset:hover {                    background-color: darkgray !important;                    color: white;                    }                    .asset.selected {                    background-color: seagreen !important;                    color: white;                    }                    .img-dialog {                    width: 30px;                    height: 20px;                    }                    .asset span {                    padding:5px;                    font-size:16px;                    font-weight:bold;                    }                </style>                                        <script type="text/ng-template" id="assetDialog">                                            <div class="modal-header">                                                <button class="close" type="button" ng-click="close()">&times;</button>                                                <h3 class="modal-title bold-text">Select an asset</h3>                                            </div>                                            <div class="modal-body">                                                <div class="text-center" ng-show="loading">                                                    <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>                                                </div>                                                <div ng-hide="loading">                                                    <div ng-if="options.mode==&quot;buy&quot;">                                                        <div ng-if="options.ownedAssets">                                                            <label>Owned assets</label>                                                            <div class="text-center font-shadow" ng-show="!ownedAssets || ownedAssets.length === 0">You have no asset</div>                                                            <ul class="nav nav-pills" ng-show="ownedAssets &amp;&amp; ownedAssets.length&gt;0">                                                                <li class="margin-bottom-15px margin-right-15px" role="presentation" ng-repeat="asset in ownedAssets">                                                                    <div class="asset {{asset._id==selectedAsset._id? &quot;selected&quot; : &quot;&quot;}}" ng-click="selectAsset(asset)">                                                                        <div style="position: relative; width: 30px; display: inline-block;">                                                                            <img class="img-dialog" ng-src="{{asset.logo}}" err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png"/>                                                                            <span ng-if="active" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.asset_code.substr(0,3) }}</span>                                                                        </div>                                                                        <div style="display: inline-block;">                                                                            <span>{{asset.asset_type === \'native\'? \'RIA\' : asset.asset_code}}</span>                                                                        </div>                                                                    </div>                                                                </li>                                                            </ul>                                                        </div>                                                        <div ng-if="options.otherAssets">                                                            <label>More</label>                                                            <div class="input-group">                                                                <span class="input-group-addon">&nbsp;                                                                    <i class="fa fa-search"></i>&nbsp;                                                                </span>                                                                <input class="form-control" type="text" placeholder="Search for issuer asset..." ng-model="assetFilter" ng-change="filterAsset(assetFilter)"/>                                                            </div>                                                            <div class="text-center font-shadow" ng-show="assetFilter &amp;&amp; (!filteredAssets || (filteredAssets &amp;&amp; filteredAssets.length==0))">No result found</div>                                                            <ul class="nav nav-pills" ng-hide="filtering">                                                                <li class="margin-bottom-15px margin-right-15px" role="presentation" ng-repeat="asset in filteredAssets">                                                                    <div class="asset {{asset._id==selectedAsset._id? &quot;selected&quot; : &quot;&quot;}}" ng-click="selectAsset(asset)">                                                                        <div style="position: relative; width: 30px; display: inline-block;">                                                                            <img class="img-dialog" ng-src="{{asset.logo}}" err-src="/images/asset_icons/default.png" empty-src="{{ asset.asset_type === \'native\'? \'/images/asset_icons/RIA.png\' : \'/images/asset_icons/default.png\'}}"/>                                                                            <span ng-if="active &amp;&amp; asset.asset_type !== &quot;native&quot;" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.name.substr(0,3) }}</span>                                                                        </div>                                                                        <div style="display: inline-block;">                                                                            <span>{{asset.asset_type === \'native\'? \'RIA\' : asset.name}}</span>                                                                        </div>                                                                    </div>                                                                </li>                                                            </ul>                                                        </div>                                                    </div>                                                    <div ng-if="options.mode==&quot;issue&quot;">                                                        <label>Issuing assets</label>                                                        <div class="text-center font-shadow" ng-show="!issuingAssets || issuingAssets.length==0">You have no asset</div>                                                        <ul class="nav nav-pills" ng-show="issuingAssets &amp;&amp; issuingAssets.length&gt;0">                                                            <li class="margin-bottom-15px margin-right-15px" role="presentation" ng-repeat="asset in issuingAssets">                                                                <div class="asset {{asset._id==selectedAsset._id? &quot;selected&quot; : &quot;&quot;}}" ng-click="selectAsset(asset)">                                                                    <div style="position: relative; width: 30px; display: inline-block;">                                                                        <img class="img-dialog" ng-src="{{asset.logo}}" err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png"/>                                                                        <span ng-if="active" style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; display: table; text-align: center; margin: auto; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.name.substr(0,3) }}</span>                                                                    </div>                                                                    <div style="display: inline-block;">                                                                        <span>{{asset.asset_type === \'native\'? \'RIA\' : asset.name}}</span>                                                                    </div>                                                                </div>                                                            </li>                                                        </ul>                                                    </div>                                                    <div ng-if="options.mode==&quot;sell&quot;">                                                        <label>from wallet</label>                                                        <select class="form-control margin-bottom-15px" ng-model="selectedWallet" ng-change="changeWallet(selectedWallet)">                                                            <option value="">Select wallet</option>                                                            <option ng-repeat="wallet in wallets" ng-value="wallet" ng-disabled="wallet.block || !wallet.active">{{wallet.name}} {{ wallet.active && !wallet.block ? \'\' : !wallet.active && wallet.block ? \'(Inactive and blocked)\' : !wallet.active ? \'(inactive)\' : \'(Blocked)\' }}</option>                                                        </select>                                                        <div>                                                            <ul class="nav nav-pills">                                                                <li class="margin-bottom-15px margin-right-15px" role="presentation" ng-repeat="asset in selectedWallet.balances">                                                                    <div class="asset {{asset._id==selectedAsset._id? &quot;selected&quot; : &quot;&quot;}}" ng-click="selectAsset(asset)">                                                                        <img class="img-dialog" ng-src="{{asset.logo}}" err-src="/images/asset_icons/default.png" empty-src="/images/asset_icons/RIA.png"/>                                                                        <span ng-if="active" style="position: absolute; top: 12px; left: -25px; text-align: center; width: 100%; color: white; font-family: Sans-Serif; font-size: 8px; text-shadow: 0 0 4px #EBEBFE;">{{ asset.name.substr(0,3) }}</span>                                                                        <span>{{asset.asset_type === \'native\'? \'RIA\' : asset.asset_code}}</span>                                                                    </div>                                                                </li>                                                            </ul>                                                        </div>                                                        <div class="text-center" ng-show="filtering">                                                            <i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>                                                        </div>                                                    </div>                                                </div>                                            </div>                                            <div class="modal-footer">                                                <button class="btn btn-primary action" type="button" ng-click="OK()" ng-disabled="!selectedAsset">OK</button>                                            </div>                                        </script>                                    </div>                                </div>                            </div>                        </div>                        <div class="no-wallet ng-hide" ng-show="!wallets || wallets.length==0" aria-hidden="true">Create your first wallet</div>                    </div></div>'
+    var COMPONENTS = [{'name': 'AlertMessagesComponent', 'selector': 'app-alert-messages'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ButtonComponent', 'selector': 'app-button'},{'name': 'ErrorPage', 'selector': ''},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'ForgotPasswordPage', 'selector': ''},{'name': 'Header', 'selector': 'app-header'},{'name': 'HomePage', 'selector': ''},{'name': 'InputComponent', 'selector': 'app-input'},{'name': 'LoginPage', 'selector': ''},{'name': 'MyWalletsComponent', 'selector': ''},{'name': 'NewAccountPage', 'selector': ''},{'name': 'NewsDetailDialog', 'selector': 'app-news-detail-dialog'},{'name': 'NotFoundPage', 'selector': ''},{'name': 'ShowErrorValidComponent', 'selector': 'show-error-valid'},{'name': 'WalletPage', 'selector': ''}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'MyWalletsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'MyWalletsComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <script src="../js/menu-wc.js"></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

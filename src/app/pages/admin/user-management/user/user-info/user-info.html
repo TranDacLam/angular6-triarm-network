@@ -1,0 +1,203 @@
+<div class="row">
+
+	<app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+
+    <div class="col-xs-12 col-sm-5 col-md-5 valign-center">
+        <div>
+            <h3><label>{{'user_info' | t}}</label></h3>
+            <div class="panel panel-default" *ngIf="user_detail">
+                <div class="panel-body">
+                	<label>{{'email_' | t}}</label>
+                    <div class="margin-bottom-15px">
+                    	<span>{{user_detail.email}}</span>
+                    	<button class="btn btn-primary margin-left-15px" (click)="editUserInfo('email')" *ngIf="user_detail.userClass.indexOf(SUPER_ADMIN) < 0"><i class="fa fa-envelope"></i>
+                    		<span>&nbsp; {{'change_email' | t}}</span>
+                    	</button>
+                    </div>
+                    <label>{{'first_name' | t}}</label>
+                    <div
+                        class="margin-bottom-15px">{{user_detail.firstname}}
+                    </div>
+                    <label>{{'middle_name' | t}}</label>
+	                <div class="margin-bottom-15px">
+	                	{{user_detail.middlename}}
+	                </div>
+	                <label>{{'last_name' | t}}</label>
+	                <div class="margin-bottom-15px">
+	                	{{user_detail.lastname}}
+	                </div>
+	                <label>{{'arm_id' | t}}</label>
+	                <div class="margin-bottom-15px">
+	                	{{user_detail.armId}}
+	                </div>
+	                <button class="btn btn-primary margin-top-15px" (click)="editUserInfo('info')">
+	                	<i class="fa fa-user"></i>
+	                	<span>&nbsp; {{'edit_user' | t}}</span>
+	                </button>
+	                <button class="btn btn-success margin-top-15px" *ngIf="(user_detail.userClass.indexOf(SUPER_ADMIN) < 0) && user_detail.accountStatus === 1"
+	                    (click)="changeAccountStatusUser(1)" style="margin-left: 10px;"><i class="fa fa-unlock"></i>
+	                    <span>&nbsp; {{'unlock_user' | t}}</span>
+	                </button>
+	                <button class="btn btn-success margin-top-15px" *ngIf="!((user_detail.userClass.indexOf(SUPER_ADMIN) >= 0) || user_detail.accountStatus === 1)"
+	                    (click)="changeAccountStatusUser(0)" style="margin-left: 10px;"><i class="fa fa-lock"></i>
+	                    <span>&nbsp; {{'lock_user' | t}}</span>
+	                </button>
+	                <button class="btn btn-danger margin-top-15px" *ngIf="!user_detail.userClass.indexOf(SUPER_ADMIN) >= 0"
+	                    (click)="resetTfa()" style="margin-left: 10px;"><i class="fa fa-lock"></i>
+	                    <span>&nbsp; {{'reset_tfa' | t}}</span>
+	                </button>
+	            </div>
+	        </div>
+	    </div>
+	    <div>
+		    <div *ngIf="issuer">
+		        <div class="row">
+		            <div class="col-sm-12">
+		                <h3><label>{{'issuer_account' | t}}</label></h3>
+		                <div class="panel panel-default">
+		                    <div class="panel-body">
+		                        <div>
+		                            <div>
+		                                <div class="text-left">
+		                                	<label>{{'personal_information_of_issuer' | t}}</label>
+		                                </div>
+		                                <div class="text-left can-toggle demo-rebrand-1" style="margin-top: 10px;">
+		                                    <input id="issuer-enable-toggle" type="checkbox" [checked]="issuer.publicPersonalInfo" (change)="togglePersonalInfo($event)">
+		                                    <label for="issuer-enable-toggle">
+		                                        <div class="can-toggle__switch" [attr.data-checked]="'public_' | t" [attr.data-unchecked]="'private_' | t"></div>
+		                                    </label>
+                                		</div>
+		                            </div>
+		                            <div class="text-right margin-bottom-15px" *ngIf="issuerLatestRequest">
+		                            	<span>
+		                            		<span class="label label-success" *ngIf="issuerLatestRequest.status === 3">
+		                            			<i class="fa fa-check-circle-o"></i>&nbsp; {{'accepted' | t}}
+		                            		</span>
+			                            		<span class="label label-danger"
+			                                    *ngIf="issuerLatestRequest.status === 2">
+			                                    <i class="fa fa-times"></i>&nbsp; {{'rejected_' | t}}
+			                                </span>
+		                                	<span class="label label-warning" *ngIf="issuerLatestRequest.status === 1">
+		                                		<i class="fa fa-clock-o"></i>&nbsp; {{'pending_' | t}}
+		                                	</span>
+		                                </span>
+		                            </div>
+		                        </div>
+		                        <div class="panel panel-default" *ngIf="issuerLatestRequest">
+		                            <div class="panel-body has-margin-bottom">
+		                            	<label>{{'issuer' | t}}</label>
+		                                <div class="margin-bottom-15px">{{issuerLatestRequest.name}}</div>
+		                                <label>{{'address' | t}}</label>
+		                                <div class="margin-bottom-15px">{{issuerLatestRequest.address}}
+		                                </div>
+		                                <label>{{'organization' | t}}</label>
+		                                <div class="margin-bottom-15px">{{issuerLatestRequest.organization}}
+		                                </div>
+		                                <label>{{'telephone_number' | t}}</label>
+		                                <div class="margin-bottom-15px">{{issuerLatestRequest.telNumber}}
+		                                </div>
+		                                <div style="margin-bottom: 5px;">
+		                                	<label> {{'identity_card' | t}} &nbsp;</label>
+		                                    <div style="margin-bottom: 10px; overflow: hidden;">
+		                                    	<label>
+		                                    		<img class="issuer-upload-images" src="{{issuerLatestRequest.issuerImage[0]}}" style="max-width: 160px; max-height: 110px;"/>
+		                                    	</label>
+		                                    	<label>
+		                                    		<img class="issuer-upload-images" src="{{issuerLatestRequest.issuerImage[1]}}" style="max-width: 160px; max-height: 110px;"/>
+		                                    	</label>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                        <div class="margin-bottom-15px">
+		                            <div class="text-left">
+		                            	<label>{{'ico_maker_' | t}}</label>
+		                            </div>
+		                            <div class="text-left can-toggle demo-rebrand-1" style="margin-top: 5px;">
+		                                    <input id="ico-maker-enable-toggle" type="checkbox" [checked]="issuer.isICOMaker" (change)="toggleIcoMaker($event)">
+		                                    <label for="ico-maker-enable-toggle">
+		                                        <div class="can-toggle__switch" [attr.data-checked]="'active_' | t" [attr.data-unchecked]="'inactive_' | t"></div>
+		                                    </label>
+                                		</div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-7 col-md-7 valign-center">
+	    <h3 style="float: left;">
+	    	<label>{{'all_wallets' | t}}</label>
+	    </h3>
+	    <div class="text-right" style="margin-top: 20px; margin-bottom: 10px;">
+	    	<button class="btn btn-sm btn-primary" (click)="unblockAllWallet()" [disabled]="waitingChange">{{'unblock_all_wallet' | t}}</button>
+	    </div>
+	    <div class="panel panel-default" *ngIf="wallets">
+	        <div class="panel panel-default" style="margin: 10px; padding: 10px;" *ngFor="let wallet of wallets" >
+	            <div style="word-wrap: break-word;">
+	                <div>
+	                	<label>{{'wallet_name' | t}}: &nbsp;</label>
+	                	<span class="margin-bottom-15px">{{ wallet.name }} &nbsp;
+	                		<i class="fa fa-circle text-success" *ngIf="wallet.multisignType === 0">&nbsp; {{'advance_wallet' | t}}</i>
+	                		<i class="fa fa-circle text-danger" *ngIf="wallet.multisignType === 1">&nbsp; {{'hot_wallet' | t}}</i>
+	                		<i class="fa fa-circle text-primary" *ngIf="wallet.multisignType === 2">&nbsp; {{'cold_wallet' | t}}</i>
+	                	</span>
+	                </div>
+	                <label>{{'wallet_address' | t}}: &nbsp;</label>
+	                <span class="margin-bottom-15px">{{ wallet.address }} &nbsp;</span>
+	                <a *ngIf="wallet.block" (click)="unblockOneWallet(wallet)">
+	                	<span class="text-center">
+	                		<i class="fa fa-lock fa-2x fa-fw"></i>
+	                	</span>
+	                </a>
+	            </div>
+	            <div>
+	            	<a data-toggle="collapse" href="{{'#'+wallet._id}}">{{'wallet_balances' | t}} </a>
+	            </div>
+	            <div class="collapse" id="{{wallet._id}}">
+	                <div class="panel panel-default" *ngFor="let balance of wallet.balances" style="padding:10px;">
+	                    <div>
+	                    	<label>{{'asset_' | t}}: &nbsp;</label>
+	                    	<span>{{ balance.asset_type === 'native' ? 'RIA' : balance.asset_code }}</span>
+	                    </div>
+	                    <div>
+	                    	<label>{{'amount_' | t}}: &nbsp;</label><span>{{ balance.balance }}</span>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="panel panel-default" *ngIf="!wallets" style="padding:10px;">
+	    	<span>{{'no_wallet' | t}}</span>
+	    </div>
+	    <div>
+	        <h3><label>{{'permission_' | t}}</label></h3>
+	        <div class="panel panel-default" *ngIf="user_detail">
+	            <div class="panel-body">
+	                <div class="text-left" style="margin-top: 5px;">
+	                    <ul style="list-style-type: none;">
+	                        <li>SUB SYSTEM ADMIN: &nbsp;
+	                        	<div class="text-left can-toggle demo-rebrand-1" style="margin-top: 10px;">
+                                    <input id="permission-enable-toggle" type="checkbox" [checked]="isPermission" (change)="makePermissionToggle()">
+                                    <label for="permission-enable-toggle">
+                                        <div class="can-toggle__switch" [attr.data-checked]="'active_' | t" [attr.data-unchecked]="'inactive_' | t"></div>
+                                    </label>
+                                </div>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+<!-- MODAL -->
+<app-edit-user-info-dialog 
+	[is_edit_email]="is_edit_email" 
+	[user_detail]="user_detail"
+	(changeSubmit)="onSubmitEditUser($event)"
+>
+</app-edit-user-info-dialog>

@@ -1,0 +1,21 @@
+.nav{
+	a{
+		i{
+			font-style: normal;
+		}
+		cursor: pointer;
+	}
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+	color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+.nav-tabs > li.active > a{
+    background-color: seagreen !important;
+    color: white !important;
+}

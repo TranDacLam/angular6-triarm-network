@@ -1,0 +1,9 @@
+.logout{
+	cursor: pointer;
+}
+.notifications{
+	>a{
+		padding-top: calc((65px - 30px)/ 2);
+    	padding-bottom: calc((55px - 30px)/ 2);
+	}
+}

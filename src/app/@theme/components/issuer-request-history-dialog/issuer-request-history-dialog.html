@@ -1,0 +1,119 @@
+<div id="issuerRequestHistoryDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'issuer_request_history' | t}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" *ngIf="!loadingInfo">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+                <div *ngIf="loadingInfo">
+                    <div *ngIf="histories.length">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div></div>
+                                <div>
+                                    <i class="fa fa-hashtag"></i>
+                                    <span>&nbsp; {{'attempt_' | t}}: &nbsp; {{currentRequestIndex   }} / {{histories.length}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <span>{{helper.formatTime(histories[currentRequestIndex-1].createdOn, '', 'LLL')}}</span>
+                            </div>
+                        </div>
+                        <div class="row margin-top-15px">
+                            <div class="col-xs-12">
+                                <label>{{'status_' | t}}</label> &nbsp;
+                                <span class="label label-warning" *ngIf="histories[currentRequestIndex-1].status === 1">{{'pending_' | t}}</span>
+                                <span class="label label-danger" *ngIf="histories[currentRequestIndex-1].status === 2">{{'rejected_' | t}}</span>
+                                <span class="label label-success" *ngIf="histories[currentRequestIndex-1].status === 3">{{'accepted_' | t}}</span>
+                            </div>
+                        </div>
+                        <div *ngIf="histories[currentRequestIndex-1].status === 2">
+                            <label>{{'reject_reason' | t}}</label>
+                            <blockquote class="blockquote">
+                                <span>{{histories[currentRequestIndex-1].extra}}</span>
+                                <footer class="blockquote-footer">
+                                    <cite>{{histories[currentRequestIndex-1].auditedBy.firstname}}</cite>
+                                </footer>
+                            </blockquote>
+                        </div>
+                        <div>
+                            <label>{{'info_' | t}}</label>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 35%;"><span>{{'properties' | t}}</span></th>
+                                        <th><span>{{'content_' | t}}</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span>{{'name_' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].name}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'address_' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].address}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'organization_' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].organization}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'telephone_' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].telNumber}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'token_will_issue_no_explain' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].tokens}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'number_of_token_will_issue' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].totalOfTokens}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'purpose_issue_token_no_explain' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].purposeIssue}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'token_pr_solution' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].prSolution}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'participant_feature_no_explain' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].participantFeature}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'number_of_user_estimate' | t}}</span></td>
+                                        <td><span class="font-italic">{{histories[currentRequestIndex-1].numberUserEstimate}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>{{'identity_card' | t}}</span></td>
+                                        <td>
+                                            <img class="issuer-upload-images" src="{{histories[currentRequestIndex-1].issuerImage[0]}}" style="max-width: 150px;" />&nbsp;
+                                            <img class="issuer-upload-images" src="{{histories[currentRequestIndex-1].issuerImage[1]}}"
+                                                style="max-width: 150px;" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <ul class="pager" *ngIf="histories.length">
+                    <li class="previous"><a [class]="currentRequestIndex > 1 ? '' : 'disabled'" (click)="prevPaginator()">&larr; Previous</a></li>
+                    <li class="next"><a [class]="currentRequestIndex >= histories.length ? 'disabled' : ''" (click)="nextPaginator()">Next &rarr;</a></li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary action" data-dismiss="modal" type="button">
+                    <span>{{'ok_' | t}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

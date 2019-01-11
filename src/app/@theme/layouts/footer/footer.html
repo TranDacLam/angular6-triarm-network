@@ -1,0 +1,27 @@
+<div class="text-center default-footer">
+    <div class="text-center" style="width: 100%;">Copyright ® TRIAM Network 2017</div>
+</div>
+<div class="tab-bar" ng-if="$localStorage.user">
+    <ul>
+        <li class="tab-item" id="wallet-mobile">
+        	<a href="/wallet/my-wallets">
+        		<i class="icon-wallet"> </i><br/>
+        		<span>Wallet</span>
+        	</a>
+        </li>
+        <li class="tab-item" id="admin" ng-if="global.isSuperAdmin">
+        	<a href="/admin">
+        		<i class="icon-user"> </i><br/><span>Admin</span>
+        	</a>
+        </li>
+        <li class="tab-item" id="notify">
+        	<a href="/wallet/advance_transaction">
+        		<i class="icon-bell" style="position: relative;"> <span class="badge badge-notify" >5</span></i><br/><span>Notifications</span>
+        	</a>
+        </li>
+        <li class="tab-item" id="setting">
+            <a href="/wallet/settings"><i class="icon-settings" style="padding-left: 0;"></i><br/><span>Setting</span>
+            </a>
+        </li>
+    </ul>
+</div>

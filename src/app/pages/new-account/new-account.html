@@ -1,0 +1,154 @@
+<app-header></app-header>
+
+<div class="account-new">
+    <div class="form-wrapper">
+        <div id="msform">
+            <ul id="progressbar">
+                <li [class]="stepActive[0] ? '' : 'active'">{{'account_' | t}}</li>
+                <li [class]="stepActive[1] ? '' : 'active'">{{'email_' | t}}</li>
+                <li [class]="stepActive[2] ? '' : 'active'">{{'tfa_' | t}}</li>
+                <li [class]="stepActive[3] ? '' : 'active'">{{'finish_' | t}}</li>
+            </ul>
+            <div>
+                <form [hidden]="stepProcessing[0]" [formGroup]="formNewAccount">
+                    <h2 class="fs-title">{{'create_your_account' | t}}</h2>
+                    <h3 class="fs-subtitle">{{'note_password' | t}}</h3>
+                    <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+                    <app-input
+                        form_control_name="firstname"
+                        type="text" title="{{'first_name' | t}}"
+                        [form]="formNewAccount"
+                    >
+                    </app-input>
+                     <app-input
+                        form_control_name="middlename"
+                        type="text" title="{{'middle_name' | t}}"
+                        [form]="formNewAccount"
+                        isValid="{{true}}"
+                    >
+                    </app-input>
+                    <app-input
+                        form_control_name="lastname"
+                        type="text" title="{{'last_name' | t}}"
+                        [form]="formNewAccount"
+                    >
+                    </app-input>
+                    <app-input
+                        form_control_name="email"
+                        type="email" title="{{'email_' | t}}"
+                        [form]="formNewAccount"
+                    >
+                    </app-input>
+
+                    <div class="password">
+                        <label>{{'password_' | t}}</label>
+                        <input class="form-control" type="password" formControlName="password" />
+                        <div class="progress progress-volume"
+                            *ngIf="formNewAccount.get('password').invalid && formNewAccount.get('password').value"
+                        >
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" 
+                            aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{'width.%': formNewAccount.value.password?.length * 10 * 1.6}"
+                            >{{formNewAccount.value.password?.length * 10 * 1.6}}%</div>
+                        </div>
+                        <br>
+                    </div>
+
+                    <app-input
+                        form_control_name="repassword"
+                        type="password" title="{{'repeat_password' | t}}"
+                        [form]="formNewAccount"
+                    >
+                    </app-input>
+                    <input class="next action-button" type="button" name="next" value="{{'next_' | t}}" [disabled]="!formNewAccount.valid" (click)="nexStep1()" [hidden]="processing"/>
+                    <div class="text-center" [hidden]="!processing">
+                    	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                    </div>
+                </form>
+                <form [hidden]="stepProcessing[1]">
+                    <h2 class="fs-title">{{'email_verification' | t}}</h2>
+                    <h3 class="fs-subtitle">{{'send_email_verification' | t}}</h3>
+
+                    <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+
+                    <input class="form-control code-verify margin-bottom-15px" type="text" [(ngModel)]="codeEmail" autofocus="autofocus" name="codeEmail" />
+                    <div class="row margin-bottom-15px" [hidden]="processing">
+                        <div class="col-xs-12 col-sm-6">
+                        	<input class="resend action-button" type="button" value="{{'resend_' | t}}" (click)="resendMail()" />
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                        	<input class="next action-button" type="button" name="next" value="{{'next_' | t}}" [disabled]="!codeEmail ? true : false" (click)="nexStep2()" />
+                        </div>
+                    </div>
+                    <div class="text-center" [hidden]="!processing">
+                    	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                    </div>
+                </form>
+                <form [hidden]="stepProcessing[2]">
+                    <h2 class="fs-title">{{'two_factor_verification' | t}}</h2>
+                    <h3 class="fs-subtitle" innerHTML="{{'tfa_explanation' | t}} <a href='https://en.wikipedia.org/wiki/Multi-factor_authentication' target='_blank'>{{'learn_more' | t}}</a>"></h3>
+                    <div class="margin-bottom-15px" *ngIf='!gaSecret || skipGA'>
+                    	<img class="ga-intro" src="./../../../assets/images/support/ga-intro.png" />
+                        <div class="margin-top-15px" innerHTML="{{'ga_explanation_PREFIX' | t}} <a href='https://en.wikipedia.org/wiki/Google_Authenticator' target='_blank'>{{'google_authenticator' | t}}</a> {{'ga_explanation_SUFFIX' | t}}"></div>
+                    </div>
+                    <div class="margin-bottom-15px" *ngIf="gaStep === 1 && !skipGA">
+                        <div>{{'scan_this_ga_qr' | t}}</div>
+                        <img class="qr-img" src="{{gaQRData}}" />
+                        <div>{{'input_ga_code' | t}}</div>
+                        <app-alert-messages messages_alert="{{msg_error}}" type="danger" (valueChange)="msg_error = $event"></app-alert-messages>
+                        <input class="margin-top-15px form-control code-verify" [(ngModel)]="gaConfirmCode" name="gaConfirmCode"  *ngIf="gaSecret"/>
+                    </div>
+                    <div class="margin-bottom-15px" *ngIf="gaStep === 2">
+                        <div class="backup-warning">{{'ga_backup_code' | t}}
+                            <div class="backup-code">{{gaSecret}}</div>
+                        </div>
+                        <div class="checkbox">
+                        	<label>
+                        		<input 
+                                    type="checkbox" 
+                                    [(ngModel)]="backupConfirmed" 
+                                    name="backupConfirmed"
+                                />
+                                &nbsp; {{'backup_confirmed' | t}}
+                        	</label>
+                        </div>
+                    </div>
+                    <div class="row flexbox" *ngIf="!skipGA && gaStep !== 2">
+                        <div class="col-xs-12 col-sm-6 valign-center">
+                        	<a href="javascript:void(0)" (click)="skipGA = true;">{{'skip_' | t}}</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 valign-center">
+                        	<button class="action-button" (click)="setupGA()" [disabled]="gettingGA || verifyingGA">
+                        		<span *ngIf="gettingGA || verifyingGA"><i class="fa fa-spinner fa-spin"></i>
+                        			<span>&nbsp;</span>
+                        		</span>
+                                <span>
+                                    {{(!gaSecret ? 'get_ga' : 'verify_') | t}}
+                        		</span>
+                        	</button>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="gaStep === 2 || skipGA">
+                        <div class="col-xs-12 col-sm-3"></div>
+                        <div class="col-xs-12 col-sm-6">
+                        	<button class="next action-button"
+                                type="button" [disabled]="(!gaConfirmCode && !skipGA) || (!backupConfirmed && !skipGA)" 
+                                [hidden]="processing" (click)="nexStep3()">
+                                {{'next_' | t}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="text-center" *ngIf="processing">
+                    	<i class="fa fa-spinner fa-spin fa-2x fa-fw"></i>
+                    </div>
+                </form>
+                <form [hidden]="stepProcessing[3]">
+                    <h2 class="fs-title">{{'finish_' | t}}</h2>
+                    <h3 class="fs-subtitle">{{'create_successfull' | t}}</h3>
+                    <img class="success" src="./../../../assets/images/register/success.svg" />
+                    <a class="done action-button margin-top-15px" type="button" [routerLink]="['/wallet']">{{'go_to_wallet' | t}}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

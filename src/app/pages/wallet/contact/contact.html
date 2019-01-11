@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <h3>
+        	<label>{{'my_contacts' | t}}</label>
+        </h3>
+        
+        <app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div>
+                    <div class="margin-top-15px margin-bottom-15px">
+                        <div class="table table-responsive">
+                            <table class="table table-striped" style="table-layout: fixed;">
+                                <thead>
+                                    <th style="width: 3%;">#</th>
+                                    <th style="width: 22%;">{{'name_' | t}}</th>
+                                    <th>{{'wallet_address' | t}}</th>
+                                    <th class="text-right" style="width: 16%;"></th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let contact of contacts; let i = index">
+                                        <td>{{i + 1}}</td>
+                                        <td>
+                                        	<span *ngIf="contact.isCRU">
+                                        		<div class="form-group">
+                                        			<input type="text" class="form-control" name="name" [(ngModel)]="contact.name" required/>
+                                        		</div>
+                                        	</span>
+                                            <div *ngIf="!contact.isCRU" class="ellipsis contact-name">{{ contact.name }}</div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group"  style="width:100%;" *ngIf="contact.isCRU">
+                                            	<input class="form-control ellipsis" [(ngModel)]="contact.address" required />
+                                            </div>
+                                            <div *ngIf="!contact.isCRU" class="ellipsis">{{ contact.address }}</div>
+                                        </td>
+                                        <!--td.text-right| {{ ctrl.formatTime(contact.createdOn) }}-->
+                                        <td class="text-right">
+                                            <form class="form-buttons form-inline" *ngIf="contact.isCRU">
+                                            	<button class="btn btn-primary" type="button" (click)="saveContact(contact)"><i class="fa fa-save"></i></button>
+                                            	<button class="btn btn-default" type="button" (click)="removeNewContact(contact)"
+                                                    style="margin-left: 10px;"><i class="fa fa-ban"></i>
+                                                </button>
+                                            </form>
+                                            <div *ngIf="!contact.isBeingSaved">
+                                                <fieldset [disabled]="contact.isBeingRemoved" *ngIf="!contact.isCRU">
+                                                	<button class="btn btn-danger" type="button" (click)="removeContact(contact)"><i class="fa fa-spinner fa-spin" *ngIf="contact.isBeingRemoved"></i><i class="fa fa-trash" *ngIf="!contact.isBeingRemoved"></i></button>
+                                                    <button (click)="editContact(contact)" class="btn btn-primary" type="button" style="margin-left: 10px;"><i class="fa fa-pencil"></i></button>
+                                                </fieldset>
+                                            </div>
+                                            <div *ngIf="contact.isBeingSaved">
+                                            	<span><i class="fa fa-spinner fa-spin"></i></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="contacts.length === 0">
+                    <div class="well">{{'no_have_contacts' | t}}</div>
+                </div>
+                <div class="text-center">
+                	<button class="btn btn-primary" (click)="addContact()">
+                		<span>{{'add_contact' | t}}</span>
+                	</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

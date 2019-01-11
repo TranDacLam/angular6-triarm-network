@@ -1,0 +1,56 @@
+<div id="adminEmailAddressDialog" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title bold-text">{{'admin_email_addresses'| t}}</h3>
+            </div>
+            
+            <app-alert-messages messages_alert="{{msg_alert}}" [type]="type_alert" (valueChange)="msg_alert = $event"></app-alert-messages>
+
+            <div class="modal-body">
+                <div class="margin-bottom-15px" *ngIf="!waitResponse">
+                    <div *ngFor="let email of emails">
+                        <fieldset [disabled]="email.beingRemoved" class="margin-bottom-7px">
+                            <div class="row flexbox">
+                                <div class="col-xs-6 valign-center" style="font-size: 18px; font-weight:bold;">{{email.address}}</div>
+                                <div class="col-xs-3 text-right valign-center">
+                                    <label>
+                                        <input type="checkbox" [(ngModel)]="email.removeFiles"/><span>&nbsp; {{'remove_files'| t}}</span>
+                                    </label>
+                                </div>
+                                <div class="col-xs-3 text-right valign-center">
+                                    <button class="btn btn-danger" (click)="removeEmailAddress(email)" [disabled]="email.beingRemoved">
+                                        <i class="fa fa-trash-o" *ngIf="!email.beingRemoved"></i>
+                                        <i class="fa fa-spinner fa-spin" *ngIf="email.beingRemoved"></i>
+                                        <span class="hidden-xs">&nbsp; {{'remove_'| t}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <fieldset [disabled]="addingEmail">
+                        <div class="margin-top-15px">
+                            <label>{{'add_new_email'| t}}</label>
+                            <div class="row flexbox">
+                                <div class="col-xs-4">
+                                    <input class="form-control" [(ngModel)]="newEmail" />
+                                </div>
+                                <div class="col-xs-5 valign-center">
+                                    <span>{{emailTail}}</span>
+                                </div>
+                                <div class="col-xs-3 text-right">
+                                    <button class="form-control btn btn-default" [disabled]="!newEmail || addingEmail" (click)="addNewEmail()">
+                                        <i class="fa fa-spinner fa-spin" *ngIf="addingEmail"></i>
+                                        <span>&nbsp; {{'add_'| t}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

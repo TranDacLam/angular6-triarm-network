@@ -1,0 +1,68 @@
+<div class="backup-db">
+    <div>
+        <h3 class="pull-left mt0">{{'news_heading' | t}}</h3>
+        <button class="btn btn-primary pull-right" (click)="newsDialog(undefined)">{{'add_' | t}}</button>
+        <div class="clearfix"></div>
+    </div>
+    <hr/>
+    
+    <app-alert-messages messages_alert="{{msg_alert}}" type="success" (valueChange)="msg_alert = $event"></app-alert-messages>
+
+    <div>
+        <div>
+            <table class="table table-condensed table-responsive table-hover">
+                <thead>
+                    <tr>
+                        <th>{{'no_dot' | t}}</th>
+                        <th>{{'title_' | t}}</th>
+                        <th>{{'content_' | t}}</th>
+                        <th class="text-right">{{'action_' | t}}</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="allNews && allNews.length > 0">
+                    <tr *ngIf="waitTableData">
+                        <td class="text-center" colspan="4"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>
+                    </tr>
+                    <tr class="backup-file" *ngFor="let news of currentItems; let i = index">
+                        <td>{{(currentPage -1) * limit + (i + 1) }}</td>
+                        <td><a>{{ news.title }}</a></td>
+                        <td [innerHTML]="news.content"></td>
+                        <td class="text-right">
+                            <button class="btn btn-sm btn-success" (click)="sendNews(news._id)" [disabled]="sending[news._id] || sentId.includes(news._id) || news.isSent" style="margin-bottom: 3px;">
+                                <span>
+                                    <i class="fa fa-send" *ngIf="!sending[news._id]"></i>
+                                    <i class="fa fa-spinner fa-spin fa-fw" *ngIf="sending[news._id]"></i>
+                                    <span class="hidden-xs">&nbsp; {{'send_to_subscriber' | t}} &nbsp;&nbsp;&nbsp;</span>
+                                </span>
+                            </button>
+                            <br/>
+                            <button
+                                class="btn btn-sm btn-info" (click)="newsDialog(news)" style="margin-bottom: 3px;">
+                                <span >
+                                    <i class="fa fa-edit"></i>
+                                    <span class="hidden-xs">&nbsp; {{'edit_' | t}} &nbsp;&nbsp;&nbsp;</span>
+                                </span>
+                            </button>
+                            <br/>
+                            <button
+                                class="btn btn-sm btn-danger" (click)="deleteNews(news._id)" [disabled]="deleting[news._id]">
+                                <span *ngIf="!deleting[news._id]"><i class="fa fa-trash"></i>
+                                    <span class="hidden-xs">&nbsp; {{'delete_' | t}}</span>
+                                </span>
+                                <span *ngIf="deleting[news._id]"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-right">
+                <pagination *ngIf="allNews && allNews.length > 0" 
+                    [totalItems]="allNews.length" [itemsPerPage]="limit" (pageChanged)="pageChanged($event)" [maxSize]="5"
+                ></pagination>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<app-news-dialog [news_detail]="news_detail" (onNews)="onNewsChange($event)"></app-news-dialog>

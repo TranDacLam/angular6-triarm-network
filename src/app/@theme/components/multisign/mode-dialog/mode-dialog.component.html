@@ -1,0 +1,22 @@
+<div id="modeDialogMultiSign" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        	<div class="modal-header">
+        		<button class="close" type="button" data-dismiss="modal">&times;</button>
+			    <h4 class="modal-title bold-text">
+				    <small class="fa fa-codepen text-uppercase">{{'asset_' | t}}: &nbsp;
+				    <span class="text-success">{{asset}}</span></small>
+				</h4>
+			</div>
+			<div class="modal-body">
+			    <div class="text-center" *ngIf="loading" style="font-size: 15px;"><i class="fa fa-spinner fa-spin"></i></div>
+			    <div *ngIf="!loading">
+			    	<div class="margin-top-15px">
+			    		<button class="btn btn-default form-control margin-bottom-15px" (click)="goto('send')" [disabled]="walletModeDialog.block || !walletModeDialog.active" *ngIf="isTrustAccepted">{{'send_money' | t}}</button>
+			    	</div>
+			    </div>
+			</div>
+        </div>
+    </div>
+</div>

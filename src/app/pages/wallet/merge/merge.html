@@ -1,0 +1,65 @@
+<div>
+    <h3>{{'merge_wallet' | t}}</h3>
+    <!--| After merging, the source wallet will be removed-->
+    <span>{{'merge_wallet_cond_6' | t}}</span>
+    <div>
+        <div *ngIf="true">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="warning-message">
+                        <!--div.header The requirements for merge wallet-->
+                        <div class="header">{{'merge_wallet_header' | t}}</div>
+                        <div class="content">
+                            <!--span *Source wallet has not issued any asset-->
+                            <span>{{'merge_wallet_cond_1' | t}}</span><br/>
+                            <!--| *Source wallet is not used by any merchant store-->
+                            <span>{{'merge_wallet_cond_2' | t}}</span><br/>
+                            <!--| *Source wallet has no pending offer-->
+                            <span>{{'merge_wallet_cond_3' | t}}</span><br/>
+                            <!--| *Source wallet has only ARM-->
+                            <span>{{'merge_wallet_cond_4' | t}}</span><br/>
+                            <!-- merge wallet condition 5-->
+                            <span>{{'merge_wallet_cond_5' | t}}</span></div>
+                    </div>
+                    <fieldset [disabled]="processing">
+                    	<label style="font-size: 15px;">{{'source_wallet_merge' | t}}</label>
+                        <div class="margin-bottom-15px" *ngIf="!sourceWallet">
+                        	<button class="btn btn-default" (click)="selectSourceWallet()">{{'select_a_wallet' | t}}</button>
+                        </div>
+                        <div class="ellipsis margin-bottom-15px" *ngIf="sourceWallet" style="font-size: 15px;">
+                        	{{sourceWallet.name + ' - ' + sourceWallet.address}} &nbsp;
+                        	<a type="button" (click)="selectSourceWallet()">{{'change_' | t}}</a>
+                        </div>
+                        <label style="font-size: 15px;">{{'destination_wallet' | t}}</label>
+                        <div class="margin-bottom-15px" *ngIf="!destinationWallet">
+                        	<button class="btn btn-default" (click)="selectDestinationWallet()">{{'select_a_wallet' | t}}</button>
+                        </div>
+                        <div class="ellipsis margin-bottom-15px" *ngIf="destinationWallet" style="font-size: 15px;">
+                        	{{destinationWallet.name + ' - ' + destinationWallet.address}} &nbsp;
+                        	<a type="button" (click)="selectDestinationWallet()">{{'change_' | t}}</a>
+                        </div>
+                        <div class="text-center margin-top-15px">
+                        	<button class="btn btn-primary" (click)="checkSigner()" [disabled]="processing || !sourceWallet || !destinationWallet || sourceWallet._id == destinationWallet._id">
+                        		<span *ngIf="processing">&nbsp;<i class="fa fa-spinner fa-spin"></i>&nbsp;</span>
+                        		<span>{{'merge_wallet' | t}}</span>
+                        	</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-wallet-dialog
+	[options]="options_wallet"
+	(on_wallet_dialog)="onWalletDialog($event)"
+>
+</app-wallet-dialog>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>

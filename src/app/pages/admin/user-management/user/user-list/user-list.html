@@ -1,0 +1,50 @@
+<div class="row flexbox">
+    <div class="col-xs-12 col-sm-12 valign-center">
+        <div>
+            <h1>{{'user_manage' | t}}</h1>
+            <div class="input-group">
+            	<span class="input-group-addon">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>
+            	<input class="form-control" [placeholder]="'search_user' | t" type="text" [(ngModel)]="searchParam" (change)="search()" (change)="reloadListUser()"
+                /></div>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">{{'no_' | t}}</th>
+                        <th class="text-center">{{'email_' | t}}</th>
+                        <th class="text-center">{{'first_name' | t}}</th>
+                        <th class="text-center">{{'middle_name' | t}}</th>
+                        <th class="text-center">{{'last_name' | t}}</th>
+                        <th class="text-center">{{'tfa_' | t}}</th>
+                        <th class="text-center">{{'arm_id' | t}}</th>
+                        <th class="text-center">{{'created_at' | t}}</th>
+                        <th class="text-center">{{'control_' | t}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let userInfo of listUsers; let i = index">
+                        <td>
+                            <div class="text-center">{{(currentPage -1) * limit + (i + 1) }}</div>
+                        </td>
+                        <td class="text-center">{{userInfo.email}}</td>
+                        <td class="text-center">{{userInfo.firstname}}</td>
+                        <td class="text-center">{{userInfo.middlename}}</td>
+                        <td class="text-center">{{userInfo.lastname}}</td>
+                        <td class="text-center" *ngIf="userInfo.verifyGA"><i class="fa fa-check text-success"></i></td>
+                        <td class="text-center" *ngIf="!userInfo.verifyGA"><i class="fa fa-times text-danger"></i></td>
+                        <td class="text-center">{{userInfo.armId}}</td>
+                        <td class="text-center">{{userInfo.createdAt | date: "yyyy-MM-dd HH:mm:ss Z"}}</td>
+                        <td class="text-center"><a class="btn btn-info" [routerLink]="['/admin/user-management/user', userInfo.armId]">{{'profile_' | t}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-right history-paging margin-top-15px" *ngIf="!waitResponseData">
+           <pagination *ngIf="listUsers && listUsers.length > 0" 
+                [totalItems]="totalUser" [itemsPerPage]="limit" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [maxSize]="5" [boundaryLinks]="true" [rotate]="true"
+            ></pagination>
+        </div>
+        <div *ngIf="waitResponseData">
+            <div class="text-center"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></div>
+        </div>
+    </div>
+</div>

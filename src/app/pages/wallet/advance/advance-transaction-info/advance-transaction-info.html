@@ -1,0 +1,255 @@
+<div class="text-center" *ngIf="waitResponse">
+    <span style="font-size: 40px;"><i class="fa fa-spinner fa-spin"></i></span>
+</div>
+<div class="infor-transaction" style="position:relative;" *ngIf="!waitResponse">
+    <p style="position: absolute;right: 5px;top: 0;">
+    	<b>{{'status_' | t}}: &nbsp;</b>
+    	<small class="text-danger" *ngIf="infoTransaction.status===2">FAILURE</small>
+    	<small class="text-success" *ngIf="infoTransaction.status===1">SUCCESS</small>
+    	<small class="text-warning" *ngIf="infoTransaction.status===0">PENDING</small>
+    </p>
+    <div>
+        <div class="col-xs-12 col-md-12 info-title-transaction">
+            <!--div.item(*ngIf="viewers && viewers.length > 0")-->
+            <!--	i.fa.fa-eye-->
+            <!--	span(ng-repeat="item in viewers")-->
+            <!--		img(src="{{item.avatar}}"-->
+            <!--			style="width:3%;"-->
+            <!--			uib-tooltip="{{$localStorage.user._id === item._id ? 'me' : item.firstname + ' ' + item.middlename + ' ' + item.lastname}}"-->
+            <!--			tooltip-placement="top"-->
+            <!--			alt="{{item.firstname + ' ' + item.middlename + ' ' + item.lastname}}")-->
+            <div class="item">
+            	<i class="fa fa-address-card"></i>
+            	<span class="address">{{'wallet_name' | t}} : {{infoTransaction.wallet.name}} ({{infoTransaction.wallet.address}})</span>
+            </div>
+            <div class="item">
+            	<i class="fa fa-clock-o"></i>
+            	<span>{{'created_at' | t}} : {{infoTransaction.createdOn}}</span>
+            </div>
+            <div class="item">
+            	<i class="fa fa-user-circle"></i>
+            	<span class="address">{{'created_by' | t}} : {{infoTransaction.user.name}} ({{infoTransaction.user.address}})</span>
+            </div>
+            <div class="item">
+            	<i class="fa fa-gavel"></i>
+            	<span>{{'weight_require' | t}} : {{infoTransaction.weightRequire}}</span>
+            </div>
+            <div class="item">
+            	<i class="fa fa-pencil"></i>
+            	<span>{{'total_signed_weight' | t}} : {{infoTransaction.totalSignedWeight}}</span>
+            </div>
+            <div class="item">
+            	<i class="fa fa-edit"></i>
+            	<span>{{infoTransaction.signedAmount}} {{'signed_' | t}} / {{infoTransaction.totalSigners}} {{'signature' | t}}</span>
+            </div>
+        </div>
+        <table class="table table-signature">
+            <thead>
+                <tr>
+                    <td>
+                    	<i class="fa fa-check-square"></i>
+                    	<label>{{'signatures_' | t}}</label>
+                    </td>
+                    <td>
+                    	<label class="float-right">{{'is_signed' | t}}</label>
+                    </td>
+                    <td>
+                    	<label class="float-right">{{'weight_' | t}}</label>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sign of signatures">
+                    <td>
+                    	<span class="address">{{sign.name}} ({{sign.address}})</span>
+                        <div class="text-muted" *ngIf="sign.isMasterKey"> {{'master_key' | t}} &nbsp;</div>
+                        <div class="text-muted" *ngIf="!sign.isMasterKey">{{'signer' | t}} &nbsp;</div>
+                    </td>
+                    <td class="text-center">
+                    	<i class="fa fa-check text-success" *ngIf="sign.isSigned"></i>
+                    </td>
+                    <td>
+                    	<span class="text-muted float-right">{{sign.weight}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="container-fluid">
+            <div class="col-xs-3 col-md-3">
+            	<span>{{'transaction_fee' | t}}: {{infoTransaction.transaction.fee/10000000}}</span>
+            </div>
+            <div class="col-xs-3 col-md-3">
+            	<span>{{'number_operation' | t}}: {{infoTransaction.transaction.operations.length}}</span>
+            </div>
+        </div>
+        <div class="detail-advance" id="detailAdvance">
+            <div class="container-fluid item-trust" *ngFor="let operate of infoTransaction.transaction.operations">
+                <div class="row info-wrapper" *ngIf="operate.type === 'payment'">
+                    <div class="col-xs-2 text-center">
+                    	<i class="fa fa-money fa-2x text-center" style="color: #5cb85c;"></i><br/>
+                        <p class="hidden-xs label label-success" style="margin-top:5px;">{{operate.type}}</p>
+                    </div>
+                    <div class="col-xs-10 item-info">
+                        <div>
+                        	<label>{{'sender_wallet_address' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.source}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'receiver_wallet_address' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.destination}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'amount_' | t}}: &nbsp;</label>
+                        	<span style="color: red;">&nbsp;{{operate.amount}} {{operate.asset.issuer ? operate.asset.code : 'RIA'}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'time_' | t}}: &nbsp;</label>
+                        	<span>{{infoTransaction.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-wrapper" *ngIf="operate.type === 'createAccount'">
+                    <div class="col-xs-2 text-center">
+                    	<i class="fa fa-user-circle fa-2x text-center" style="color: #337ab7;"></i><br/>
+                        <p class="hidden-xs label label-primary" style="margin-top:5px;">{{operate.type}}</p>
+                    </div>
+                    <div class="col-xs-10 item-info">
+                        <div>
+                        	<label>{{'funder_wallet_address' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.source}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'new_wallet_address' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.destination}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'starting_balance' | t}}: &nbsp;</label>
+                        	<span style="color: red;">&nbsp;{{operate.startingBalance}} {{operate.asset.issuer ? operate.asset.code : 'RIA'}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'time_' | t}}: &nbsp;</label>
+                        	<span>{{infoTransaction.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-wrapper" *ngIf="operate.type === 'changeTrust'">
+                    <div class="col-xs-2 text-center">
+                    	<i class="fa fa-handshake-o fa-2x text-center" style="color: #f0ad4e;"></i><br/>
+                        <p class="hidden-xs label label-warning" style="margin-top:5px;">{{operate.type}}</p>
+                    </div>
+                    <div class="col-xs-10 item-info">
+                        <div>
+                        	<label>{{'source_wallet' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.source}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'action_' | t}}: &nbsp;</label>
+                        	<span>{{operate.limit == 0 ? "Untrust" : "Trust"}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'asset_' | t}}: &nbsp;</label>
+                        	<span style="color: green;">{{operate.line.issuer ? operate.line.code : 'RIA'}}</span>
+                        </div>
+                        <div *ngIf="operate.line.issuer">
+                        	<label>Issuer: &nbsp;</label>
+                        	<span class="address">{{operate.line.issuer}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'time_' | t}}: &nbsp;</label>
+                        	<span>{{infoTransaction.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-wrapper" *ngIf="operate.type === 'allowTrust'">
+                    <div class="col-xs-2 text-center"><i class="fa fa-money fa-2x text-center" style="color: #5cb85c;"></i><br/>
+                        <p class="hidden-xs label label-success" style="margin-top:5px;">{{operate.type}}</p>
+                    </div>
+                    <div class="col-xs-10 item-info">
+                        <div>
+                        	<label>{{'source_wallet' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.trustor}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'action_' | t}}: &nbsp;</label>
+                        	<span>{{operate.authorize ? 'Allow trust' : 'Reject trust'}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'asset_' | t}}: &nbsp;</label>
+                        	<span style="color: green;">{{operate.assetCode || 'RIA'}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'time_' | t}}: &nbsp;</label>
+                        	<span>{{infoTransaction.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row info-wrapper" *ngIf="operate.type === 'setOptions'">
+                    <div class="col-xs-2 text-center"><i class="fa fa-wrench fa-2x text-center"></i><br/>
+                        <p class="hidden-xs label label-default" style="margin-top:5px;">{{operate.type}}</p>
+                    </div>
+                    <div class="col-xs-10 item-info">
+                        <div>
+                        	<label>{{'set_options_wallet' | t}}: &nbsp;</label>
+                        	<span class="address">{{infoTransaction.transaction.source}}</span>
+                        </div>
+                        <div *ngIf="operate.signer">
+                        	<label>{{'signer_address' | t}}: &nbsp;</label>
+                        	<span class="address">{{operate.signer.ed25519PublicKey}}</span>
+                        	<br/>
+                        	<label>{{'weight_' | t}}: &nbsp;</label>
+                        	<span>{{operate.signer.weight}}</span>
+                        </div>
+                        <div *ngIf="operate.masterWeight !== undefined">
+                        	<label>{{'master_weight' | t}}: &nbsp;</label>
+                        	<span>{{operate.masterWeight}}</span>
+                        </div>
+                        <div *ngIf="operate.lowThreshold !== undefined">
+                        	<label>{{'allower_trust' | t}}: &nbsp;</label>
+                        	<span>{{operate.lowThreshold}}</span>
+                        </div>
+                        <div *ngIf="operate.medThreshold !== undefined">
+                        	<label>{{'payment_trust' | t}}: &nbsp;</label>
+                        	<span>{{operate.medThreshold}}</span>
+                        </div>
+                        <div *ngIf="operate.highThreshold !== undefined">
+                        	<label>{{'admin_' | t}}: &nbsp;</label>
+                        	<span>{{operate.highThreshold}}</span>
+                        </div>
+                        <div *ngIf="operate.setFlags">
+                        	<label>{{'property_' | t}}: &nbsp;</label>
+                        	<span>{{bitwiseAnd(operate.setFlags, 1) === 0 ? "AUTHORIZATION_NONE" : "AUTHORIZATION_REQUIRED"}}</span>
+                        </div>
+                        <div>
+                        	<label>{{'time_' | t}}: &nbsp;</label>
+                        	<span>{{infoTransaction.createdOn}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid button-signature" *ngIf="infoTransaction.status === 0">
+            <div class="text-center">
+            	<button class="btn btn-primary" (click)="signAndSubmit()" *ngIf="!isSubmited && !!availableSigner && canSignAndSubmit" (focus)="viewerSubmitAction(infoTransaction._id, infoTransaction.wallet._id)"
+                    [disabled]="waitResponse" [attr.data-html]="true" [attr.data-toggle]="'popover'" [attr.data-trigger]="'mouseenter'" [attr.data-content]="htmlPopover">
+                    <span>{{'sign_submit' | t}}</span>
+                </button>
+                <button class="btn btn-default" [attr.data-html]="true" [attr.data-toggle]="'popover'" [attr.data-trigger]="'mouseenter'" [attr.data-content]="htmlPopover" *ngIf="!availableSigner">
+                	<i class="fa fa-check text-success">&nbsp;</i>
+                	<span style="font-weight: bold;font-size: 9pt;">SIGNED </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
+
+<app-choose-signer-dialog
+	[options]="options_choose_signer"
+	(on_choose_signer_dialog)="onChooseSignerDialog($event)"
+>
+</app-choose-signer-dialog>

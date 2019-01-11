@@ -1,0 +1,88 @@
+<div class="wallet-wrapper setting-advance-wallet" *ngIf="wallet">
+    <div class="text-center alert alert-success" *ngIf="isSuccess">
+        <strong>{{'success_' | t}}!&nbsp;
+            <span>{{'success_alert' | t}} {{timer}}</span>
+        </strong>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-permission">
+                <tbody>
+                    <tr>
+                        <td><i class="fa fa-user-circle"></i></td>
+                        <td>
+                            <label>{{'admin_' | t}}</label>
+                            <span>{{'admin_can_add_update_delete_signer_info' | t}}</span>
+                        </td>
+                        <td> 
+                            <input class="form-control" type="number" [(ngModel)]="thresholds.high_threshold" [placeholder]="'permission_percent' | t" disabled />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-paypal"></i></td>
+                        <td><label>{{'paymenter' | t}}</label><span>{{'paymenter_can_transfer_money_issuing_asset_trust_untrust_asset' | t}}</span></td>
+                        <td> <input class="form-control" type="number" [(ngModel)]="thresholds.med_threshold" [placeholder]="'permission_percent' | t" disabled /></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa fa-check-circle-o"></i></td>
+                        <td><label>{{'allower' | t}}</label><span>{{'allower_only_can_allow_trust_asset' | t}}</span></td>
+                        <td> <input class="form-control" type="number" [(ngModel)]="thresholds.low_threshold" [placeholder]="'permission_percent' | t" disabled /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container-fluid singer"><label>{{'signer' | t}}</label>
+                <table class="table table-signer">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>{{masterKey.address}}</div>
+                                <div class="text-muted">{{'master_key' | t}}</div>
+                            </td>
+                            <td><input class="form-control" type="number" [(ngModel)]="masterKey.weight" [placeholder]="'permission_percent' | t" /></td>
+                            <td><a class="btn btn-danger icon"  (click)="removeSigner(masterKey.address)"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                        <tr *ngFor="let signer of signers">
+                            <td>
+                                <div>{{signer.address}}</div>
+                                <div class="text-muted">{{'signer' | t}}</div>
+                            </td>
+                            <td><input class="form-control" type="number" [(ngModel)]="signer.weight" [placeholder]="'permission_percent' | t" /></td>
+                            <td><a class="btn btn-danger icon"  (click)="removeSigner(signer.address)"><i class="fa fa-trash"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><input class="form-control" type="text" [(ngModel)]="newAddress" required [placeholder]="'signer_address' | t" /></td>
+                                            <td><input class="form-control" type="text" [(ngModel)]="newWeight" [placeholder]="'permission_percent' | t" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td class="add-signer"><a class="btn btn-info icon"  (click)="addSigner()"><i class="fa fa-plus"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btn-submit"><button class="btn btn-primary" (click)="OK()">{{'submit' | t}}</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<app-private-key-dialog
+	[wallet]="wallet"
+	[type]="null"
+	(on_private_key_dialog)="onPrivateKeyDialog($event)"
+>
+</app-private-key-dialog>
+
+<app-tfa-confirm
+	[option_extra]="{}"
+	(on_confirm)="onConfirmTfa($event)"
+>
+</app-tfa-confirm>
